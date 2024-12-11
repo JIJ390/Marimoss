@@ -75,6 +75,14 @@ main {
 .like-area {
   display: flex;
   flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.like-area img {
+  border-radius: 0px !important;
+  width: 24px !important;
 }
 
 .bottom-area {
@@ -110,5 +118,5 @@ main {
 }
 
 .board-div img {
-  width: 20px;
+  width: 32px;
 }
