@@ -1,0 +1,21 @@
+* { /* 전체 적용 옵션 */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 색상 */
+:root{
+  --main-color : rgba(0, 255, 156, 1);        /* 사이트 대표 컬러 */
+  --main-gray-color : rgba(240, 240, 240, 1); /* 어두운 페이지 배경색 */
+  --white-color : white;                      /* 흰색 */
+
+  --font-color : rgb(53, 53, 72);         /* 글자색 */
+  --font-gray-color : rgba(110, 110, 115, 1); /* 글자 옅은 회색 */
+
+  --back-color : rgb(239, 239, 245);
+}
+
+*{
+  color: var(--font-color);
+}
