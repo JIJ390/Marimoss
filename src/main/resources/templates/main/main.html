@@ -15,12 +15,61 @@
   </header>
  
   <main>
+
     <!-- 중앙 컨텐츠 영역 -->
     <section class="main-section">
 
+      <th:block th:each= "board:${boardList}" th:object="${board}">
+        <div class="board-box">
+          <img src="/images/sample/sample.jpg" alt="">
+          <div class="board-div">
+            <div class="top-area">
+              <span th:text="*{boardTitle}"></span>
+            </div>
+            
+            <div class="like-area">
+              <img src="" alt="like">
+              <span>2,544</span>
+            </div>
+
+            <div class="bottom-area">
+              <img src="/images/main/downloadButton.png" alt="">
+            </div>
+          </div>
+        </div>
+      </th:block>
+
       <div class="board-box">
         <img src="/images/sample/sample.jpg" alt="">
-        <span class="board-div">abc</span>
+        <div class="board-div">
+          제목
+          <img src="/images/main/downloadButton.png" alt="">
+        </div>
+      </div>
+
+      <div class="board-box">
+        <img src="/images/sample/sample2.jpg" alt="">
+        <div class="board-div">
+          좋아요 수 / 버튼 들어가야 함
+          제목
+          <img src="/images/main/downloadButton.png" alt="">
+        </div>
+      </div>
+
+      <div class="board-box">
+        <img src="/images/sample/sample3.jpg" alt="">
+        <div class="board-div">
+          제목
+          <img src="/images/main/downloadButton.png" alt="">
+        </div>
+      </div>
+
+      <div class="board-box">
+        <img src="/images/sample/sample3.jpg" alt="">
+        <div class="board-div">
+          제목
+          <img src="/images/main/downloadButton.png" alt="">
+        </div>
       </div>
 
       <div class="board-box">
@@ -28,18 +77,6 @@
       </div>
 
       <div class="board-box">
-        <img src="/images/sample/sample3.jpg" alt="">
-      </div>
-
-      <div class="board-box">
-        <img src="/images/sample/sample3.jpg" alt="">
-      </div>
-
-      <div class="board-box">
-        <img src="/images/sample/sample2.jpg" alt="">
-      </div>
-
-      <div class="board-box">
         <img src="/images/sample/sample.jpg" alt="">
       </div>
 
@@ -59,9 +96,10 @@
       <div class="board-box">
         <img src="/images/sample/sample3.jpg" alt="">
       </div>
-
 
     </section>
+    <!-- 감시자 -->
+    <p class="obserb-flag"></p>
   </main>
 
 
