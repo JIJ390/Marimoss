@@ -20,12 +20,10 @@ public class MainServiceImpl implements MainService{
 
 	private final MainMapper mapper;
 	
-	// 최초 12 개 게시글 목록 + 페이지 네이션
+	// 12 개 게시글 목록 + 페이지 네이션
 	@Override
-	public Map<String, Object> selectFirstBoard() {
-		
-		// 첫 페이지
-		int cp = 1;
+	public Map<String, Object> selectBoardList(
+			int cp) {
 		
 		int boardCount = mapper.selectBoardCount();
 		
@@ -44,5 +42,13 @@ public class MainServiceImpl implements MainService{
 		map.put(("pagination"), adminPagination);		
 		
 		return map;
+	}
+	
+	
+	
+	// 모달 채우기
+	@Override
+	public Board selectBoard(int boardNo) {
+		return mapper.selectBoard(boardNo);
 	}
 }

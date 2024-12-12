@@ -13,15 +13,19 @@ import lombok.ToString;
 @ToString
 public class Board {
 	
-	private String boardNo;
+	private int boardNo;
 	private String boardTitle;
 	private String boardImgPath;
 	private String boardOrigin;
 	private String boardRename;
 	private String boardContent;
 	private String boardWriteDate;
-	private String readCount;
+	private int readCount;
 	private String boardDelFl;
-	private String memberNo;
+	private int memberNo;
 	
+	
+	// 편의성 추가 필드
+	private String memberNickname;
+	private int likeCount;
 }

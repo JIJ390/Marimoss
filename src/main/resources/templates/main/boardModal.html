@@ -1,0 +1,53 @@
+<th:block th:object="${board}">
+
+  <div class="modal-image-area">
+    <img src="/images/sample/sample2.jpg" alt="">
+
+    <div class="modal-image-bottom">
+      <img src="/images/main/whiteHeart.png" alt="">
+      <img src="/images/main/button.png" alt="">
+    </div>
+  </div>
+
+  <div class="modal-content-area">
+    <div class="modal-head">
+      <span th:text="|# *{boardTitle}|"></span>
+      <span id="modalCloseBtn">&times;</span>
+    </div>
+    <div class="modal-member">
+      <img src="/images/defaultProfile.png" alt="profile">
+      <span th:text="*{memberNickname}"></span>
+    </div>
+
+    <div class="modal-content">
+      <pre th:text="*{boardContent}"></pre>
+    </div>
+    <div class="modal-comment-area">
+      댓글 작성 영역
+      <pre>
+        추가 기능
+        좋아요
+        다운로드
+        원본이미지
+
+        회원 옆 클릭
+        채팅 
+        페이지 이동
+        팔로우
+
+        댓글 수정 삭제 등록
+      </pre>
+    </div>
+  </div>
+
+</th:block>
+
+
+<script>
+  /* 모달 내부 요소 클릭시 사용할 함수들 */
+  const modalCloseBtn = document.querySelector("#modalCloseBtn");
+
+  modalCloseBtn?.addEventListener("click", e => {
+    modalClose();
+  })
+</script>

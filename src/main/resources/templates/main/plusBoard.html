@@ -1,0 +1,19 @@
+<th:block th:each= "board:${boardList}" th:object="${board}">
+  <div class="board-box" th:data-value="*{boardNo}">
+    <img src="/images/sample/sample.jpg" alt="">
+    <div class="board-div">
+      <div class="top-area">
+        <span th:text="*{boardTitle}"></span>
+      </div>
+
+      <div class="like-area">
+        <img src="/images/main/whiteHeart.png" alt="like">
+        <span th:text="*{likeCount}"></span>
+      </div>
+
+      <div class="bottom-area">
+        <img src="/images/main/downloadBtn.png" style="background-color: white;" name="downloadBtn" alt="">
+      </div>
+    </div>
+  </div>
+</th:block>

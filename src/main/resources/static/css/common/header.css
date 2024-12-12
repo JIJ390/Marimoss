@@ -1,7 +1,8 @@
+
 @font-face {
-  font-family: 'omyu_pretty';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
-  font-weight: normal;
+  font-family: 'HancomMalangMalang-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-1@1.0/HancomMalangMalang-Bold.woff2') format('woff2');
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -23,15 +24,56 @@
 /* 색상 */
 :root{
   --main-color : rgba(0, 255, 156, 1);        /* 사이트 대표 컬러 */
-  --main-gray-color : rgba(240, 240, 240, 1); /* 어두운 페이지 배경색 */
-  --white-color : white;                      /* 흰색 */
 
-  --font-color : rgb(53, 53, 72);         /* 글자색 */
+  --font-color : rgb(53, 53, 72);             /* 글자색 */
   --font-gray-color : rgba(110, 110, 115, 1); /* 글자 옅은 회색 */
-
-  --back-color : rgb(239, 239, 245);
+  --back-color : rgb(239, 239, 245);          /* 배경색 */
 }
 
 *{
   color: var(--font-color);
+}
+
+.header-container {
+  position: fixed;
+
+  height: 8vh;
+  width: 100vw;
+
+  background-color: white;
+
+  display: flex;
+  justify-content: start;
+
+  align-items: center;
+  
+
+
+  z-index: 30;
+
+}
+
+.head-title {
+  font-family: 'HancomMalangMalang-Regular' !important;
+  font-size: 5vh;
+
+  padding: 2vh;
+
+  font-weight: bold;
+  
+  transform: translateY(-0.7vh);
+
+}
+
+
+input {
+  width: 50vh;
+  height: 4vh;
+
+  border: 0.3vh solid var(--font-gray-color);
+  border-radius: 4vh;
+
+  padding: 2vh;
+
+
 }

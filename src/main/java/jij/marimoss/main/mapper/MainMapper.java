@@ -23,4 +23,11 @@ public interface MainMapper {
 	 */
 	List<Board> selectBoardList(RowBounds rowBounds);
 
+	/**
+	 * 모달 채우기 + 추후 댓글, 회원 정보 다 가져와야 함!!
+	 * @param boardNo
+	 * @return
+	 */
+	Board selectBoard(int boardNo);
+
 }
