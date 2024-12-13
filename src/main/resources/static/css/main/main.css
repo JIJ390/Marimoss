@@ -1,24 +1,4 @@
-main {
 
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: var(--back-color);
-}
-
-
-.main-section{
-
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  flex-direction: column;
-
-}
 
 .board-container {
   margin-top: 10vh;
@@ -30,8 +10,13 @@ main {
   align-items: center;
 }
 
-.board-box {
+.board-box1 {
+  margin: 10px;
+  width: 250px;
+  min-height: 500px;
+}
 
+.board-box {
   margin: 10px;
   width: 250px;
 
@@ -130,7 +115,7 @@ main {
 /* 배경 그림 어둡게 */
 .board-box:hover > img{
     /* 마우스 호버 시 밝기 조절 */
-  filter: brightness(0.5);
+  filter: brightness(0.7);
 }
 
 .board-div img {
@@ -193,8 +178,12 @@ main {
   background-color: var(--font-color);
 }
 
-.modal-image-area >img {
-  width: 100%;
+.width {
+  width: 30vw;
+}
+
+.height {
+  height: 80vh;
 }
 
 .modal-image-bottom{
@@ -207,6 +196,7 @@ main {
   width: 50%;
   height: 100%;
   position: absolute;
+
 }
 
 .modal-image-bottom img {
@@ -221,10 +211,75 @@ main {
 }
 
 .modal-image-bottom img:hover {
-  filter: brightness(0.5);
+  filter: brightness(0.7);
   cursor: pointer;
 }
 
+.modal-img-menu {
+  width: 14vh;
+  height: 10vh;
+
+  font-size: 2vh;
+
+  border-radius: 1.5vh;
+  background-color: white;
+
+  position: absolute;
+
+  transform: translate(-2vh, -7vh);
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+}
+
+.modal-img-menu > a {
+  display: block;
+
+  display: flex;
+  height: 4vh;
+  width: 13vh;
+
+  margin: 0.5vh;
+
+  justify-content: space-around;
+  align-items: center;
+  padding-right: 1vh;
+
+  border-radius: 2vh;
+  
+  text-decoration-line: none;
+
+
+
+  transition-property: background-color;
+  transition-duration: 0.2s;
+}
+
+.modal-img-menu > a:hover {
+
+  cursor: pointer;
+
+  background-color: rgb(155, 155, 155);
+
+  text-decoration-line: none;
+}
+
+
+.modal-img-menu > a > img {
+  margin: 0px;
+  width: 3.5vh;
+  height: 3.5vh;
+
+  transform: translateY(0vh);
+}
+
+.modal-menu-close {
+  display: none;
+}
 
 
 

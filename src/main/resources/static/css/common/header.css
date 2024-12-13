@@ -34,6 +34,28 @@
   color: var(--font-color);
 }
 
+main {
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--back-color);
+}
+
+
+.main-section{
+
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  flex-direction: column;
+
+}
+
 .header-container {
   position: fixed;
 
@@ -66,14 +88,65 @@
 }
 
 
-input {
+.search-div {
+  position: relative;
+}
+
+[name=searchInput] {
   width: 50vh;
   height: 4vh;
 
-  border: 0.3vh solid var(--font-gray-color);
+  border: none;
   border-radius: 4vh;
 
   padding: 2vh;
 
+  background-color: var(--back-color);
 
+
+}
+
+
+[name=searchMark] {
+  width: 3vh;
+  position: absolute;
+
+  transform: translate(-5vh, 0.5vh);
+
+}
+
+.menu-container {
+  width: 100vw; /* 나머지 꽉차게 */
+
+  padding-right: 32vh;
+  display: flex;
+
+  justify-content: end;
+
+}
+
+.icon-box {
+
+  width: 6vh;
+  height: 6vh;
+
+  margin: 2vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 1vh;
+
+  transition-property: background-color;
+  transition-duration: 0.2s;
+}
+
+.icon-box:hover {
+  background-color: var(--back-color);
+
+  cursor: pointer;
+}
+.icon-box img {
+  width: 4vh;
 }

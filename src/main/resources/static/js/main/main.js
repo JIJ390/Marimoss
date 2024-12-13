@@ -1,10 +1,19 @@
-const obserbFlag = document.querySelector(".obserb-flag");
-const boardContainer = document.querySelector(".board-container");
-const boardBoxesOrigin = document.querySelectorAll(".board-box");
+
+let obserbFlag = document.querySelector(".obserb-flag");
+let boardContainer = document.querySelector(".board-container");
+let boardBoxesOrigin = document.querySelectorAll(".board-box");
 let lastCp = 1;
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* 임의로 함수 발생 시켜 초기화*/
+  obserbFlag = document.querySelector(".obserb-flag");
+  boardContainer = document.querySelector(".board-container");
+  boardBoxesOrigin = document.querySelectorAll(".board-box");
+  lastCp = 1;
+
+  boardModal = document.querySelector(".board-modal");
+  modalFlag = 0;
 
   // 최초 열 두개 게시글 이벤트 부여
   boardBoxesOrigin.forEach(box => {
@@ -12,15 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     box.addEventListener("click", e => {
 
+      const boardNo = box.getAttribute("data-value");
+
       // 다운로드 버튼 동작 막기
       const downloadBtn = box.querySelector("[name=downloadBtn");
       if (e.target == downloadBtn) {
           return;
         }
-              
-
       // 모달 채우기
-      const boardNo = box.getAttribute("data-value");
       updateModal(boardNo);
 
       e.stopPropagation(); // 이벤트 전파 방지 모달이 열리면서 꺼지는 현상 방지
@@ -29,23 +37,52 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
+  if (obserbFlag !== null) {
 
-  const io = new IntersectionObserver((entries, observer) => {
-
-    entries.forEach(entry => {
-
-      if (!entry.isIntersecting) return; 
-      //entry가 interscting 중이 아니라면 함수를 실행하지 않습니다.
-
-      lastCp++;
-
-      //페이지를 불러오는 함수를 호출합니다.
-      updateBoardList(lastCp);
       
+    const io = new IntersectionObserver((entries, observer) => {
+
+      entries.forEach(entry => {
+
+        if (!entry.isIntersecting) return; 
+        //entry가 interscting 중이 아니라면 함수를 실행하지 않습니다.
+
+        lastCp++;
+
+        //페이지를 불러오는 함수를 호출합니다.
+        updateBoardList(lastCp);
+        
+      });
     });
+    
+    io.observe(obserbFlag);
+
+  }
+
+
+  /* 이벤트 부여 함수들은 모두 domcontentloded 내부에 작성!! */
+  window.addEventListener("click", e => {
+  
+    // 모달 레이어 가 닫혀있지 않고 모달 레이어 바깥을 눌렀을 때만 동작!!
+    if (!(modalFlag == 0)
+        && (e.target !== boardModal)) {
+          modalClose();
+    }
+  })
+  
+  
+  // 모달 내부 요소 클릭 시 이벤트 전파 막기
+  boardModal.addEventListener("click", e => {
+  
+    if (e.target !== modalCloseBtn){
+      e.stopPropagation();
+    }
+  
   });
   
-  io.observe(obserbFlag);
+
+
+
 })
 
 // 스크롤 내릴 시 작동하는 함수
@@ -102,10 +139,7 @@ const updateBoardList = (lastCp) => {
 
 
 /* 모달 관련 함수 */
-
-const boardModal = document.querySelector(".board-modal");
-
-
+let boardModal = document.querySelector(".board-modal");
 let modalFlag = 0;
 
 // 모달 열기
@@ -128,29 +162,6 @@ const modalClose = () => {
   modalFlag = 0;
 }
 
-window.addEventListener("click", e => {
-
-  // 모달 레이어 가 닫혀있지 않고 모달 레이어 바깥을 눌렀을 때만 동작!!
-  if (!(modalFlag == 0)
-      && (e.target !== boardModal)) {
-        modalClose();
-  }
-})
-
-
-// 모달 내부 요소 클릭 시 이벤트 전파 막기
-boardModal.addEventListener("click", e => {
-
-  if (e.target !== modalCloseBtn){
-    e.stopPropagation();
-  }
-
-});
-
-
-
-
-
 /**
  * 모달 내부 내용 적기
  * @param {*} boardNo 
@@ -170,5 +181,33 @@ const updateModal = (boardNo) => {
 
     // 모달 채우기
     boardModal.innerHTML = html;
+
+    // 비율에 따라 길이 맞추기
+    const modalImage = boardModal.querySelector("[name=modalImg]");
+
+    const imageRatio = modalImage.naturalWidth / modalImage.naturalHeight;
+    const modalRatio = 0.7;
+
+
+    if (imageRatio > modalRatio) {
+      // 가로가 긴 경우
+      modalImage.classList.add("width");
+    }
+    else {
+      // 세로가 긴 경우
+      modalImage.classList.add("height");
+    }
+
+
+    const etcBtn = boardModal.querySelector("[name=etcBtn]");
+    const modalImgMenu = boardModal.querySelector(".modal-img-menu");
+
+    etcBtn.addEventListener("click", () => {
+      modalImgMenu.classList.toggle("modal-menu-close");
+    })
+
+    window.addEventListener("click", () => {
+      modalImgMenu.classList.add("modal-menu-close");
+    })
   })
 }

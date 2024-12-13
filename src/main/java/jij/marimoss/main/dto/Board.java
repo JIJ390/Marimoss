@@ -1,6 +1,7 @@
 package jij.marimoss.main.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,13 +12,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 public class Board {
 	
 	private int boardNo;
 	private String boardTitle;
 	private String boardImgPath;
-	private String boardOrigin;
-	private String boardRename;
+	private String boardImgOrigin;
+	private String boardImgRename;
 	private String boardContent;
 	private String boardWriteDate;
 	private int readCount;

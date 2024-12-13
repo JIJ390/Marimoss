@@ -1,11 +1,28 @@
 <th:block th:object="${board}">
 
   <div class="modal-image-area">
-    <img src="/images/sample/sample2.jpg" alt="">
+    <img th:src="|*{boardImgPath}*{boardImgRename}|" alt="" name="modalImg">
 
     <div class="modal-image-bottom">
       <img src="/images/main/whiteHeart.png" alt="">
-      <img src="/images/main/button.png" alt="">
+      <img src="/images/main/button.png" name="etcBtn"alt="">
+
+      <div class="modal-img-menu modal-menu-close">
+        <a th:href= "|*{boardImgPath}*{boardImgRename}|" 
+           th:download = "*{boardImgOrigin}">
+          <img src="/images/main/downloadBtn.png" alt="">
+          <span>
+            다운로드
+          </span>
+        </a>
+        <a th:href= "|*{boardImgPath}*{boardImgRename}|" 
+           target="_blank" rel="noopener noreferrer">
+          <img src="/images/main/plusBtn.png" alt="">
+          <span>
+            원본 보기
+          </span>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -27,8 +44,6 @@
       <pre>
         추가 기능
         좋아요
-        다운로드
-        원본이미지
 
         회원 옆 클릭
         채팅 

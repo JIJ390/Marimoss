@@ -16,44 +16,14 @@
   </header>
 
  
-  <main>
+  <main id="main">
 
-    <!-- 중앙 컨텐츠 영역 -->
-    <section class="main-section">
-
-      <div class="board-container">
-        <th:block th:each= "board:${boardList}" th:object="${board}">
-          <div class="board-box" th:data-value="*{boardNo}">
-            <img src="/images/sample/sample.jpg" alt="">
-            <div class="board-div">
-              <div class="top-area">
-                <span th:text="*{boardTitle}"></span>
-              </div>
-  
-              <div class="like-area">
-                <img src="/images/main/whiteHeart.png" alt="like">
-                <span th:text="*{likeCount}"></span>
-              </div>
-  
-              <div class="bottom-area">
-                <img src="/images/main/downloadBtn.png" style="background-color: white;" name="downloadBtn" alt="">
-              </div>
-            </div>
-          </div>
-        </th:block>
-      </div>
-
-      <!-- 감시자 -->
-      <div class="obserb-flag">obserb-flag</div>
-    </section>
-
-    <div class="board-modal">
-    </div>
-    <div id="blackDisplay"></div>
+    <th:block th:replace="~{main/homeView}"></th:block>
+    
   </main>
   
-
-
+  
   <script src="/js/main/main.js"></script>
+  <script src="js/board/boardInsert.js"></script>
 </body>
 </html>

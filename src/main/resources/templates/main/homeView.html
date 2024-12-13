@@ -1,0 +1,40 @@
+
+    <!-- 중앙 컨텐츠 영역 -->
+    <section class="main-section">
+
+      <div class="board-container">
+        <th:block th:each= "board:${boardList}" th:object="${board}">
+
+          <div class="board-box" th:data-value="*{boardNo}">
+            <img th:src="|*{boardImgPath}*{boardImgRename}|" alt="">
+            <div class="board-div">
+              <div class="top-area">
+                <span th:text="*{boardTitle}"></span>
+              </div>
+  
+              <div class="like-area">
+                <img src="/images/main/whiteHeart.png" alt="like">
+                <span th:text="*{likeCount}"></span>
+              </div>
+  
+              <div class="bottom-area">
+                <a th:href= "|*{boardImgPath}*{boardImgRename}|" 
+                   th:download = "*{boardImgOrigin}">
+                  <img src="/images/main/downloadBtn.png" style="background-color: white;" name="downloadBtn" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </th:block>
+      </div>
+
+      <!-- 감시자 -->
+      <div class="obserb-flag">obserb-flag</div>
+      <div id="blackDisplay"></div>
+    </section>
+
+    <div class="board-modal">
+    </div>
+
+    

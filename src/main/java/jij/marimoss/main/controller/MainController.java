@@ -22,7 +22,7 @@ public class MainController {
 
 	// 메인 화면 이동 메서드
 	@GetMapping("/")
-	public String MaingPage (
+	public String MainPage (
 			Model model) {
 		
 		int cp = 1;
@@ -37,6 +37,26 @@ public class MainController {
 		return "main/main";
 		
 	}
+	
+	// 홈버튼 클릭 시 메인화면 구성
+	@GetMapping("homeView")
+	public String homeView (
+			Model model) {
+		
+		int cp = 1;
+		
+		// 최초 12 개 게시글 가져오기
+		Map<String, Object> firstBoard = service.selectBoardList(cp);
+		
+		// 각각 꺼내기
+		model.addAttribute("boardList", firstBoard.get("boardList"));
+		model.addAttribute("pagination", firstBoard.get("pagination"));
+		
+		return "main/homeView";
+		
+	}
+	
+	
 
 	// 후속 게시글 가져오기
 	@PostMapping("updateBoardList")
