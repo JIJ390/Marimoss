@@ -94,3 +94,5 @@ profileBox.addEventListener("click", () => {
 
   sideModal.classList.toggle("side-modal-none");
 })
+
+
