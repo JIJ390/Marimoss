@@ -117,7 +117,7 @@ main {
 .menu-container {
   width: 100vw; /* 나머지 꽉차게 */
 
-  padding-right: 32vh;
+  padding-right: 5vh;
   display: flex;
 
   justify-content: end;
@@ -153,7 +153,6 @@ main {
 [name=profileBox] {
   width: 6vh !important;
   height: 6vh !important;
-  margin-right: 20vh;
 }
 
 
@@ -175,8 +174,8 @@ main {
   background-color: white;
   position: fixed;
 
-  right: 10vh;
-  top: 13vh;
+  right: 5vh;
+  top: 9vh;
 
   z-index: 30;
 
@@ -198,6 +197,59 @@ main {
 .side-modal-none {
   display: none !important;
 }
+
+.side-modal-content {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2vh;
+}
+
+.side-modal-content img{
+  width: 10vh;
+  height: 10vh;
+
+}
+
+.side-modal-content div {
+  margin-bottom: 1vh;
+}
+
+.logout-btn {
+
+  font-size: 2vh;
+
+  width: 20vh;
+  height: 5vh;
+
+  background-color: white;
+
+  border: 0.3vh solid var(--font-color);
+
+  border-radius: 3vh;
+
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: var(--font-color);
+  color: white;
+
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
 
 
 .login-modal {

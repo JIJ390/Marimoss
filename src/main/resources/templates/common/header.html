@@ -28,20 +28,20 @@
       <div class="icon-box" name="crownBox">
         <img src="/images/common/crown.png" alt="">
       </div>
+      <div class="icon-box" name="profileBox">
+        <img src="/images/defaultProfile.png" alt="">
+      </div>
 
     </div>
     
-    <div class="icon-box" name="profileBox">
-      <img src="/images/defaultProfile.png" alt="">
-    </div>
-    
+
   </div>
 
 
 
 
 
-  <div class="side-modal side-modal-none">
+  <div class="side-modal side-modal-none" th:if="${session.loginMember}" th:object="${session.loginMember}">
     <div class="side-modal-head">
       <span id="sideCloseBtn">
         &times
@@ -49,14 +49,19 @@
     </div>
 
     <div class="side-modal-content">
-      로그인 회원 가입
+
+      <img src="/images/defaultProfile.png" alt="">
+
+      <div th:text="*{memberNickname}"></div>
+      <div>마이 페이지</div>
+      
+      <button class="logout-btn">
+        로그아웃
+      </button>
     </div>
 
     <div class="side-modal-menu">
 
-      <span>홈</span>
-      <span>채팅</span>
-      <span>홈</span>
     </div>
 
   </div>

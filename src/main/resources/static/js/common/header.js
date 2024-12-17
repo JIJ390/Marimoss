@@ -71,19 +71,19 @@ const profileBox = document.querySelector("[name=profileBox]");
 const loginModal = document.querySelector(".login-modal");
 const loginCloseBtn = document.querySelector("#loginCloseBtn");
 
-// x 버튼 클릭시 가가
-sideCloseBtn.addEventListener("click", () => {
+// x 버튼 클릭시 동작
+sideCloseBtn?.addEventListener("click", () => {
 
   sideModal.classList.add("side-modal-none");
 
 })
 
-loginCloseBtn.addEventListener("click", () => {
+loginCloseBtn?.addEventListener("click", () => {
   document.querySelector("#blackDisplay").classList.remove("overlay");
   loginModal.classList.add("side-modal-none");
 })
 
-profileBox.addEventListener("click", () => {
+profileBox?.addEventListener("click", () => {
   if (loginMember === null) {
 
     document.querySelector("#blackDisplay").classList.toggle("overlay");
@@ -96,3 +96,8 @@ profileBox.addEventListener("click", () => {
 })
 
 
+const logoutBtn = document.querySelector(".logout-btn");
+
+logoutBtn?.addEventListener("click", () => {
+  location.href = "/member/logout";
+})
