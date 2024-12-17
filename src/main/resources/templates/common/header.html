@@ -28,9 +28,86 @@
       <div class="icon-box" name="crownBox">
         <img src="/images/common/crown.png" alt="">
       </div>
+
+    </div>
+    
+    <div class="icon-box" name="profileBox">
+      <img src="/images/defaultProfile.png" alt="">
     </div>
     
   </div>
+
+
+
+
+
+  <div class="side-modal side-modal-none">
+    <div class="side-modal-head">
+      <span id="sideCloseBtn">
+        &times
+      </span>
+    </div>
+
+    <div class="side-modal-content">
+      로그인 회원 가입
+    </div>
+
+    <div class="side-modal-menu">
+
+      <span>홈</span>
+      <span>채팅</span>
+      <span>홈</span>
+    </div>
+
+  </div>
+
+
+  <div class="login-modal side-modal-none">
+    <div class="login-head">
+      marimoss
+      <span id="loginCloseBtn">
+        &times
+      </span>
+    </div>
+
+    <div class="login-content">
+      <form action="/member/login"
+            method="POST">
+
+        <input type="text" name="memberEmail" placeholder="이메일을 입력해주세요">
+        <input type="password" name="memberPassward" placeholder="비밀번호를 입력해주세요">
+        <div class="auto-login-div">
+          <input type="checkbox" name="autoLogin">
+          자동 로그인
+        </div>
+
+        <button>로그인</button>
+      </form>
+    </div>
+  </div>
+
+  <script th:inline="javascript">
+    const loginMember = /*[[${session.loginMember}]]*/ 로그인회원;
+
+    let message =  /*[[${message}]]*/ "전달 받은 message";
+
+    window.onload = () => {
+      if(message != null) {
+
+        setTimeout(
+          function() {
+            alert(message);
+          
+            // 메시지 비우기
+            message = null;
+          },
+          100);
+
+
+      }
+    }
+
+  </script>
 
   <script src="/js/common/header.js">
   </script>

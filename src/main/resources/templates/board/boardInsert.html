@@ -1,15 +1,33 @@
 <head>
   <link rel="stylesheet" href="/css/board/boardInsert.css">
 </head>
-  <!-- 메인 안에 들어갈 내용 -->
+<!-- 메인 안에 들어갈 내용 -->
 <section class="main-section">
 
-    <div class="aaaa">
-      <input type="file" name="imgInput" id="imgInput" class="input-img" accept="image/*" >
-      <input type="text" name="boardTitle" placeholder="제목">
-      <input type="text" name="boardContent" placeholder="설명">
-    </div>
 
-    <button id="insertBtn">등록 하기</button>
+  <div class="aaaa">
+    
+    <label class="preview-img-box" for="imgInput">
+
+        <img class="preview-img" src="" onError="this.style.visibility='hidden'">
+
+    </label>
+
+
+    <input type="file" name="imgInput" id="imgInput" class="input-img" accept="image/*">
+    <input type="text" name="boardTitle" placeholder="제목">
+    <input type="text" name="boardContent" placeholder="설명">
+  </div>
+
+  <button id="insertBtn">등록 하기</button>
+
+  <pre>
+      *추가 사항*
+      제목 1 자 이상
+
+      설명 500 자 이내
+
+      사진 크기 200 x 200 이상
+    </pre>
 
 </section>

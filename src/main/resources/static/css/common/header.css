@@ -106,7 +106,6 @@ main {
 
 }
 
-
 [name=searchMark] {
   width: 3vh;
   position: absolute;
@@ -150,3 +149,179 @@ main {
 .icon-box img {
   width: 4vh;
 }
+
+[name=profileBox] {
+  width: 6vh !important;
+  height: 6vh !important;
+  margin-right: 20vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 로그인 박스 */
+.side-modal {
+  width: 25vh;
+  height: 40vh;
+
+  background-color: white;
+  position: fixed;
+
+  right: 10vh;
+  top: 13vh;
+
+  z-index: 30;
+
+  border-radius: 2vh;
+}
+
+.side-modal-head {
+  font-size: 3vh;
+
+  text-align: right;
+
+  padding-right: 1.3vh;
+}
+
+#sideCloseBtn {
+  cursor: pointer;
+}
+
+.side-modal-none {
+  display: none !important;
+}
+
+
+.login-modal {
+  width: 44vh;
+  height: 60vh;
+
+  position: fixed;
+  top: 20%;
+  right: 50%;
+  left: 50%;
+
+  margin-left: -22vh;
+
+  border-radius: 3vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+
+  background-color: white;
+
+  z-index: 20;
+}
+
+.login-head {
+  font-family: 'HancomMalangMalang-Regular' !important;
+  font-size: 5vh;
+
+  padding: 2vh;
+
+  font-weight: bold;
+  
+  transform: translateY(-0.7vh);
+
+  position: relative;
+}
+
+.login-head > span {
+  position: absolute;
+
+  font-size: 3vh;
+
+  color: var(--font-gray-color);
+  
+  right: -6.5vh;
+
+}
+
+.login-head > span:hover {
+  cursor: pointer;
+}
+
+.login-content {
+  margin-top: 2vh;
+}
+
+.login-content > form {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+}
+
+.login-content input {
+  width: 32vh;
+  height: 4vh;
+
+  border: 0.1vh solid var(--font-gray-color);
+
+  border-radius: 3vh;
+
+  padding-left: 1vh;
+
+  font-size: 2vh;
+  margin-bottom: 2vh;
+}
+
+.auto-login-div {
+
+  margin-top: 1vh;
+  text-align: left;
+
+  margin-left: 2vh;
+
+  font-size: 1.5vh;
+  position: relative;
+}
+
+[name=autoLogin] {
+  width: 2vh !important;
+  height: 2vh !important;
+
+  position: absolute;
+  margin-left: -3vh;
+
+  accent-color: var(--font-color);
+}
+
+.login-content button {
+  margin-top: 3vh;
+
+  width: 32vh;
+  height: 5vh;
+
+  background-color: white;
+
+  border: 0.3vh solid var(--font-color);
+
+  border-radius: 3vh;
+  font-size: 2vh;
+
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+.login-content button:hover {
+
+  cursor: pointer;
+  background-color: var(--font-color);
+
+  color: white;
+}
+

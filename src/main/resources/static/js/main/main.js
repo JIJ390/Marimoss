@@ -6,8 +6,17 @@ let lastCp = 1;
 
 document.addEventListener('DOMContentLoaded', () => {
 
+
+
   /* 임의로 함수 발생 시켜 초기화*/
   obserbFlag = document.querySelector(".obserb-flag");
+
+  /* 메인 페이지 아닐때 함수 실행 안함 */
+  if (obserbFlag === null) {
+    return;
+  }
+
+
   boardContainer = document.querySelector(".board-container");
   boardBoxesOrigin = document.querySelectorAll(".board-box");
   lastCp = 1;
@@ -37,27 +46,25 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  if (obserbFlag !== null) {
+ 
 
       
-    const io = new IntersectionObserver((entries, observer) => {
+  const io = new IntersectionObserver((entries, observer) => {
 
-      entries.forEach(entry => {
+    entries.forEach(entry => {
 
-        if (!entry.isIntersecting) return; 
-        //entry가 interscting 중이 아니라면 함수를 실행하지 않습니다.
+      if (!entry.isIntersecting) return; 
+      //entry가 interscting 중이 아니라면 함수를 실행하지 않습니다.
 
-        lastCp++;
+      lastCp++;
 
-        //페이지를 불러오는 함수를 호출합니다.
-        updateBoardList(lastCp);
+      //페이지를 불러오는 함수를 호출합니다.
+      updateBoardList(lastCp);
         
-      });
     });
+  });
     
-    io.observe(obserbFlag);
-
-  }
+  io.observe(obserbFlag);
 
 
   /* 이벤트 부여 함수들은 모두 domcontentloded 내부에 작성!! */

@@ -2,3 +2,21 @@
   margin-top: 10vh;
 
 }
+
+#imgInput {
+  display: none;
+}
+
+.preview-img-box {
+  display: inline-block;
+
+  width: 400px;
+  height: 500px;
+  border: 2px solid var(--font-color);
+
+  border-radius:40px;
+}
+
+.preview-img-box:hover {
+  cursor: pointer;
+}

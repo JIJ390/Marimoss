@@ -46,3 +46,51 @@ plusBox.addEventListener("click", () => {
   .catch(err => console.error);
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const sideCloseBtn = document.querySelector("#sideCloseBtn");
+const sideModal = document.querySelector(".side-modal");
+const profileBox = document.querySelector("[name=profileBox]");
+
+const loginModal = document.querySelector(".login-modal");
+const loginCloseBtn = document.querySelector("#loginCloseBtn");
+
+// x 버튼 클릭시 가가
+sideCloseBtn.addEventListener("click", () => {
+
+  sideModal.classList.add("side-modal-none");
+
+})
+
+loginCloseBtn.addEventListener("click", () => {
+  document.querySelector("#blackDisplay").classList.remove("overlay");
+  loginModal.classList.add("side-modal-none");
+})
+
+profileBox.addEventListener("click", () => {
+  if (loginMember === null) {
+
+    document.querySelector("#blackDisplay").classList.toggle("overlay");
+    loginModal.classList.toggle("side-modal-none");
+
+    return;
+  }
+
+  sideModal.classList.toggle("side-modal-none");
+})

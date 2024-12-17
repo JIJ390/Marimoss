@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const boardContent = document.querySelector("[name=boardContent]");
   const insertBtn = document.querySelector("#insertBtn");
 
+  /* 등록 페이지 아닐때 함수 실행 안함 */
+  if (insertBtn === null) {
+    return;
+  }
+
 
   /* 돔 실행 후 모든 메서드가 실행되도록 내부에 작성 */
   /* 등록 버튼 클릭 시 유효성 검사와 함께 등록 */
