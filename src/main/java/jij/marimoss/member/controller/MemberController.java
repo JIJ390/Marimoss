@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -127,5 +128,26 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	
+	
+	
+	/**
+	 * 이메일 중복 검사
+	 * @param memeberEmail
+	 * @return
+	 */
+	@GetMapping("emailCheck")
+	@ResponseBody
+	public int emailCheck(
+			@RequestParam("email") String memeberEmail) {
+		
+		int count = service.emailCheck(memeberEmail);
+		
+		log.debug("count : {}", count);
+		
+		return count;
+	}
+	
+	
 	
 }

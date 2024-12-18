@@ -50,4 +50,10 @@ public class MemberServiceImpl implements MemberService{
 		
 		return loginMember;
 	}
+	
+	
+	@Override
+	public int emailCheck(String memeberEmail) {
+		return mapper.emailCheck(memeberEmail);
+	}
 }

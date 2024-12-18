@@ -13,10 +13,18 @@ public interface MemberService {
 	Member login(String memberEmail, String memberPassward);
 
 	/**
-	 * 자동 로그인
+	 * 자동 로그
 	 * @param memberEmail
 	 * @return
 	 */
 	Member autoLogin(String memberEmail);
+
+	
+	/**
+	 * 이메일 중복 검사
+	 * @param memeberEmail
+	 * @return
+	 */
+	int emailCheck(String memeberEmail);
 
 }
