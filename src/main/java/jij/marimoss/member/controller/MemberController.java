@@ -1,12 +1,10 @@
 package jij.marimoss.member.controller;
 
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 
-import javax.crypto.SecretKey;
-
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -34,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("member")
 @RequiredArgsConstructor
 @Slf4j
+@PropertySource("classpath:/config.properties")
 public class MemberController {
 	
 	@Value("${jwt.secret}") 
@@ -114,7 +111,17 @@ public class MemberController {
 	
 	@GetMapping("logout")
 	public String logout(
+			HttpServletResponse resp,
 			SessionStatus status) {
+		
+    Cookie cookie = new Cookie("authToken", null);
+    cookie.setHttpOnly(true);   // JavaScript 접근 방지
+    cookie.setSecure(true);     // HTTPS 연결에서만 사용
+    cookie.setPath("/");    
+    cookie.setMaxAge(0); 
+    
+    // 빈쿠기 할당 즉시 만료
+    resp.addCookie(cookie);
 			
 		status.setComplete();
 		

@@ -24,8 +24,6 @@ public class MemberServiceImpl implements MemberService{
 		
 		Member loginMember = mapper.login(memberEmail);
 		
-
-		
 		// 일치하는 이메일 없을 때
 		if (loginMember == null) {
 
@@ -40,5 +38,16 @@ public class MemberServiceImpl implements MemberService{
 		// 일치하는 비밀번호 없을때
 		return null;
 		
+	}
+	
+	
+	
+	// 자동 로그인
+	@Override
+	public Member autoLogin(String memberEmail) {
+		
+		Member loginMember = mapper.login(memberEmail);
+		
+		return loginMember;
 	}
 }

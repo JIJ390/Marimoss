@@ -12,4 +12,11 @@ public interface MemberService {
 	 */
 	Member login(String memberEmail, String memberPassward);
 
+	/**
+	 * 자동 로그인
+	 * @param memberEmail
+	 * @return
+	 */
+	Member autoLogin(String memberEmail);
+
 }
