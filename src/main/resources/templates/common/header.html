@@ -91,25 +91,38 @@
 
 
 
-      <form action="" class="signup-form none-display">
+      <form action="/member/signUp"
+            method="POST"
+            class="signup-form none-display">
 
-        <span>이메일 </span>
+        <span class="head-email-span">
+          <span>
+
+            이메일 
+          </span>
+          <span id="timeSpan">
+          </span>
+        </span>
         <div class="check-div">
           <!-- 위랑 네임 중복 -->
           <input type="text" placeholder="이메일을 입력해 주세요" name="memberEmail" id="signUpEmail">
-          <button id="checkBtn" type="button">인증번호</button>
+          <button id="checkBtn" class="check-btn" type="button">인증번호</button>
         </div>
-        <input type="text" placeholder="인증번호">
+        <div class="check-div">
+          <!-- 위랑 네임 중복 -->
+          <input type="text" placeholder="인증번호" name="emailCheck">
+          <button id="checkBtn2" class="check-btn" type="button">인증하기</button>
+        </div>
 
         <span>비밀번호</span> 
                   <!-- 위랑 네임 중복 -->
-        <input type="password" placeholder="영문, 특수문자, 숫자 8~20 자 조합" name="memberPassward" id="signUpPassward">
+        <input type="password" placeholder="영문, 특수문자, 숫자 6 ~ 20 자 조합" name="memberPassward" id="signUpPassward">
         <input type="password" placeholder="비밀번호 확인" name="passwordCheck">
 
         <span>닉네임</span>
         <input type="text" placeholder="닉네임을 입력해 주세요" name="memberNickname">
       
-        <button>회원 가입</button>
+        <button id="signUpBtn">회원 가입</button>
       </form>
     </div>
 

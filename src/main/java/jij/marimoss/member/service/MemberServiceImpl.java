@@ -30,13 +30,13 @@ public class MemberServiceImpl implements MemberService{
 			return null;
 		}
 		
-		// 일치하는 비밀번호 있을때
-		if (memberPassward.equals(loginMember.getMemberPassward())) {
-			return loginMember;
+		// 비밀 번호 불일치 시
+		if (!encoder.matches(memberPassward, loginMember.getMemberPassward())) {
+			return null;
 		}
 		
-		// 일치하는 비밀번호 없을때
-		return null;
+		// 로그인 성공 / 결과 반환
+		return loginMember;
 		
 	}
 	
@@ -51,9 +51,28 @@ public class MemberServiceImpl implements MemberService{
 		return loginMember;
 	}
 	
-	
+	// 이메일 중복 검사
 	@Override
 	public int emailCheck(String memeberEmail) {
 		return mapper.emailCheck(memeberEmail);
+	}
+	
+	
+	// 회원 가입
+	@Override
+	public Member signUp(Member signUpMember) {
+		
+		// 비밀번호 암호화
+		String encPw = encoder.encode(signUpMember.getMemberPassward());
+		signUpMember.setMemberPassward(encPw);
+		
+		int result = mapper.signUp(signUpMember);
+		
+		// 가입 성공 시 로그인 정보 반환
+		if (result == 1) {
+			return mapper.login(signUpMember.getMemberEmail());
+		}
+		
+		return null;
 	}
 }

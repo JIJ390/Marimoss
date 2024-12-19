@@ -1,5 +1,7 @@
 package jij.marimoss.email.service;
 
+import java.util.Map;
+
 public interface EmailService {
 
 	/**
@@ -9,5 +11,13 @@ public interface EmailService {
 	 * @return
 	 */
 	int sendAuthKey(String string, String email);
+
+	
+	/**
+	 * 이메일 인증
+	 * @param map
+	 * @return
+	 */
+	boolean checkAuthKey(Map<String, String> map);
 
 }

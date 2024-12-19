@@ -27,4 +27,11 @@ public interface MemberService {
 	 */
 	int emailCheck(String memeberEmail);
 
+	/**
+	 * 회원 가입
+	 * @param signUpMember
+	 * @return
+	 */
+	Member signUp(Member signUpMember);
+
 }

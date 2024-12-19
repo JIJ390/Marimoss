@@ -8,6 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -148,6 +149,30 @@ public class MemberController {
 		return count;
 	}
 	
+	
+	@PostMapping("signUp")
+	public String signUp (
+			@ModelAttribute Member signUpMember,
+			Model model,
+			RedirectAttributes ra
+			) {
+		
+		// 회원 가입 성공 시 즉시 로그인 되도록 정보 가져오기
+		Member member = service.signUp(signUpMember);
+		
+		if (member != null) {
+			model.addAttribute("loginMember", member);
+			ra.addFlashAttribute("message", member.getMemberNickname() + " 님 marimoss 가입을 환영합니다");
+			
+		}
+		
+		else {
+			ra.addFlashAttribute("message", "회원 가입 오류");
+		}
+		
+		
+		return "redirect:/";
+	}
 	
 	
 }

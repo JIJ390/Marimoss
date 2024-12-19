@@ -21,4 +21,11 @@ public interface MemberMapper {
 	 */
 	int emailCheck(String memeberEmail);
 
+	/**
+	 * 회원 가입
+	 * @param signUpMember
+	 * @return
+	 */
+	int signUp(Member signUpMember);
+
 }

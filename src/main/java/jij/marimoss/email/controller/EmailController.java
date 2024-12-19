@@ -1,5 +1,7 @@
 package jij.marimoss.email.controller;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,5 +49,16 @@ public class EmailController {
 			@RequestBody String email) {
 		
 		return service.sendAuthKey("signUp", email);
+	}
+	
+	
+	@ResponseBody
+	@PostMapping("checkAuthKey")
+	public boolean checkAuthKey(
+			@RequestBody Map<String, String> map
+			) {
+		
+		return service.checkAuthKey(map);
+		
 	}
 }

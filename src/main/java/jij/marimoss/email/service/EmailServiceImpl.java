@@ -1,5 +1,7 @@
 package jij.marimoss.email.service;
 
+import java.util.Map;
+
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -119,4 +121,24 @@ public class EmailServiceImpl implements EmailService{
 		return templateEngine.process("email/" + htmlName, context);
 		
 	}
+	
+	
+	
+	
+	@Override
+	public boolean checkAuthKey(Map<String, String> map) {
+		
+		// map 에 저장된 값 꺼내오기
+		String email   = map.get("email");
+		String authKey = map.get("authKey");
+		
+		// 1) Redis 에 key 가 입력된 email 과 같은 데이터가 있는지 확인
+		if (redisUtil.hasKey(email) == false) { // 없을 경우
+			return false;
+		}
+		
+		// 2) Redis 에 같은 key 가 있다면 value 를 얻어와 입력 받은 인증 번호와 비교
+		return redisUtil.getValue(email).equals(authKey);
+	}
+  
 }
