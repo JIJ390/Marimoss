@@ -96,6 +96,8 @@ loginCloseBtn?.addEventListener("click", () => {
 
   clearSignUp();
 
+  clearLogin();
+
 })
 
 profileBox?.addEventListener("click", () => {
@@ -133,6 +135,9 @@ let signFlag = 0;
 
 signUpBtn.addEventListener("click", () => {
 
+  clearSignUp();
+  clearLogin();
+
   // 회원 가입 이동
   if (signFlag === 0) {
 
@@ -151,9 +156,6 @@ signUpBtn.addEventListener("click", () => {
   // 로그인 이동
   if (signFlag === 1) {
 
-    // 회원가입 화면 비우기
-    clearSignUp();
-
     loginFrm.classList.toggle("none-display");
     signUpFrm.classList.toggle("none-display");
 
@@ -161,7 +163,6 @@ signUpBtn.addEventListener("click", () => {
     signUpBtn.innerText = "회원 가입";
 
     signFlag = 0;
-
     
     return;
 
@@ -409,6 +410,29 @@ signUpFrm.addEventListener("submit", e => {
 
 })
 
+const loginEmail = document.querySelector("#loginEmail");
+const loginPw = document.querySelector("#loginPw");
+const autoLogin = document.querySelector("[name=autoLogin]");
+
+// 로그인 유효성 검사
+loginFrm.addEventListener("submit", e => {
+
+  if (loginEmail.value.trim().length === 0) {
+    alert("이메일을 입력해 주세요");
+    loginEmail.focus();
+    e.preventDefault();
+    return;
+  }
+
+  if (loginPw.value.trim().length === 0) {
+    alert("비밀번호를 입력해 주세요");
+    loginPw.focus();
+    e.preventDefault();
+    return;
+  }
+
+})
+
 
 
 /**
@@ -435,7 +459,15 @@ const clearSignUp = () => {
 
 }
 
+/**
+ * 로그인창 초기화
+ */
+const clearLogin = () => {
+  loginEmail.value = '';
+  loginPw.value = '';
 
+  autoLogin.checked = false;
+}
 
 
 
