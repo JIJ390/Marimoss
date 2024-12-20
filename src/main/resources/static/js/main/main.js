@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
       // 모달 채우기
-      updateModal(boardNo);
+      updateModal(boardNo, box);
 
       e.stopPropagation(); // 이벤트 전파 방지 모달이 열리면서 꺼지는 현상 방지
       modalOpen(); 
@@ -157,7 +157,7 @@ const updateBoardList = (lastCp) => {
         }
 
         // 모달 채우기
-        updateModal(boardNo);
+        updateModal(boardNo, box);
         
         e.stopPropagation(); // 이벤트 전파 방지 모달이 열리면서 꺼지는 현상 방지
         modalOpen(); 
@@ -204,7 +204,7 @@ const modalClose = () => {
  * 모달 내부 내용 적기
  * @param {*} boardNo 
  */
-const updateModal = (boardNo) => {
+const updateModal = (boardNo, box) => {
   
   fetch("/updateModal", {
     method: "POST",
@@ -253,7 +253,7 @@ const updateModal = (boardNo) => {
         return;
       }
 
-      likeChangeModal(boardNo);
+      likeChangeModal(boardNo, box);
 
     })
 
@@ -272,7 +272,7 @@ const updateModal = (boardNo) => {
 /**
  * 좋아요 버튼 함수
  */
-const likeChangeModal = (boardNo) => {
+const likeChangeModal = (boardNo, box) => {
 
   fetch("/board/likeChange", {
     method: "POST",
@@ -285,13 +285,20 @@ const likeChangeModal = (boardNo) => {
   })
   .then(result => { 
 
+    const likeBtnDefault = box.querySelector("[name=likeBtnDefault]");
+    const likeCountSpan = box.querySelector("[name=likeCountSpan]");
+
     if (result.likeResult == 'insert') {
       likeBtn.src = "/images/main/heartFilled.png"
+      likeBtnDefault.src = "/images/main/whiteHeartFilled.png"
     }
 
     if (result.likeResult == 'delete') {
       likeBtn.src = "/images/main/heartEmpty.png"
+      likeBtnDefault.src = "/images/main/whiteHeart.png"
     }
+
+    likeCountSpan.innerText = result.likeCount;
 
   })
   .catch(err => console.error)
@@ -315,6 +322,8 @@ const likeChange = (boardNo, likeBtnDefault, likeCountSpan) => {
     throw new Error("변경 실패")
   })
   .then(result => { 
+
+    // 좋아요 버튼이 만들어진 상태라 직접 끌고오는게 편함
 
     if (result.likeResult == 'insert') {
       likeBtnDefault.src = "/images/main/whiteHeartFilled.png"
