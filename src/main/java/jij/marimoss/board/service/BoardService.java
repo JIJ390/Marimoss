@@ -1,5 +1,7 @@
 package jij.marimoss.board.service;
 
+import java.util.Map;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public interface BoardService {
@@ -13,5 +15,13 @@ public interface BoardService {
 	 * @return result
 	 */
 	int boardInsert(MultipartFile paint, String boardTitle, String boardContent, int memberNo);
+
+	/**
+	 * 좋아요 여부 변경
+	 * @param boardNo
+	 * @param memberNo
+	 * @return
+	 */
+	Map<String, String> likeChange(int boardNo, int memberNo);
 
 }

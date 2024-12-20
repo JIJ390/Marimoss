@@ -18,4 +18,37 @@
 		)
   	</insert>
   	
+  	<!-- 좋아요 눌렀는지 체크 -->
+  	<select id="checkLike">
+		SELECT 
+			COUNT(*)
+		FROM "LIKE"
+		WHERE BOARD_NO = #{boardNo}
+		AND MEMBER_NO = #{memberNo}
+  	</select>
+  	
+  	<!-- 좋아요 삭제 -->
+  	<delete id="deleteLike">
+  		DELETE "LIKE"
+  		WHERE BOARD_NO = #{boardNo}
+		AND MEMBER_NO = #{memberNo}
+  	</delete>
+  	
+  	
+  	<!-- 좋아요 등록 -->
+  	<insert id="insertLike">
+  		INSERT INTO "LIKE"
+		VALUES (
+			#{boardNo}, #{memberNo}, DEFAULT
+		)
+  	</insert>
+  	
+  	
+  	<select id="likeCount">
+		SELECT 
+			COUNT(*)
+		FROM "LIKE"
+		WHERE BOARD_NO = #{boardNo}
+  	</select>
+  	
 </mapper>

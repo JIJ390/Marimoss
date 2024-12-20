@@ -23,7 +23,9 @@ public class MainServiceImpl implements MainService{
 	// 12 개 게시글 목록 + 페이지 네이션
 	@Override
 	public Map<String, Object> selectBoardList(
-			int cp) {
+			int cp,
+			int memberNo
+			) {
 		
 		int boardCount = mapper.selectBoardCount();
 		
@@ -34,7 +36,7 @@ public class MainServiceImpl implements MainService{
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		List<Board> boardList = mapper.selectBoardList(rowBounds);
+		List<Board> boardList = mapper.selectBoardList(rowBounds, memberNo);
 		
 		// 4. 목록 조회 결과 + Pagination 객체 Map 으로 묶어서 반환
 		Map<String, Object> map = new HashMap<>();
@@ -48,7 +50,7 @@ public class MainServiceImpl implements MainService{
 	
 	// 모달 채우기
 	@Override
-	public Board selectBoard(int boardNo) {
-		return mapper.selectBoard(boardNo);
+	public Board selectBoard(int boardNo, int memberNo) {
+		return mapper.selectBoard(boardNo, memberNo);
 	}
 }

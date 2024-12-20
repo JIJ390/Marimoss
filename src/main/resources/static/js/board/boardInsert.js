@@ -7,9 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const insertBtn = document.querySelector("#insertBtn");
 
   /* 등록 페이지 아닐때 함수 실행 안함 */
-  if (insertBtn === null) {
+  if (pageStatus !== 'boardInsertPage') {
     return;
   }
+
 
 
   /* 돔 실행 후 모든 메서드가 실행되도록 내부에 작성 */
@@ -47,6 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         // 비우기
+
+        previewImg.src = "";
+
+        previewImgBox.classList.add("preview-img-box");
+        previewImgBox.classList.remove("preview-img-box2");
+
+        previewImgBoxNotice.style = "display : flex";
+
         imgInput.value = null;
         boardTitle.value = '';
         boardContent.value = '';
@@ -59,6 +68,90 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error(err));
 
   })
+
+
+
+
+
+
+  /* 미리 보기 */
+  const previewImg = document.querySelector(".preview-img");
+
+  // 감싸는 라벨
+  const previewImgBox = document.querySelector(".preview-img-box")
+  const previewImgBoxNotice = document.querySelector(".preview-img-box-notice");
+
+  // 마지막으로 선택된 파일을 저장할 배열
+  let lastValidFile = null;
+
+  const updatePreview = (file) => {
+
+    const maxSize = 1024 * 1024 * 10;
+
+    if (file.size > maxSize) {  // 파일 크기 초과 시
+      alert("10 MB 이하의 이미지만 선택해 주세요");
+
+      if (lastValidFile === null) {
+        imgInput.value = ""; // 선택 파일 삭제
+        return;
+      }
+
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(lastValidFile);
+      inputImage.files = dataTransfer.files;
+      updatePreview(lastValidFile); 
+
+      return;
+    }
+
+    lastValidFile = file;
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.addEventListener("load", e => {
+      previewImg.src = e.target.result;
+      previewImg.style.visibility="visible"
+    })
+
+    previewImgBox.classList.remove("preview-img-box");
+    previewImgBox.classList.add("preview-img-box2");
+
+    previewImgBoxNotice.style = "display : none";
+
+  }
+
+
+  /* input 태그 이벤트 리스너 추가 */
+
+  imgInput.addEventListener("change", e => {
+    const file = e.target.files[0];
+
+    console.log(file);
+
+    if (file === undefined) {
+
+      if (lastValidFile === null) return;
+
+      const dataTransfer = new DataTransfer();
+
+      dataTransfer.items.add(lastValidFile);
+
+      imgInput.files = dataTransfer.files;
+
+      updatePreview(lastValidFile);
+
+      return;
+    }
+
+    console.log(file);
+
+    updatePreview(file);
+  })
+
+
+
 
 
 

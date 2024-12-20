@@ -1,6 +1,8 @@
 package jij.marimoss.board.service;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -73,4 +75,41 @@ public class BoardServiceImpl implements BoardService{
 		return result;
 	}
 
+	
+	
+	
+	@Override
+	public Map<String, String> likeChange(int boardNo, int memberNo) {
+		
+		int count = mapper.checkLike(boardNo, memberNo);
+		
+		String likeResult = null;
+		
+		// 존재할 시 삭제
+		if (count == 1) {
+			int result = mapper.deleteLike(boardNo, memberNo);
+			likeResult = "delete";
+			
+		// 없으면 등록
+		} else if (count == 0) {
+			int result = mapper.insertLike(boardNo, memberNo);
+			likeResult = "insert";
+			
+		// 에러
+		} else {
+			likeResult = "error";
+		}
+		
+		// 전체 좋아요 개수
+		int likeCount = mapper.likeCount(boardNo);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("likeResult", likeResult);
+		map.put("likeCount", String.valueOf(likeCount));
+		
+		return map;
+		
+		
+	}
 }

@@ -4,30 +4,34 @@
 <!-- 메인 안에 들어갈 내용 -->
 <section class="main-section">
 
-
-  <div class="aaaa">
+  <div class="board-insert-head">
+  </div>
+  
+  <div class="board-insert-container">
     
     <label class="preview-img-box" for="imgInput">
 
-        <img class="preview-img" src="" onError="this.style.visibility='hidden'">
+      <div class="preview-img-box-notice">
+        <img src="/images/boardInsert/plusMark.png" alt="">
+        <span>
+          이미지를 선택해 주세요
+        </span>
+      </div>
+
+
+      <img class="preview-img" src="" onError="this.style.visibility='hidden'">
 
     </label>
 
+    <div class="board-insert-box">
+      <input type="file" name="imgInput" id="imgInput" class="input-img" accept="image/*">
+      <input type="text" name="boardTitle" placeholder="제목">
+      <textarea type="text" name="boardContent" placeholder="설명은 500자 이내로 작성해주세요"></textarea>
 
-    <input type="file" name="imgInput" id="imgInput" class="input-img" accept="image/*">
-    <input type="text" name="boardTitle" placeholder="제목">
-    <input type="text" name="boardContent" placeholder="설명">
+      <button id="insertBtn">등록 하기</button>
+    </div>
+
   </div>
 
-  <button id="insertBtn">등록 하기</button>
-
-  <pre>
-      *추가 사항*
-      제목 1 자 이상
-
-      설명 500 자 이내
-
-      사진 크기 200 x 200 이상
-    </pre>
 
 </section>

@@ -341,3 +341,9 @@
 #modalCloseBtn:hover {
   cursor: pointer;
 }
+
+
+.obserb-flag {
+  width: 100%;
+  height: 40px;
+}

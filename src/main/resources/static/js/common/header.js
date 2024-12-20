@@ -2,13 +2,19 @@ const homeBox = document.querySelector("[name=homeBox]");
 const plusBox = document.querySelector("[name=plusBox]");
 const crownBox = document.querySelector("[name=crownBox]");
 
+
+// 마이 페이지 이동 버튼
+const myPageBtn = document.querySelector("[name=myPageBtn]");
+
 let main;
+
+let pageStatus = 'mainPage';
 
 document.addEventListener("DOMContentLoaded", () => {
   main = document.querySelector("#main");
 })
 
-// 게시글 등록 버튼
+// 메인 페이지 버튼
 homeBox.addEventListener("click", () => {
 
   fetch("/homeView")
@@ -17,7 +23,10 @@ homeBox.addEventListener("click", () => {
       throw new Error("실패")
     })
     .then(html => {
+      pageStatus = 'mainPage';
+
       main.innerHTML = html;
+      window.scrollTo({top: 0});
 
       // 임의로 이벤트 발생
       const domContentLoadedEvent = new Event('DOMContentLoaded');
@@ -37,7 +46,10 @@ plusBox.addEventListener("click", () => {
       throw new Error("실패")
     })
     .then(html => {
+      pageStatus = 'boardInsertPage';
+
       main.innerHTML = html;
+      window.scrollTo({top: 0});
 
       // 임의로 이벤트 발생
       const domContentLoadedEvent = new Event('DOMContentLoaded');
@@ -48,11 +60,25 @@ plusBox.addEventListener("click", () => {
 });
 
 
+myPageBtn?.addEventListener("click", () => {
+  fetch("/myPage/myPageView")
+  .then(resp => {
+    if (resp.ok) return resp.text();
+    throw new Error("실패")
+  })
+  .then(html => {
+    pageStatus = 'myPage';
 
+    main.innerHTML = html;
+    window.scrollTo({top: 0});
 
+    // 임의로 이벤트 발생
+    const domContentLoadedEvent = new Event('DOMContentLoaded');
+    document.dispatchEvent(domContentLoadedEvent);
+  })
+  .catch(err => console.error);
 
-
-
+});
 
 
 
@@ -100,6 +126,14 @@ loginCloseBtn?.addEventListener("click", () => {
 
 })
 
+
+
+
+
+
+
+// 프로필!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 profileBox?.addEventListener("click", () => {
   if (loginMember === null) {
 
@@ -118,6 +152,21 @@ const logoutBtn = document.querySelector(".logout-btn");
 logoutBtn?.addEventListener("click", () => {
   location.href = "/member/logout";
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // 회원 가입 화면 구성

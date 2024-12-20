@@ -8,15 +8,17 @@ public interface MainService {
 
 	/**
 	 * 최초 12 개 게시글 목록 + 페이지 네이션
+	 * @param memberNo 
 	 * @return firstBoard
  	 */
-	Map<String, Object> selectBoardList(int cp);
+	Map<String, Object> selectBoardList(int cp, int memberNo);
 
 	/**
 	 * 모달 채우기 
 	 * @param boardNo
+	 * @param memberNo 
 	 * @return board
 	 */
-	Board selectBoard(int boardNo);
+	Board selectBoard(int boardNo, int memberNo);
 
 }

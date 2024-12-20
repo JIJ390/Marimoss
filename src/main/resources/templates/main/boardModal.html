@@ -4,7 +4,7 @@
     <img th:src="|*{boardImgPath}*{boardImgRename}|" alt="" name="modalImg">
 
     <div class="modal-image-bottom">
-      <img src="/images/main/whiteHeart.png" alt="">
+      <img th:src="*{likeFl == 1 ? '/images/main/heartFilled.png' : '/images/main/heartEmpty.png'}" alt="" name="likeBtn">
       <img src="/images/main/button.png" name="etcBtn"alt="">
 
       <div class="modal-img-menu modal-menu-close">
@@ -42,9 +42,6 @@
     <div class="modal-comment-area">
       댓글 작성 영역
       <pre>
-        추가 기능
-        좋아요
-
         회원 옆 클릭
         채팅 
         페이지 이동

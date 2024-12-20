@@ -494,3 +494,8 @@ main {
 .none-display {
   display: none !important;
 }
+
+
+[name=myPageBtn]:hover {
+  cursor: pointer;
+}

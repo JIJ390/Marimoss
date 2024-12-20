@@ -30,4 +30,7 @@ public class Board {
 	// 편의성 추가 필드
 	private String memberNickname;
 	private int likeCount;
+	
+	// 해당 게시글 좋아요 여부
+	private int likeFl;
 }

@@ -13,8 +13,8 @@
               </div>
   
               <div class="like-area">
-                <img src="/images/main/whiteHeart.png" alt="like">
-                <span th:text="*{likeCount}"></span>
+                <img th:src="*{likeFl == 1 ? '/images/main/whiteHeartFilled.png' : '/images/main/whiteHeart.png'}" alt="" name="likeBtnDefault">
+                <span th:text="*{likeCount}" name="likeCountSpan"></span>
               </div>
   
               <div class="bottom-area">
@@ -30,7 +30,7 @@
       </div>
 
       <!-- 감시자 -->
-      <div class="obserb-flag">obserb-flag</div>
+      <div class="obserb-flag"></div>
     </section>
 
     <div class="board-modal">

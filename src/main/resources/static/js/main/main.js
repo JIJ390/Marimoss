@@ -6,16 +6,13 @@ let lastCp = 1;
 
 document.addEventListener('DOMContentLoaded', () => {
 
-
-
-  /* 임의로 함수 발생 시켜 초기화*/
-  obserbFlag = document.querySelector(".obserb-flag");
-
   /* 메인 페이지 아닐때 함수 실행 안함 */
-  if (obserbFlag === null) {
+  if (pageStatus !== 'mainPage') {
     return;
   }
 
+  /* 임의로 함수 발생 시켜 초기화*/
+  obserbFlag = document.querySelector(".obserb-flag");
 
   boardContainer = document.querySelector(".board-container");
   boardBoxesOrigin = document.querySelectorAll(".board-box");
@@ -35,8 +32,26 @@ document.addEventListener('DOMContentLoaded', () => {
       // 다운로드 버튼 동작 막기
       const downloadBtn = box.querySelector("[name=downloadBtn");
       if (e.target == downloadBtn) {
+        return;
+      }
+
+      // 좋아요 버튼
+      const likeBtnDefault = box.querySelector("[name=likeBtnDefault]");
+      const likeCountSpan = box.querySelector("[name=likeCountSpan]");
+
+      if (e.target == likeBtnDefault) {
+
+        if (loginMember === null) {
+          alert("로그인 후 이용해 주세요");
           return;
         }
+
+        likeChange(boardNo, likeBtnDefault, likeCountSpan);
+
+        return;
+      }
+
+
       // 모달 채우기
       updateModal(boardNo);
 
@@ -117,15 +132,31 @@ const updateBoardList = (lastCp) => {
 
       box.addEventListener("click", e => {
 
+        const boardNo = box.getAttribute("data-value");
+
         // 다운로드 버튼 동작 막기
         const downloadBtn = box.querySelector("[name=downloadBtn");
         if (e.target == downloadBtn) {
           return;
         }
+
+        // 좋아요 버튼
+        const likeBtnDefault = box.querySelector("[name=likeBtnDefault]");
+        const likeCountSpan = box.querySelector("[name=likeCountSpan]");
+
+        if (e.target == likeBtnDefault) {
         
+          if (loginMember === null) {
+            alert("로그인 후 이용해 주세요");
+            return;
+          }
+
+          likeChange(boardNo, likeBtnDefault, likeCountSpan);
+
+          return;
+        }
 
         // 모달 채우기
-        const boardNo = box.getAttribute("data-value");
         updateModal(boardNo);
         
         e.stopPropagation(); // 이벤트 전파 방지 모달이 열리면서 꺼지는 현상 방지
@@ -208,13 +239,96 @@ const updateModal = (boardNo) => {
 
     const etcBtn = boardModal.querySelector("[name=etcBtn]");
     const modalImgMenu = boardModal.querySelector(".modal-img-menu");
+    const likeBtn = boardModal.querySelector("[name=likeBtn]");
+
 
     etcBtn.addEventListener("click", () => {
       modalImgMenu.classList.toggle("modal-menu-close");
     })
 
+    likeBtn.addEventListener("click", () => {
+
+      if (loginMember === null) {
+        alert("로그인 후 이용해 주세요");
+        return;
+      }
+
+      likeChangeModal(boardNo);
+
+    })
+
+
     window.addEventListener("click", () => {
       modalImgMenu.classList.add("modal-menu-close");
     })
+
   })
+  .catch(err => console.error)
 }
+
+
+
+
+/**
+ * 좋아요 버튼 함수
+ */
+const likeChangeModal = (boardNo) => {
+
+  fetch("/board/likeChange", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: boardNo
+  })
+  .then(resp => {
+    if (resp.ok) return resp.json();
+    throw new Error("변경 실패")
+  })
+  .then(result => { 
+
+    if (result.likeResult == 'insert') {
+      likeBtn.src = "/images/main/heartFilled.png"
+    }
+
+    if (result.likeResult == 'delete') {
+      likeBtn.src = "/images/main/heartEmpty.png"
+    }
+
+  })
+  .catch(err => console.error)
+
+
+} 
+
+
+/**
+ * 좋아요 버튼 함수 메인 페이지
+ */
+const likeChange = (boardNo, likeBtnDefault, likeCountSpan) => {
+
+  fetch("/board/likeChange", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: boardNo
+  })
+  .then(resp => {
+    if (resp.ok) return resp.json();
+    throw new Error("변경 실패")
+  })
+  .then(result => { 
+
+    if (result.likeResult == 'insert') {
+      likeBtnDefault.src = "/images/main/whiteHeartFilled.png"
+    }
+
+    if (result.likeResult == 'delete') {
+      likeBtnDefault.src = "/images/main/whiteHeart.png"
+    }
+
+    likeCountSpan.innerText = result.likeCount;
+
+
+  })
+  .catch(err => console.error)
+
+} 
+
