@@ -1,15 +1,115 @@
 <head>
-  <link rel="stylesheet" href="/css/board/boardInsert.css">
+  <link rel="stylesheet" href="/css/myPage/myPage.css">
 </head>
 <!-- 메인 안에 들어갈 내용 -->
 <section class="main-section">
+  <div class="myPage-container">
+    <div class="myPage-profile" th:object="${session.loginMember}" >
+      <div class="theme">
+        <img th:src="*{memberTheme}" alt="" id="myPageTheme">
 
-  <div class="board-insert-head">
+      </div>
+      <img th:src="*{memberProfile}" name="profileImg" alt="" id="profileImg">
+      <div class="profile">
+        <div class="temp-div1">
+          <div class="profile-change-btn">내 정보 수정</div>
+        </div>
+        <span th:text="*{memberNickname}"></span>
+        <span th:text="*{memberEmail}"></span>
+      </div>
+    </div>
+
+    <!-- 빈공간 div -->
+    <div class="myPage-temp"></div>
+    <div class="myPage-main-content">
+    
+      <!-- 내가 쓴 게시글 -->
+      <section class="myPage-section">
+        <div th:text="|내 게시글 (${boardCount})|" name="myPage-subTitle">aaaa</div>
+        <hr>
+        <div class="board-container">
+          <th:block th:each="board:${boardList}" th:object="${board}">
+    
+            <div class="board-box" th:data-value="*{boardNo}">
+              <img th:src="|*{boardImgPath}*{boardImgRename}|" alt="">
+              <div class="board-div">
+                <div class="top-area">
+                  <span th:text="*{boardTitle}"></span>
+                </div>
+    
+                <div class="like-area">
+                  <img th:src="*{likeFl == 1 ? '/images/main/whiteHeartFilled.png' : '/images/main/whiteHeart.png'}" alt=""
+                    name="likeBtnDefault">
+                  <span th:text="*{likeCount}" name="likeCountSpan"></span>
+                </div>
+    
+                <div class="bottom-area">
+                  <a th:href="|*{boardImgPath}*{boardImgRename}|" th:download="*{boardImgOrigin}">
+                    <img src="/images/main/downloadBtn.png" style="background-color: white;" name="downloadBtn" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+    
+          </th:block>
+        </div>
+    
+        <!-- 감시자 -->
+        <div class="obserb-flag"></div>
+      </section>
+    
+      <div class="board-modal">
+    </div>
+
+
+
+    </div>
+
+
+
   </div>
+
+
+  <div class="myPage-modal" th:object="${session.loginMember}">
+    <div class="theme-img-div">
+      <img th:src="*{memberTheme}" alt="" class="preview-theme-img">
+    </div>
+
+    <div class="profile-img-div">
+      <img th:src="*{memberProfile}" alt="" class="preview-proflie-img">
+    </div>
+    <div class="profile-change-content">
+      <div class="profile-img-change-div">
+        <input type="file" id="profileImgInput" style="display: none;">
+        <label for="profileImgInput" class="profile-modal-btn">프로필 선택</label>
+        <button class="profile-modal-btn" id="profileImgUpdateBtn">프로필 수정</button>
+      </div>
+      <div class="profile-img-change-div">
+        <input type="file" id="themeImgInput" style="display: none;">
+        <label for="themeImgInput" class="profile-modal-btn">테마 선택</label>
+        <button class="profile-modal-btn" id="themeImgUpdateBtn">테마 수정</button>
+      </div>
+
+      <div class="name-change">
+        <span>닉네임</span>
+        <input type="text">
+        <button class="profile-modal-btn">수정하기</button>
+      </div>
+      <div>
+        <span>
+          활동내역 공개 여부
+        </span>
+      </div>
+      <div>
+        <span>
+          팔로워 공개 여부
+        </span>
+      </div>
+      <div>
+        <button class="profile-modal-btn" id="myPageModalCancleBtn">취소</button>
+      </div>
+    </div>
   
-  <div class="board-insert-container">
-    마이페이지 임시
-  </div>
-
+    </div>
 
 </section>

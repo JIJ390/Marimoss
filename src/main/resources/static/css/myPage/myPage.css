@@ -1,0 +1,250 @@
+.main-section {
+  width: 100%;
+}
+
+.myPage-container {
+  background-color: var(--back-color);
+
+  margin-top: 8vh;
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 200px;
+}
+
+.myPage-profile {
+
+  background-color: var(--back-color);
+
+  top: 8vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  position: absolute;
+}
+
+[name=profileImg] {
+  border-radius: 150px;
+
+  background-color: var(--back-color);
+
+  width: 150px;
+  height: 150px;
+
+  top: 50%; /* 세로 방향 가운데 */
+  left: 50%; /* 가로 방향 가운데 */
+  transform: translate(-50%, -50%); /* 가운데 정렬 보정 */
+
+
+  position: relative;
+}
+
+.theme {
+width: 100%;
+height: 200px;
+overflow: hidden;
+
+
+}
+
+.theme img {
+  width: 100%;
+  filter: brightness(0.8);
+
+}
+
+.profile {
+  margin-top: -60px;
+
+  text-align: center;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-self: center !important;
+  justify-content: center !important;
+
+}
+
+.profile span {
+  margin: 4px;
+}
+
+.myPage-temp {
+  width: 100%;
+  height: 400px;
+}
+
+.myPage-main-content {
+
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.myPage-section {
+
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  flex-direction: column;
+
+}
+
+[name=myPage-subTitle] {
+  font-size: 24px;
+
+  padding-left: 10px;
+
+  font-weight: bold;
+
+  padding-bottom: 4px;
+}
+
+.temp-div1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.profile-change-btn {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 14px;
+
+  width: 120px;
+  height: 40px;
+  
+
+  background-color: var(--back-color);
+
+  border: 2px solid var(--font-color);
+
+  border-radius: 40px;
+
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+.profile-change-btn:hover {
+  background-color: var(--font-color);
+  color: white;
+
+  cursor: pointer;
+}
+
+
+.myPage-modal {
+  width: 350px;
+  height: 450px;
+
+  position: fixed;
+  top: 50%; /* 세로 방향 가운데 */
+  left: 50%; /* 가로 방향 가운데 */
+  transform: translate(-50%, -50%); /* 가운데 정렬 보정 */
+  z-index: -20;
+
+  background-color: white;
+
+  border-radius: 20px;
+  transition-property: opacity;  
+  transition-duration: 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.profile-img-div {
+  position: absolute;
+}
+
+.profile-img-div img {
+  width: 120px;
+  height: 120px;
+  position: relative;
+
+  border-radius: 60px;
+  background-color: white;
+
+  top: 80px; /* 세로 방향 가운데 */
+}
+
+
+.theme-img-div {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+}
+
+.theme-img-div img {
+  width: 100%;
+}
+
+.profile-change-content {
+  margin-top: 70px;
+}
+
+
+
+.profile-modal-btn {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 12px;
+
+  width: 70px;
+  height: 20px;
+  
+
+  background-color: white;
+
+  border: 1px solid var(--font-color);
+
+  border-radius: 20px;
+
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+.profile-modal-btn:hover {
+  background-color: var(--font-color);
+  color: white;
+
+  cursor: pointer;
+}
+
+.profile-img-change-div {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-img-change-div * {
+  margin: 3px;
+  width: 90px;
+  height: 30px;
+}

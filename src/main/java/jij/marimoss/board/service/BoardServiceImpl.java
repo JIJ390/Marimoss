@@ -35,7 +35,6 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int boardInsert(MultipartFile paint, String boardTitle, String boardContent, int memberNo) {
 		
-		
 		String boardImgOrigin = paint.getOriginalFilename();
 		String boardImgRename = FileUtil.rename(boardImgOrigin);
 		

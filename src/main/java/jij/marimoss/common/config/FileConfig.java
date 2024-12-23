@@ -53,6 +53,14 @@ public class FileConfig implements WebMvcConfigurer{
 	@Value("${my.board.resource-location}")
 	private String boardResourceLocation; 
 	
+	
+	
+	@Value("${my.myTheme.resource-handler}")
+	private String myThemeResourceHandler;			// 테마 이미지 요청 주소
+	
+	@Value("${my.myTheme.resource-location}")
+	private String myThemeResourceLocation; 
+	
 	//---------------------------------------------------------------------------
 
 	
@@ -104,6 +112,12 @@ public class FileConfig implements WebMvcConfigurer{
 		registry
 		.addResourceHandler(boardResourceHandler)					// 게시글
 		.addResourceLocations(boardResourceLocation);		
+		
+		
+		registry
+		.addResourceHandler(myThemeResourceHandler)					// 테마
+		.addResourceLocations(myThemeResourceLocation);		
+
 
 	}
 	

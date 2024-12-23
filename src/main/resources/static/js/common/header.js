@@ -75,18 +75,12 @@ myPageBtn?.addEventListener("click", () => {
     // 임의로 이벤트 발생
     const domContentLoadedEvent = new Event('DOMContentLoaded');
     document.dispatchEvent(domContentLoadedEvent);
+
+    sideModal.classList.toggle("side-modal-none");
   })
   .catch(err => console.error);
 
 });
-
-
-
-
-
-
-
-
 
 
 
@@ -102,7 +96,6 @@ const loginCloseBtn = document.querySelector("#loginCloseBtn");
 sideCloseBtn?.addEventListener("click", () => {
 
   sideModal.classList.add("side-modal-none");
-  
 
 })
 

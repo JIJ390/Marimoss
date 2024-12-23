@@ -163,16 +163,14 @@ public class MemberController {
 		if (member != null) {
 			model.addAttribute("loginMember", member);
 			ra.addFlashAttribute("message", member.getMemberNickname() + " 님 marimoss 가입을 환영합니다");
-			
 		}
 		
 		else {
 			ra.addFlashAttribute("message", "회원 가입 오류");
 		}
 		
-		
 		return "redirect:/";
 	}
-	
+
 	
 }

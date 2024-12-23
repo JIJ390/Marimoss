@@ -36,19 +36,18 @@ public class BoardController {
 	// 게시글 등록 
 	@PostMapping("insert")
 	@ResponseBody
-	public String boardInsert (
+	public int boardInsert (
 			@RequestParam("paint") MultipartFile paint,
 			@RequestParam("boardTitle") String boardTitle,
 			@RequestParam("boardContent") String boardContent,
 			@SessionAttribute("loginMember") Member loginMember
 			) {
-		// 로그인 회원정보 추가해야함!!
 		
 		int memberNo = loginMember.getMemberNo();
 		
 		int result = service.boardInsert(paint, boardTitle, boardContent, memberNo);
 		
-		return "1";
+		return result;
 	}
 	
 	
