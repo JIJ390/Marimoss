@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import jij.marimoss.main.dto.Board;
+import jij.marimoss.main.dto.Comment;
 
 @Mapper
 public interface MainMapper {
@@ -36,5 +37,13 @@ public interface MainMapper {
 	Board selectBoard(
 			@Param("boardNo") int boardNo, 
 			@Param("memberNo") int memberNo);
+
+	/**
+	 * 댓글 목록
+	 * @param boardNo
+	 * @return
+	 */
+	List<Comment> selectCommentList(int boardNo);
+
 
 }

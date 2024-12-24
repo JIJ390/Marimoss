@@ -303,6 +303,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const profileImg = document.querySelector("#profileImg");
       profileImg.src = profileUrl;
 
+      const headerProfileImg = document.querySelector("#headerProfileImg");
+      headerProfileImg.src = profileUrl;
+
+      const sideModalProfileImg = document.querySelector("#sideModalProfileImg");
+      sideModalProfileImg.src = profileUrl;
+      
       alert("프로필 이미지가 수정되었습니다");
       
     })
@@ -323,7 +329,62 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 
+
+
+
+
+  // 이름 변경
+  const nameChangeInput = document.querySelector("#nameChangeInput");
+  const nameChangeBtn = document.querySelector("#nameChangeBtn");
+
+  nameChangeBtn.addEventListener("click", () => {
+    
+    if (nameChangeInput.value.trim().length < 2) {
+      alert("닉네임을 두 글자 이상으로 입력해주세요");
+      nameChangeInput.focus();
+      return;
+    }
+
+    const memberNickname = nameChangeInput.value.trim();
+
+    // 닉네임 변경
+    fetch("/myPage/nicknameChange", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: memberNickname
+    })
+    .then(resp => {
+      if (resp.ok) return resp.text();
+      throw new Error("이름 변경 실패")
+    })
+    .then(result => {
+      alert("닉네임이 변경되었습니다");
+
+      const myPageMemberNickname = document.querySelector("#myPageMemberNickname");
+      const headerMemberNickname = document.querySelector("#headerMemberNickname");
+
+      myPageMemberNickname.innerText = memberNickname;
+      headerMemberNickname.innerText = memberNickname;
+    })
+    .catch(err => console.error);
+
+  })
+
+
+
+
 })
+
+
+
+
+
+
+
+
+
+
+
 
 // 스크롤 내릴 시 작동하는 함수
 const updateMyBoardList = (lastCp) => {

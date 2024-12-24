@@ -35,5 +35,15 @@ public interface MyPageService {
 	 * @return
 	 */
 	String profileImgUpdate(int memberNo, MultipartFile profileImg);
+
+
+
+	/**
+	 * 이름 변경
+	 * @param memberNo
+	 * @param memeberNickname
+	 * @return
+	 */
+	int nicknameChange(int memberNo, String memberNickname);
 		
 }

@@ -125,6 +125,13 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		return profileUrl;
 		
-		
+	}
+	
+	
+	
+	
+	@Override
+	public int nicknameChange(int memberNo, String memberNickname) {
+		return mapper.nicknameChange(memberNo, memberNickname);
 	}
 }

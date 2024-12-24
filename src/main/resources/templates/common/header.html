@@ -28,17 +28,15 @@
       <div class="icon-box" name="crownBox">
         <img src="/images/common/crown.png" alt="">
       </div>
-      <div class="icon-box" name="profileBox">
-        <img src="/images/defaultProfile.png" alt="">
+      <div class="icon-box" name="profileBox" th:object="${session.loginMember}">
+        <img th:unless="${session.loginMember}" src="/images/defaultProfile.png" alt="" id="headerProfileImg">
+        <img th:if= "${session.loginMember}" th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" id="headerProfileImg">
       </div>
 
     </div>
     
 
   </div>
-
-
-
 
 
   <div class="side-modal side-modal-none" th:if="${session.loginMember}" th:object="${session.loginMember}">
@@ -50,9 +48,9 @@
 
     <div class="side-modal-content">
 
-      <img src="/images/defaultProfile.png" alt="">
+      <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" id="sideModalProfileImg">
 
-      <div th:text="*{memberNickname}"></div>
+      <div th:text="*{memberNickname}" id="headerMemberNickname"></div>
       <div name="myPageBtn">마이 페이지</div>
       
       <button class="logout-btn">
@@ -97,7 +95,6 @@
 
         <span class="head-email-span">
           <span>
-
             이메일 
           </span>
           <span id="timeSpan">

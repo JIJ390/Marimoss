@@ -1,8 +1,10 @@
 package jij.marimoss.main.service;
 
+import java.util.List;
 import java.util.Map;
 
 import jij.marimoss.main.dto.Board;
+import jij.marimoss.main.dto.Comment;
 
 public interface MainService {
 
@@ -20,5 +22,12 @@ public interface MainService {
 	 * @return board
 	 */
 	Board selectBoard(int boardNo, int memberNo);
+
+	/**
+	 * 댓글 목록 가져오기
+	 * @param boardNo
+	 * @return
+	 */
+	List<Comment> selectCommentList(int boardNo);
 
 }

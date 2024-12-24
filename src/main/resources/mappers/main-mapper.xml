@@ -42,6 +42,7 @@
 		  	BOARD_IMG_ORIGIN,
 		  	BOARD_IMG_RENAME,
 			MEMBER_NICKNAME,
+			MEMBER_PROFILE,
 			(SELECT COUNT(*)
 		     FROM "LIKE"
 		     WHERE BOARD_NO = #{boardNo}
@@ -56,8 +57,28 @@
 				 BOARD_IMG_PATH,
 		  		 BOARD_IMG_ORIGIN,
 		  		 BOARD_IMG_RENAME, 
-		  		 MEMBER_NICKNAME
+		  		 MEMBER_NICKNAME,
+		  		 MEMBER_PROFILE
   	</select>
   	
+  	
+  	<select id="selectCommentList">
+		SELECT
+			COMMENT_NO,
+			COMMENT_CONTENT,
+			COMMENT_WRITE_DATE,
+			COMMENT_DEL_FL,
+			C.MEMBER_NO AS "MEMBER_NO",
+			PARENT_COMMENT_NO,
+			MEMBER_NICKNAME,
+			MEMBER_PROFILE
+		FROM
+			"COMMENT" C
+		JOIN "MEMBER" M ON M.MEMBER_NO = C.MEMBER_NO
+		WHERE
+			COMMENT_DEL_FL = 'N'
+		AND
+		  BOARD_NO = #{boardNo}
+  	</select>
   	
 </mapper>

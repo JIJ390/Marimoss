@@ -86,8 +86,7 @@ public class MyPageController {
 	@ResponseBody
 	public String themeUpdate (
 			@SessionAttribute("loginMember") Member loginMember,
-			@RequestParam("theme") MultipartFile theme,
-			Model model
+			@RequestParam("theme") MultipartFile theme
 			) {
 		
 		int memberNo = loginMember.getMemberNo();
@@ -116,8 +115,7 @@ public class MyPageController {
 	@ResponseBody
 	public String profileImgUpdate (
 			@SessionAttribute("loginMember") Member loginMember,
-			@RequestParam("profileImg") MultipartFile profileImg,
-			Model model
+			@RequestParam("profileImg") MultipartFile profileImg
 			) {
 		
 		int memberNo = loginMember.getMemberNo();
@@ -130,6 +128,29 @@ public class MyPageController {
 		return profileUrl;
 		
 	}
+	
+	
+	
+	@PutMapping("nicknameChange")
+	@ResponseBody
+	public int nicknameChange (
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestBody String memberNickname
+			) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		int result = service.nicknameChange(memberNo, memberNickname);
+		
+		// 동기화
+		loginMember.setMemberNickname(memberNickname);
+		
+		return result;
+		
+	}
+	
+	
+	
 	
 	
 }

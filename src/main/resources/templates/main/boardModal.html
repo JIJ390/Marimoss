@@ -32,7 +32,7 @@
       <span id="modalCloseBtn">&times;</span>
     </div>
     <div class="modal-member">
-      <img src="/images/defaultProfile.png" alt="profile">
+      <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}"  alt="profile">
       <span th:text="*{memberNickname}"></span>
     </div>
 
@@ -40,15 +40,18 @@
       <pre th:text="*{boardContent}"></pre>
     </div>
     <div class="modal-comment-area">
-      댓글 작성 영역
-      <pre>
-        회원 옆 클릭
-        채팅 
-        페이지 이동
-        팔로우
+      <span>
+        댓글
+      </span>
+      <th:block th:each= "comment:${commentList}" th:object="${comment}">
+        <div class="comment-box">
+          <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" class="">
+          <span th:text="*{memberNickname}"></span>
+          <span th:text="*{commentContent}"></span>
+        </div>
 
-        댓글 수정 삭제 등록
-      </pre>
+      </th:block>
+
     </div>
   </div>
 

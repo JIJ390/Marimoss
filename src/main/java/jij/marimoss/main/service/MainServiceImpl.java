@@ -1,5 +1,6 @@
 package jij.marimoss.main.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import jij.marimoss.main.dto.Board;
+import jij.marimoss.main.dto.Comment;
 import jij.marimoss.main.dto.Pagination;
 import jij.marimoss.main.mapper.MainMapper;
 import lombok.RequiredArgsConstructor;
@@ -53,5 +55,13 @@ public class MainServiceImpl implements MainService{
 	@Override
 	public Board selectBoard(int boardNo, int memberNo) {
 		return mapper.selectBoard(boardNo, memberNo);
+	}
+	
+	@Override
+	public List<Comment> selectCommentList(int boardNo) {
+		
+		
+		return mapper.selectCommentList(boardNo);
+
 	}
 }

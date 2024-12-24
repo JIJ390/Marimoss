@@ -9,12 +9,12 @@
         <img th:src="*{memberTheme}" alt="" id="myPageTheme">
 
       </div>
-      <img th:src="*{memberProfile}" name="profileImg" alt="" id="profileImg">
+      <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" name="profileImg" alt="" id="profileImg">
       <div class="profile">
         <div class="temp-div1">
           <div class="profile-change-btn">내 정보 수정</div>
         </div>
-        <span th:text="*{memberNickname}"></span>
+        <span th:text="*{memberNickname}" id="myPageMemberNickname"></span>
         <span th:text="*{memberEmail}"></span>
       </div>
     </div>
@@ -65,10 +65,7 @@
 
     </div>
 
-
-
   </div>
-
 
   <div class="myPage-modal" th:object="${session.loginMember}">
     <div class="theme-img-div">
@@ -76,7 +73,7 @@
     </div>
 
     <div class="profile-img-div">
-      <img th:src="*{memberProfile}" alt="" class="preview-proflie-img">
+      <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" class="preview-proflie-img">
     </div>
     <div class="profile-change-content">
       <div class="profile-img-change-div">
@@ -92,20 +89,20 @@
 
       <div class="name-change">
         <span>닉네임</span>
-        <input type="text">
-        <button class="profile-modal-btn">수정하기</button>
+        <input type="text" th:value="*{memberNickname}" id="nameChangeInput">
+        <button class="profile-modal-btn" id="nameChangeBtn">수정하기</button>
       </div>
-      <div>
+      <div class="modal-change-div">
         <span>
           활동내역 공개 여부
         </span>
       </div>
-      <div>
+      <div class="modal-change-div">
         <span>
           팔로워 공개 여부
         </span>
       </div>
-      <div>
+      <div name="myPageModalCancleDiv">
         <button class="profile-modal-btn" id="myPageModalCancleBtn">취소</button>
       </div>
     </div>

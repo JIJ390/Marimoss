@@ -1,5 +1,6 @@
 package jij.marimoss.main.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import jij.marimoss.main.dto.Board;
+import jij.marimoss.main.dto.Comment;
 import jij.marimoss.main.service.MainService;
 import jij.marimoss.member.dto.Member;
 import lombok.RequiredArgsConstructor;
@@ -119,7 +121,12 @@ public class MainController {
 		
 		Board board = service.selectBoard(boardNo, memberNo);
 		
+		List<Comment> commentList = service.selectCommentList(boardNo);
+		
+		log.debug("commentList : {}", commentList);
+		
 		model.addAttribute("board", board);
+		model.addAttribute("commentList", commentList);
 		
 		return "main/boardModal";
 		

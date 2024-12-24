@@ -45,4 +45,15 @@ public interface MyPageMapper {
 			@Param("memberNo") int memberNo,
 			@Param("profileUrl") String profileUrl);
 
+	
+	/**
+	 * 이름 변경
+	 * @param memberNo
+	 * @param memeberNickname
+	 * @return
+	 */
+	int nicknameChange(
+			@Param("memberNo") int memberNo,
+			@Param("memberNickname") String memberNickname);
+
 }

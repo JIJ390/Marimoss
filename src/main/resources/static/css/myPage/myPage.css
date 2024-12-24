@@ -81,7 +81,7 @@ overflow: hidden;
 
 .myPage-temp {
   width: 100%;
-  height: 400px;
+  height: 500px;
 }
 
 .myPage-main-content {
@@ -205,6 +205,7 @@ overflow: hidden;
 
 .profile-change-content {
   margin-top: 70px;
+  width: 280px;
 }
 
 
@@ -248,3 +249,59 @@ overflow: hidden;
   width: 90px;
   height: 30px;
 }
+
+
+.name-change {
+  margin-top: 10px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name-change span{
+  font-weight: bold;
+}
+
+.name-change input {
+  width: 160px;
+  border: none;
+
+  font-size: 16px;
+
+  border-bottom: 1px solid var(--font-color);
+}
+
+.name-change input:focus {
+  outline: none;
+}
+
+[name=myPageModalCancleDiv] {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#myPageModalCancleBtn {
+  width: 280px;
+  font-size: 14px;
+  height: 40px;
+}
+
+.modal-change-div {
+  font-weight: bold;
+
+  margin-top: 10px;
+}
+
+#myPageMemberNickname {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+
+

@@ -53,4 +53,16 @@
   	</update>
   	
   	
+  	
+  	<!-- 이름 수정 -->
+  	<update id="nicknameChange">
+  		UPDATE "MEMBER"
+  		SET 
+  			MEMBER_NICKNAME = #{memberNickname}
+  		WHERE
+  			MEMBER_NO = #{memberNo}
+  	</update>
+  	
+  	
+  	
 </mapper>
