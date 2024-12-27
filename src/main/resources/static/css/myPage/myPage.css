@@ -304,4 +304,14 @@ overflow: hidden;
 
 
 
+.no-comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+
+}
+
+.no-comment span {
+  color: var(--font-gray-color) !important;
+}

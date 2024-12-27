@@ -109,6 +109,30 @@ public class BoardServiceImpl implements BoardService{
 		
 		return map;
 		
+	}
+	
+	
+	@Override
+	public int insertComment(Map<String, String> commentObj, int memberNo) {
 		
+		int boardNo = Integer.parseInt(commentObj.get("boardNo"));
+		String commentContent = commentObj.get("commentContent");
+		
+		return mapper.insertComment(boardNo, memberNo, commentContent);
+	}
+	
+	
+	// 댓글 삭제
+	@Override
+	public int deleteComment(int commentNo) {
+		return mapper.deleteComment(commentNo);
+	}
+	
+	
+	
+	// 게시글 삭제
+	@Override
+	public int deleteBoard(int boardNo) {
+		return mapper.deleteBoard(boardNo);
 	}
 }

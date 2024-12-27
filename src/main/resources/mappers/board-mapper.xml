@@ -51,4 +51,41 @@
 		WHERE BOARD_NO = #{boardNo}
   	</select>
   	
+  	<insert id="insertComment">
+	  	INSERT INTO "COMMENT"
+		VALUES (
+			SEQ_COMMENT_NO.NEXTVAL,
+			#{commentContent},
+			DEFAULT,
+			DEFAULT,
+			#{boardNo},
+			#{memberNo},
+			NULL
+		)
+  	</insert>
+  	
+  	
+  	<!-- 댓글 삭제 -->
+  	<update id="deleteComment">
+  		UPDATE "COMMENT"
+  		SET
+  			COMMENT_DEL_FL ='Y'
+  		WHERE
+  			COMMENT_NO = #{commetNo}
+  	</update>
+  	
+  	
+  	 <!-- 게시글 삭제 -->
+  	<update id="deleteBoard">
+  		UPDATE "BOARD"
+  		SET
+  			BOARD_DEL_FL ='Y'
+  		WHERE
+  			BOARD_NO = #{boardNo}
+  	</update>
+  	
+  	
+  	
+  	
+  	
 </mapper>

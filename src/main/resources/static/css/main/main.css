@@ -287,6 +287,11 @@
 
 .modal-content-area {
   background-color: white;
+
+  display: flex;
+  flex-direction: column;
+
+
 }
 
 /* 모달 내부는 확대 축소 영향을 받지 않기 위해 */
@@ -328,7 +333,12 @@
   padding: 1vh;
 
   background-color: rgb(214, 214, 214);
-  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  flex-grow: 1;
 
 }
 
@@ -350,8 +360,162 @@
   height: 40px;
 }
 
+.comment-box {
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+
+.comment-box-comment-area {
+  display: flex;
+  align-items: center;
+
+  min-width: 10vh;
+
+  margin-bottom: 1vh;
+
+  word-break: break-word;
+}
+
+.comment-box-comment-area div {
+  min-width: 10vh;
+  margin-right: 1vh;
+}
+
+.comment-box-etc-area {
+  display: flex;
+  align-items: center;
+
+  font-size: 1.3vh !important;
+}
+
+.comment-box-etc-area div:first-child {
+  text-align: center;
+
+  width: 8vh;
+  margin-right: 0.5vh;
+  word-break: break-word;
+}
+
+
+.comment-delete-btn {
+  width: 1.8vh;
+
+  height: 2vh;
+
+  border: none;
+  border-radius: 0.5vh;
+
+  background-color: var(--back-gray-color);
+
+  margin-right: 0.5vh;
+
+  font-size: 1.3vh;
+
+  transition-property: background-color;
+  transition-duration: 0.2s;
+}
+
+
+.comment-delete-btn:hover {
+  cursor: pointer;
+
+  color: white;
+  background-color: var(--font-color);
+}
+
+
+
 .comment-box img {
+  margin-right: 1vh;
   width: 4vh;
   height: 4vh;
   border-radius: 4vh;
+}
+
+.modal-comment-span {
+  margin-bottom: 1vh;
+}
+
+.modal-comment-container {
+  flex-grow: 1;
+
+  max-height: 40vh;
+  overflow-y: auto; 
+}
+
+.modal-comment-insert {
+  width: 100%;
+
+  height: 5vh;
+  display: flex;
+}
+
+.modal-comment-insert input {
+  height: 4vh;
+
+  width: 100vh;
+
+  min-width: 2vh;
+
+  border: 0.1vh solid var(--font-gray-color);
+  border-radius: 4vh;
+
+  outline: none;
+  padding-left: 1.5vh;
+
+  font-size: 2vh;
+}
+
+.modal-comment-insert button {
+  height: 4vh;
+
+  min-width: 8vh;
+
+  border: 0.1vh solid var(--font-gray-color);
+  border-radius: 4vh;
+
+  margin-left: 1vh;
+
+  background-color: white;
+
+  font-size: 2vh;
+
+  transition-property: background-color;
+  transition-duration: 0.2s;
+}
+
+.modal-comment-insert button:hover {
+  cursor: pointer;
+
+  color: white;
+  background-color: var(--font-color);
+}
+
+
+
+.no-comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.no-comment span {
+  color: var(--font-gray-color) !important;
+}
+
+
+
+
+
+[name=boardDeleteBtn] {
+  margin-left: 8px;
+}
+
+
+[name=boardUpdateBtn] {
+  margin-left: 8px;
 }

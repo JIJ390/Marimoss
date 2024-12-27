@@ -24,4 +24,28 @@ public interface BoardService {
 	 */
 	Map<String, String> likeChange(int boardNo, int memberNo);
 
+	/**
+	 * 댓글 등록
+	 * @param commentObj
+	 * @param memberNo
+	 * @return
+	 */
+	int insertComment(Map<String, String> commentObj, int memberNo);
+
+	
+	/**
+	 * 댓글 삭제
+	 * @param commentNo
+	 * @return
+	 */
+	int deleteComment(int commentNo);
+
+	
+	/**
+	 * 게시글 삭제
+	 * @param boardNo
+	 * @return
+	 */
+	int deleteBoard(int boardNo);
+
 }

@@ -33,4 +33,33 @@ public interface BoardMapper {
 	// 전체 좋아요 개수 세기
 	int likeCount(int boardNo);
 
+
+	/**
+	 * 댓글 등록
+	 * @param boardNo
+	 * @param memberNo
+	 * @param commentContent
+	 * @return
+	 */
+	int insertComment(
+			@Param("boardNo") int boardNo, 
+			@Param("memberNo") int memberNo,
+			@Param("commentContent") String commentContent);
+
+
+	/**
+	 * 댓글 삭제
+	 * @param commentNo
+	 * @return
+	 */
+	int deleteComment(int commentNo);
+
+
+	/**
+	 * 게시글 삭제
+	 * @param boardNo
+	 * @return
+	 */
+	int deleteBoard(int boardNo);
+
 }

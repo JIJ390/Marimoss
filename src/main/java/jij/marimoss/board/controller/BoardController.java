@@ -3,8 +3,10 @@ package jij.marimoss.board.controller;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,4 +69,49 @@ public class BoardController {
 		
 	}
 	
+	
+	
+	// 댓글 등록
+	@PostMapping("insertComment")
+	@ResponseBody
+	public int insertComment(
+			@RequestBody Map<String, String> commentObj,
+			@SessionAttribute("loginMember") Member loginMember
+			) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		int result = service.insertComment(commentObj, memberNo);
+		
+		return result;
+		
+	}
+	
+	// 댓글 삭제
+	@PutMapping("deleteComment")
+	@ResponseBody
+	public int deleteComment(
+			@RequestBody int commentNo
+			) {
+		
+		int result = service.deleteComment(commentNo);
+		
+		return result;
+		
+	}
+	
+	
+	
+	// 게시글 삭제
+	@PutMapping("deleteBoard")
+	@ResponseBody
+	public int deleteBoard(
+			@RequestBody int boardNo
+			) {
+		
+		int result = service.deleteBoard(boardNo);
+		
+		return result;
+		
+	}
 }

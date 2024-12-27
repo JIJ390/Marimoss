@@ -51,6 +51,39 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      const boardUpdateBtn = box.querySelector("[name=boardUpdateBtn]");
+
+      if (e.target == boardUpdateBtn) {
+
+        if (loginMember === null) {
+          alert("로그인 후 이용해 주세요");
+          return;
+        }
+
+        alert("수정 버튼");
+        return;
+
+      }
+
+      
+      const boardDeleteBtn = box.querySelector("[name=boardDeleteBtn]");
+
+      if (e.target == boardDeleteBtn) {
+
+        if (loginMember === null) {
+          alert("로그인 후 이용해 주세요");
+          return;
+        }
+
+        if (!confirm("정말 삭제하시겠습니까?")) {
+          return;
+        }
+
+        boardDelte(boardNo, box);
+        return;
+
+      }
+
 
       // 모달 채우기
       updateModal(boardNo, box);
@@ -155,6 +188,39 @@ const updateBoardList = (lastCp) => {
 
           return;
         }
+
+        const boardUpdateBtn = box.querySelector("[name=boardUpdateBtn]");
+
+        if (e.target == boardUpdateBtn) {
+
+          if (loginMember === null) {
+            alert("로그인 후 이용해 주세요");
+            return;
+          }
+
+          alert("수정 버튼");
+          return;
+
+        }
+        
+        const boardDeleteBtn = box.querySelector("[name=boardDeleteBtn]");
+
+        if (e.target == boardDeleteBtn) {
+
+          if (loginMember === null) {
+            alert("로그인 후 이용해 주세요");
+            return;
+          }
+
+          if (!confirm("정말 삭제하시겠습니까?")) {
+            return;
+          }
+          
+          boardDelte(boardNo, box);
+          return;
+
+        }
+
 
         // 모달 채우기
         updateModal(boardNo, box);
@@ -262,10 +328,51 @@ const updateModal = (boardNo, box) => {
       modalImgMenu.classList.add("modal-menu-close");
     })
 
-  })
-  .catch(err => console.error)
-}
 
+    // 댓글 등록 관련 요소
+    const insertCommentBtn = boardModal.querySelector("#insertCommentBtn");
+    const insertCommentInput = boardModal.querySelector("#insertCommentInput");
+
+    insertCommentBtn.addEventListener("click", () => {
+
+      if (loginMember === null) {
+        alert("로그인 후 이용해 주세요");
+        return;
+      }
+
+      if (insertCommentInput.value.trim().length < 1) {
+        alert("댓글을 작성해 주세요");
+        insertCommentInput.focus();
+        return;
+      }
+
+      // 댓글 등록
+      insertComment(boardNo, insertCommentInput.value.trim(), box);
+
+    })
+
+
+    // 댓글 삭제
+    const commentDelteBtn = boardModal.querySelectorAll(".comment-delete-btn");
+
+    commentDelteBtn.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if(!confirm("정말 삭제하시겠습니까?")) {
+          return;
+        }
+
+        const commentNo = btn.getAttribute("data-value"); 
+
+        // 댓글 삭제 함수 호출
+        deleteComment(commentNo, boardNo, box);
+
+      })
+    })
+
+
+  })
+  .catch(err => console.error);
+}
 
 
 
@@ -341,3 +448,79 @@ const likeChange = (boardNo, likeBtnDefault, likeCountSpan) => {
 
 } 
 
+
+/** 
+* 댓글 등록 후 동시에 댓글 목록 초기화
+*/
+const insertComment = (boardNo, commentContent, box) => {
+
+  const commentObj = {
+    commentContent : commentContent,
+    boardNo : boardNo
+  };
+
+  fetch("/board/insertComment", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(commentObj)
+  })
+  .then(resp => {
+    if (resp.ok) return resp.text();
+    throw new Error("댓글 등록 실패")
+  })
+  .then(result => {
+    updateModal(boardNo, box);
+  })
+  .catch(err => console.error);
+}
+
+
+/**
+ * 댓글 삭제 함수
+ * @param {} commentNo 
+ * @param {*} boardNo 
+ * @param {*} box 
+ */
+const deleteComment = (commentNo, boardNo, box) => {
+
+  fetch("/board/deleteComment", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: commentNo
+  })
+  .then(resp => {
+    if (resp.ok) return resp.text();
+    throw new Error("댓글 삭제 실패")
+  })
+  .then(result => {
+    updateModal(boardNo, box);
+  })
+  .catch(err => console.error);
+
+}
+
+/**
+ * 게시글 삭제 함수
+ * @param {*} boardNo 
+ * @param {*} box 
+ */
+const boardDelte = (boardNo, box) => {
+
+  fetch("/board/deleteBoard", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: boardNo
+  })
+  .then(resp => {
+    if (resp.ok) return resp.text();
+    throw new Error("댓글 삭제 실패")
+  })
+  .then(result => {
+    box.remove();
+
+    alert("게시글이 삭제되었습니다")
+  })
+  .catch(err => console.error);
+
+
+}

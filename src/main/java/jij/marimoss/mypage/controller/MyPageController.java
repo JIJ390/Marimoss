@@ -77,7 +77,7 @@ public class MyPageController {
 		model.addAttribute("boardList", plusBoard.get("boardList"));
 		model.addAttribute("pagination", plusBoard.get("pagination"));
 		
-		return "myPage/plusBoard";
+		return "main/plusBoard";
 	}
 	
 	

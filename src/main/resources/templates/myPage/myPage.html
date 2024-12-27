@@ -47,6 +47,15 @@
                   <a th:href="|*{boardImgPath}*{boardImgRename}|" th:download="*{boardImgOrigin}">
                     <img src="/images/main/downloadBtn.png" style="background-color: white;" name="downloadBtn" alt="">
                   </a>
+
+                  <div th:if="${session.loginMember != null and session.loginMember.memberNo == board.memberNo}">
+                    <img src="/images/main/updateBtn.png" style="background-color: white;" name="boardUpdateBtn" alt="">
+                  </div>
+  
+                  <div th:if="${session.loginMember != null and session.loginMember.memberNo == board.memberNo}">
+                    <img src="/images/main/deleteBtn.png" style="background-color: white;" name="boardDeleteBtn" alt="">
+                  </div>
+
                 </div>
               </div>
             </div>

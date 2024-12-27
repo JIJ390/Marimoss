@@ -40,20 +40,38 @@
       <pre th:text="*{boardContent}"></pre>
     </div>
     <div class="modal-comment-area">
-      <span>
+      <span class="modal-comment-span">
         댓글
       </span>
-      <th:block th:each= "comment:${commentList}" th:object="${comment}">
-        <div class="comment-box">
-          <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" class="">
-          <span th:text="*{memberNickname}"></span>
-          <span th:text="*{commentContent}"></span>
-        </div>
-      </th:block>
 
-      <div>
-        <input type="text">
-        <button>등록</button>
+      <div class="modal-comment-container">
+        <div th:if= "${#lists.size(commentList) == 0}" class="no-comment">
+          <span>아직 작성된 댓글이 없습니다</span>
+        </div>
+
+        <th:block th:if= "${commentList}" th:each= "comment:${commentList}" th:object="${comment}">
+          <div class="comment-box">
+            <div class="comment-box-comment-area">
+              <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" class="">
+              <div th:text="*{memberNickname}"></div>
+              <div th:text="*{commentContent}"></div>
+            </div>
+
+            <div class="comment-box-etc-area">
+              <div th:text="*{commentWriteDate}"></div>
+              <div th:if="${session.loginMember != null and session.loginMember.memberNo == comment.memberNo}">
+                <button class="comment-delete-btn" th:data-value="*{commentNo}">&times;</button>
+              </div>
+            </div>
+
+          </div>
+        </th:block>
+  
+      </div>
+
+      <div class="modal-comment-insert">
+        <input type="text" id="insertCommentInput">
+        <button id="insertCommentBtn">등록</button>
       </div>
     </div>
   </div>
