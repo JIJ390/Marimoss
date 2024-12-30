@@ -7,7 +7,7 @@ let lastCp = 1;
 document.addEventListener('DOMContentLoaded', () => {
 
   /* 메인 페이지 아닐때 함수 실행 안함 */
-  if (pageStatus !== 'mainPage') {
+  if ((pageStatus !== 'mainPage') && (pageStatus !== 'rankPage')) {
     return;
   }
 
@@ -142,16 +142,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 스크롤 내릴 시 작동하는 함수
 const updateBoardList = (lastCp) => {
-
-  const searchKey = obserbFlag.getAttribute("data-value")
-
+  
   let url = "/updateBoardList";
 
-  console.log(searchKey);
-
+  // 검색일 경우
+  const searchKey = obserbFlag.getAttribute("data-value")
 
   if (searchKey !== null) {
-    url = "/searchView?searchKey=" + searchKey
+    url = "/updateSearchList?searchKey=" + searchKey
+  }
+
+  const rankTime = obserbFlag.getAttribute("data-value2");
+
+  if (rankTime !== null) {
+    url = "/updateRankList?rankTime=" + rankTime
   }
 
   fetch(url, {
@@ -232,7 +236,6 @@ const updateBoardList = (lastCp) => {
           return;
   
         }
-
 
         // 모달 채우기
         updateModal(boardNo, box);

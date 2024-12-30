@@ -87,4 +87,28 @@ public class MainServiceImpl implements MainService{
 		
 		return map;
 	}
+	
+	
+	@Override
+	public Map<String, Object> selectRankList(int cp, int memberNo, String rankTime) {
+
+		int boardCount = mapper.selectRankCount(rankTime);
+
+		Pagination adminPagination = new Pagination(cp, boardCount);
+
+		int limit = adminPagination.getLimit(); // 10
+		int offset = (cp - 1) * limit; // 0
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		List<Board> boardList = mapper.selectRankList(rowBounds, memberNo, rankTime);
+
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put(("boardList"), boardList);
+		map.put(("pagination"), adminPagination);
+		
+		return map;
+	}
 }

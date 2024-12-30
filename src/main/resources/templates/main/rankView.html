@@ -2,10 +2,15 @@
     <!-- 중앙 컨텐츠 영역 -->
     <section class="main-section">
 
+      <div class="rank-header">
+        <div name="allTime">ALL-TIME</div>
+        <div name="monthly">MONTHLY</div>
+        <div name="weekly">WEEKLY</div>
+      </div>
+      
+      <hr id="rank-hr">
+
       <div class="board-container">
-        <div th:if= "${#lists.size(boardList) == 0}" class="no-board">
-          <div>검색된 게시글이 없습니다</div>
-        </div>
 
         <th:block th:each= "board:${boardList}" th:object="${board}">
 
@@ -13,7 +18,7 @@
             <img th:src="|*{boardImgPath}*{boardImgRename}|" alt="">
             <div class="board-div">
               <div class="top-area">
-                <span th:text="*{boardTitle}"></span>
+                <span th:text="|# *{rnum} *{boardTitle}|"></span>
               </div>
   
               <div class="like-area">
@@ -44,7 +49,7 @@
       </div>
 
       <!-- 감시자 -->
-      <div class="obserb-flag" th:data-value="${searchKey}"></div>
+      <div class="obserb-flag" th:data-value2="${rankTime}"></div>
     </section>
 
     <div class="board-modal">

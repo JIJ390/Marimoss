@@ -143,8 +143,6 @@ public class MainController {
 			@RequestParam("searchKey") String searchKey,
 			Model model) {
 		
-		log.debug("searchKey : {}", searchKey);
-		
 		// 로그인 안했을때 존재할 수 없는 회원 번호 입력
 		int memberNo = -1;
 		
@@ -165,4 +163,94 @@ public class MainController {
 		return "main/homeView";
 		
 	}
+	
+	
+	// 후속 게시글 가져오기
+	@PostMapping("updateSearchList")
+	public String updateSearchList (
+			@SessionAttribute(value="loginMember", required=false) Member loginMember,
+			@RequestParam("searchKey") String searchKey,
+			@RequestBody int cp,
+			Model model
+			) {
+		
+		// 로그인 안했을때 존재할 수 없는 회원 번호 입력
+		int memberNo = -1;
+		
+		if(loginMember != null) {
+			memberNo = loginMember.getMemberNo();
+		}
+		
+		// 후속 12 개 게시글 가져오기
+		Map<String, Object> firstBoard = service.selectSearchList(cp, memberNo, searchKey);
+		
+		// 각각 꺼내기
+		model.addAttribute("boardList", firstBoard.get("boardList"));
+		model.addAttribute("pagination", firstBoard.get("pagination"));
+		model.addAttribute("searchKey", searchKey);
+		
+		return "main/plusBoard";
+	}
+	
+	
+	
+	// 정렬 시 메인화면 구성
+	@GetMapping("rankView")
+	public String rankView (
+			@SessionAttribute(value="loginMember", required=false) Member loginMember,
+			@RequestParam("rankTime") String rankTime,
+			Model model) {
+		
+		// 로그인 안했을때 존재할 수 없는 회원 번호 입력
+		int memberNo = -1;
+		
+		if(loginMember != null) {
+			memberNo = loginMember.getMemberNo();
+		}
+		
+		int cp = 1;
+		
+		// 최초 12 개 게시글 가져오기
+		Map<String, Object> firstBoard = service.selectRankList(cp, memberNo, rankTime);
+		
+		// 각각 꺼내기
+		model.addAttribute("boardList", firstBoard.get("boardList"));
+		model.addAttribute("pagination", firstBoard.get("pagination"));
+		model.addAttribute("rankTime", rankTime);
+		
+		return "main/rankView";
+		
+	}
+	
+	
+	
+	// 후속 게시글 가져오기
+	@PostMapping("updateRankList")
+	public String updateRankList (
+			@SessionAttribute(value="loginMember", required=false) Member loginMember,
+			@RequestParam("rankTime") String rankTime,
+			@RequestBody int cp,
+			Model model
+			) {
+		
+		
+		// 로그인 안했을때 존재할 수 없는 회원 번호 입력
+		int memberNo = -1;
+		
+		if(loginMember != null) {
+			memberNo = loginMember.getMemberNo();
+		}
+		
+		// 후속 12 개 게시글 가져오기
+		Map<String, Object> firstBoard = service.selectRankList(cp, memberNo, rankTime);
+		
+		// 각각 꺼내기
+		model.addAttribute("boardList", firstBoard.get("boardList"));
+		model.addAttribute("pagination", firstBoard.get("pagination"));
+		model.addAttribute("rankTime", rankTime);
+		
+		return "main/plusRankBoard";
+	}
+	
+	
 }

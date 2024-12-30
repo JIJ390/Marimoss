@@ -39,4 +39,14 @@ public interface MainService {
 	 */
 	Map<String, Object> selectSearchList(int cp, int memberNo, String searchKey);
 
+	
+	/**
+	 * 기간에 따라 추천순 정렬
+	 * @param cp
+	 * @param memberNo
+	 * @param rankTime
+	 * @return
+	 */
+	Map<String, Object> selectRankList(int cp, int memberNo, String rankTime);
+
 }

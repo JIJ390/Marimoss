@@ -1,7 +1,25 @@
 
 
-.board-container {
+.no-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.no-board div {
+
+  margin-top: 250px;
+
+  font-size: 32px;
+  color: var(--font-gray-color) !important;
+}
+
+.main-section {
   margin-top: 10vh;
+}
+
+.board-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -518,4 +536,77 @@
 
 [name=boardUpdateBtn] {
   margin-left: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 랭킹 css */
+.rank-header {
+  width: 100%;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  display: flex;
+
+
+}
+
+.rank-header div {
+  width: 140px;
+  height: 40px;
+  border-radius: 40px;
+
+  line-height: 40px;
+
+  text-align: center;
+
+  margin: 10px;
+
+  font-size: 24px;
+
+  font-family: 'HancomMalangMalang-Regular' !important;
+
+  transition-duration: 0.2s;
+}
+
+
+.rank-header div:hover {
+  cursor: pointer;
+
+  color: white;
+
+  background-color: var(--font-gray-color);
+
+}
+
+.rank-header div:active {
+  color: white;
+  background-color: var(--font-color);
+}
+
+.checked-div{
+  color: white;
+  background-color: var(--font-color);
+}
+
+#rank-hr {
+  height: 2px;
+
+  border-radius: 2px;
+
+  background-color: var(--font-color);
+
+  margin-bottom: 10px;
+  border: none;
 }

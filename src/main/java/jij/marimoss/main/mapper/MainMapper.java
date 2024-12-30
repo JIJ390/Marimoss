@@ -63,6 +63,28 @@ public interface MainMapper {
 			@Param("rowBounds") RowBounds rowBounds, 
 			@Param("memberNo") int memberNo,
 			@Param("searchKey") String searchKey);
+
+	
+	
+	
+	/**
+	 * 순위
+	 * @param rankTime 
+	 * @return
+	 */
+	int selectRankCount(String rankTime);
+
+	/**
+	 * 랭킹
+	 * @param rowBounds
+	 * @param memberNo
+	 * @param rankTime
+	 * @return
+	 */
+	List<Board> selectRankList(
+			@Param("rowBounds") RowBounds rowBounds, 
+			@Param("memberNo") int memberNo,
+			@Param("rankTime") String rankTime);
 			
 
 }

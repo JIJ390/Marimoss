@@ -71,6 +71,8 @@ homeBox.addEventListener("click", () => {
 });
 
 
+
+
 // 게시글 등록 버튼
 plusBox.addEventListener("click", () => {
 
@@ -92,6 +94,31 @@ plusBox.addEventListener("click", () => {
     .catch(err => console.error);
 
 });
+
+
+// 랭크 페이지 버튼
+crownBox.addEventListener("click", () => {
+
+  fetch("/rankView?rankTime=allTime")
+    .then(resp => {
+      if (resp.ok) return resp.text();
+      throw new Error("실패")
+    })
+    .then(html => {
+      pageStatus = 'rankPage';
+
+      main.innerHTML = html;
+      window.scrollTo({top: 0});
+
+      // 임의로 이벤트 발생
+      const domContentLoadedEvent = new Event('DOMContentLoaded');
+      document.dispatchEvent(domContentLoadedEvent);
+    })
+    .catch(err => console.error);
+
+});
+
+
 
 
 myPageBtn?.addEventListener("click", () => {
@@ -589,6 +616,8 @@ const searchTitleBoard = (searchKey) => {
 
       main.innerHTML = html;
       window.scrollTo({top: 0});
+
+      titleInput.value = '';
 
       // 임의로 이벤트 발생
       const domContentLoadedEvent = new Event('DOMContentLoaded');

@@ -34,4 +34,7 @@ public class Board {
 	
 	// 해당 게시글 좋아요 여부
 	private int likeFl;
+	
+	// 순위
+	private int rnum;
 }
