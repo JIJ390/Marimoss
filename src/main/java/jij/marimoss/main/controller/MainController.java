@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import jij.marimoss.main.dto.Board;
@@ -129,6 +130,39 @@ public class MainController {
 		model.addAttribute("commentList", commentList);
 		
 		return "main/boardModal";
+		
+	}
+	
+	
+	
+	
+	// 검색 시 메인화면 구성
+	@GetMapping("searchView")
+	public String searchView (
+			@SessionAttribute(value="loginMember", required=false) Member loginMember,
+			@RequestParam("searchKey") String searchKey,
+			Model model) {
+		
+		log.debug("searchKey : {}", searchKey);
+		
+		// 로그인 안했을때 존재할 수 없는 회원 번호 입력
+		int memberNo = -1;
+		
+		if(loginMember != null) {
+			memberNo = loginMember.getMemberNo();
+		}
+		
+		int cp = 1;
+		
+		// 최초 12 개 게시글 가져오기
+		Map<String, Object> firstBoard = service.selectSearchList(cp, memberNo, searchKey);
+		
+		// 각각 꺼내기
+		model.addAttribute("boardList", firstBoard.get("boardList"));
+		model.addAttribute("pagination", firstBoard.get("pagination"));
+		model.addAttribute("searchKey", searchKey);
+		
+		return "main/homeView";
 		
 	}
 }

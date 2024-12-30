@@ -135,4 +135,60 @@ public class BoardServiceImpl implements BoardService{
 	public int deleteBoard(int boardNo) {
 		return mapper.deleteBoard(boardNo);
 	}
+	
+	
+	// 게시글 수정 화면
+	@Override
+	public Board boardUpdateView(int boardNo) {
+		return mapper.boardUpdateView(boardNo);
+	}
+	
+	
+	@Override
+	public int boardUpdate(MultipartFile paint, Board board) {
+		
+		int result = 0;
+		
+		board.setBoardImgPath(boardWebPath);
+		
+		
+		// 이미지 파일 업로드가 된 경우
+		if (paint != null) {
+			
+			String boardImgOrigin = paint.getOriginalFilename();
+			String boardImgRename = FileUtil.rename(boardImgOrigin);
+			
+			board.setBoardImgOrigin(boardImgOrigin);
+			board.setBoardImgRename(boardImgRename);
+			
+			// DB UPDATE
+			result = mapper.boardUpdate(board);
+			
+			// 로컬 저장소 업로드
+			try {
+				// 폴더가 없으면 생성
+				File folder = new File(boardFolderPath);
+				if(!folder.exists()) folder.mkdirs();
+				
+				// 업로드되어 임시저장된 이미지를 지정된 경로에 옮기기
+				paint.transferTo(new File(boardFolderPath + boardImgRename));
+
+			} catch (Exception e) {
+				
+				result = 0;
+				
+				e.printStackTrace();
+				throw new Error("이미지 입력 실패");
+			}
+		}
+		
+		// 이미지 파일 올리지 않은 경우
+		else {
+			result = mapper.boardUpdate(board);
+		}
+		
+		return result;
+	}
+	
+	
 }

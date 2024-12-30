@@ -30,4 +30,13 @@ public interface MainService {
 	 */
 	List<Comment> selectCommentList(int boardNo);
 
+	/**
+	 * 검색
+	 * @param cp
+	 * @param memberNo
+	 * @param searchKey
+	 * @return
+	 */
+	Map<String, Object> selectSearchList(int cp, int memberNo, String searchKey);
+
 }

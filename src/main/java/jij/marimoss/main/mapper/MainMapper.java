@@ -45,5 +45,24 @@ public interface MainMapper {
 	 */
 	List<Comment> selectCommentList(int boardNo);
 
+	/**
+	 * 검색 개수 세기
+	 * @param searchKey
+	 * @return
+	 */
+	int selectSearchCount(String searchKey);
+
+	/**
+	 * 검색 목록
+	 * @param rowBounds
+	 * @param memberNo
+	 * @param searchKey
+	 * @return
+	 */
+	List<Board> selectSearchList(
+			@Param("rowBounds") RowBounds rowBounds, 
+			@Param("memberNo") int memberNo,
+			@Param("searchKey") String searchKey);
+			
 
 }

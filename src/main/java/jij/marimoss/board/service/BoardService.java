@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import jij.marimoss.main.dto.Board;
+
 public interface BoardService {
 
 	/**
@@ -47,5 +49,22 @@ public interface BoardService {
 	 * @return
 	 */
 	int deleteBoard(int boardNo);
+
+	/**
+	 * 게시글 수정 화면
+	 * @param boardNo
+	 * @return
+	 */
+	Board boardUpdateView(int boardNo);
+
+
+	
+	/**
+	 * 게시글 수정
+	 * @param paint
+	 * @param board
+	 * @return
+	 */
+	int boardUpdate(MultipartFile paint, Board board);
 
 }

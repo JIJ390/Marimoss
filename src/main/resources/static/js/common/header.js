@@ -1,7 +1,8 @@
 const homeBox = document.querySelector("[name=homeBox]");
 const plusBox = document.querySelector("[name=plusBox]");
 const crownBox = document.querySelector("[name=crownBox]");
-
+const titleInput = document.querySelector("[name=searchInput]");
+const searchMark = document.querySelector("[name=searchMark]");
 
 // 마이 페이지 이동 버튼
 const myPageBtn = document.querySelector("[name=myPageBtn]");
@@ -12,6 +13,39 @@ let pageStatus = 'mainPage';
 
 document.addEventListener("DOMContentLoaded", () => {
   main = document.querySelector("#main");
+})
+
+
+// 검색창 엔터 이벤트 부여
+titleInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+
+    const searchKey = titleInput.value.trim();
+
+    if (searchKey.length == 0) {
+      alert("검색어가 없습니다");
+      return;
+    }
+
+    searchTitleBoard(searchKey);
+    return;
+
+  }
+});
+
+searchMark.addEventListener("click", () => {
+
+  const searchKey = titleInput.value.trim();
+
+  if (searchKey.length == 0) {
+    alert("검색어가 없습니다");
+    return;
+  }
+
+  searchTitleBoard(searchKey);
+  return;
+
+
 })
 
 // 메인 페이지 버튼
@@ -534,4 +568,33 @@ const sendAuthKey = (inputEmail) => {
     console.log(result);
   })
   .catch(err => console.error(err));
+}
+
+
+
+
+/**
+ * 검색 함수 
+ * @param {*} searchKey 
+ */
+const searchTitleBoard = (searchKey) => {
+
+  fetch("/searchView?searchKey=" + searchKey)
+    .then(resp => {
+      if (resp.ok) return resp.text();
+      throw new Error("실패")
+    })
+    .then(html => {
+      pageStatus = 'mainPage';
+
+      main.innerHTML = html;
+      window.scrollTo({top: 0});
+
+      // 임의로 이벤트 발생
+      const domContentLoadedEvent = new Event('DOMContentLoaded');
+      document.dispatchEvent(domContentLoadedEvent);
+    })
+    .catch(err => console.error);
+  
+
 }

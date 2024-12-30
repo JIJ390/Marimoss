@@ -113,6 +113,9 @@ main {
   transform: translate(-5vh, 0.5vh);
 
 }
+[name=searchMark]:hover {
+  cursor: pointer;
+}
 
 .menu-container {
   width: 100vw; /* 나머지 꽉차게 */

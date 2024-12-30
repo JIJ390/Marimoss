@@ -62,4 +62,21 @@ public interface BoardMapper {
 	 */
 	int deleteBoard(int boardNo);
 
+
+
+	/**
+	 * 게시글 수정 화면
+	 * @param boardNo
+	 * @return
+	 */
+	Board boardUpdateView(int boardNo);
+
+
+	/**
+	 * 게시글 수정
+	 * @param board
+	 * @return
+	 */
+	int boardUpdate(Board board);
+
 }

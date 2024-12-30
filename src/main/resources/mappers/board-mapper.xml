@@ -85,7 +85,33 @@
   	</update>
   	
   	
+  	<!-- 게시글 수정 화면 -->
+  	<select id="boardUpdateView">
+  		SELECT 
+  			BOARD_NO,
+  			BOARD_TITLE,
+  			BOARD_CONTENT,
+  			BOARD_IMG_PATH,
+  			BOARD_IMG_RENAME
+  		FROM "BOARD"
+  		WHERE BOARD_NO = #{boardNo}
+  	</select>
   	
+  	
+  	<!-- 리뷰 수정 -->
+	<update id="boardUpdate">
+		UPDATE "BOARD"
+		SET
+			<if test="boardImgOrigin != null and !boardImgOrigin.equals('')">
+				BOARD_IMG_ORIGIN = #{boardImgOrigin},
+				BOARD_IMG_RENAME = #{boardImgRename},
+				BOARD_IMG_PATH = #{boardImgPath},
+			</if>
+			BOARD_CONTENT = #{boardContent},
+			BOARD_TITLE = #{boardTitle}
+		WHERE
+			BOARD_NO = #{boardNo}
+	</update>
   	
   	
 </mapper>

@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        alert("수정 버튼");
+        boardUpdateView(boardNo);
         return;
 
       }
@@ -143,7 +143,18 @@ document.addEventListener('DOMContentLoaded', () => {
 // 스크롤 내릴 시 작동하는 함수
 const updateBoardList = (lastCp) => {
 
-  fetch("/updateBoardList", {
+  const searchKey = obserbFlag.getAttribute("data-value")
+
+  let url = "/updateBoardList";
+
+  console.log(searchKey);
+
+
+  if (searchKey !== null) {
+    url = "/searchView?searchKey=" + searchKey
+  }
+
+  fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: lastCp
@@ -192,33 +203,34 @@ const updateBoardList = (lastCp) => {
         const boardUpdateBtn = box.querySelector("[name=boardUpdateBtn]");
 
         if (e.target == boardUpdateBtn) {
-
+  
           if (loginMember === null) {
             alert("로그인 후 이용해 주세요");
             return;
           }
-
-          alert("수정 버튼");
+  
+          boardUpdateView(boardNo);
           return;
-
+  
         }
+  
         
         const boardDeleteBtn = box.querySelector("[name=boardDeleteBtn]");
-
+  
         if (e.target == boardDeleteBtn) {
-
+  
           if (loginMember === null) {
             alert("로그인 후 이용해 주세요");
             return;
           }
-
+  
           if (!confirm("정말 삭제하시겠습니까?")) {
             return;
           }
-          
+  
           boardDelte(boardNo, box);
           return;
-
+  
         }
 
 
@@ -522,5 +534,38 @@ const boardDelte = (boardNo, box) => {
   })
   .catch(err => console.error);
 
+
+}
+
+
+
+/**
+ * 
+ * @param {*} boardNo 
+ */
+const boardUpdateView = (boardNo) => {
+
+  fetch("/board/updateView", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: boardNo
+  })
+  .then(resp => {
+    if (resp.ok) return resp.text();
+    throw new Error("댓글 삭제 실패")
+  })
+  .then(html => {
+
+    pageStatus = 'boardUpdatePage';
+    main.innerHTML = html;
+
+    window.scrollTo({top: 0});
+
+    // 임의로 이벤트 발생
+    const domContentLoadedEvent = new Event('DOMContentLoaded');
+    document.dispatchEvent(domContentLoadedEvent);
+
+  })
+  .catch(err => console.error);
 
 }

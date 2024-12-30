@@ -82,6 +82,52 @@
 			COMMENT_DEL_FL = 'N'
 		AND
 		  BOARD_NO = #{boardNo}
+		ORDER BY COMMENT_WRITE_DATE DESC
   	</select>
+  	
+  	
+  	
+  	
+  	
+  		<!-- 전체 게시글 숫자 세기 -->
+	<select id="selectSearchCount">
+		SELECT COUNT(*)
+		FROM "BOARD"
+		WHERE BOARD_DEL_FL = 'N'
+		AND (
+			  BOARD_CONTENT LIKE '%' || #{searchKey} || '%'
+		   OR BOARD_TITLE LIKE '%' || #{searchKey} || '%'
+		)
+	</select>
+  	
+  	
+  	<!-- 조건 상위 12개 가져오기 -->
+  	<select id="selectSearchList">
+		SELECT 
+		  B.BOARD_NO,
+		  BOARD_TITLE,
+		  BOARD_IMG_PATH,
+		  BOARD_IMG_ORIGIN,
+		  BOARD_IMG_RENAME,
+		  B.MEMBER_NO,
+		  (SELECT COUNT(*)
+		   FROM "LIKE"
+		   WHERE BOARD_NO = B.BOARD_NO
+		   AND MEMBER_NO = #{memberNo}) AS "LIKE_FL",
+		  COUNT(L.MEMBER_NO) AS LIKE_COUNT
+
+		FROM "BOARD" B
+		LEFT JOIN "LIKE" L ON (B.BOARD_NO = L.BOARD_NO)
+		WHERE BOARD_DEL_FL = 'N'
+		AND (
+			  BOARD_CONTENT LIKE '%' || #{searchKey} || '%'
+		  	  OR BOARD_TITLE LIKE '%' || #{searchKey} || '%'
+			)
+		GROUP BY B.BOARD_NO, BOARD_TITLE, BOARD_IMG_PATH,
+		  		   BOARD_IMG_ORIGIN, BOARD_IMG_RENAME,
+		  		   B.MEMBER_NO
+		ORDER BY BOARD_NO DESC
+  	</select>
+  	
   	
 </mapper>

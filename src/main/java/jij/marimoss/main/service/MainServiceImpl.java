@@ -60,8 +60,31 @@ public class MainServiceImpl implements MainService{
 	@Override
 	public List<Comment> selectCommentList(int boardNo) {
 		
-		
 		return mapper.selectCommentList(boardNo);
 
+	}
+	
+	
+	@Override
+	public Map<String, Object> selectSearchList(int cp, int memberNo, String searchKey) {
+		
+		int boardCount = mapper.selectSearchCount(searchKey);
+		
+		Pagination adminPagination = new Pagination(cp, boardCount);
+		
+		int limit = adminPagination.getLimit(); 	// 10
+		int offset = (cp - 1) * limit;			// 0
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Board> boardList = mapper.selectSearchList(rowBounds, memberNo, searchKey);
+		
+		// 4. 목록 조회 결과 + Pagination 객체 Map 으로 묶어서 반환
+		Map<String, Object> map = new HashMap<>();
+		map.put(("boardList"), boardList);
+		map.put(("pagination"), adminPagination);		
+
+		
+		return map;
 	}
 }

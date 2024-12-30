@@ -46,6 +46,42 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
 
+
+
+      const boardUpdateBtn = box.querySelector("[name=boardUpdateBtn]");
+
+      if (e.target == boardUpdateBtn) {
+
+        if (loginMember === null) {
+          alert("로그인 후 이용해 주세요");
+          return;
+        }
+
+        boardUpdateView(boardNo);
+        return;
+
+      }
+
+      
+      const boardDeleteBtn = box.querySelector("[name=boardDeleteBtn]");
+
+      if (e.target == boardDeleteBtn) {
+
+        if (loginMember === null) {
+          alert("로그인 후 이용해 주세요");
+          return;
+        }
+
+        if (!confirm("정말 삭제하시겠습니까?")) {
+          return;
+        }
+
+        boardDelte(boardNo, box);
+        return;
+
+      }
+
+
       // 모달 채우기
       updateModal(boardNo, box);
 
@@ -439,35 +475,35 @@ const updateMyBoardList = (lastCp) => {
         const boardUpdateBtn = box.querySelector("[name=boardUpdateBtn]");
 
         if (e.target == boardUpdateBtn) {
-
+  
           if (loginMember === null) {
             alert("로그인 후 이용해 주세요");
             return;
           }
-
-          alert("수정 버튼");
+  
+          boardUpdateView(boardNo);
           return;
-
+  
         }
+  
         
         const boardDeleteBtn = box.querySelector("[name=boardDeleteBtn]");
-
+  
         if (e.target == boardDeleteBtn) {
-
+  
           if (loginMember === null) {
             alert("로그인 후 이용해 주세요");
             return;
           }
-
+  
           if (!confirm("정말 삭제하시겠습니까?")) {
             return;
           }
-          
+  
           boardDelte(boardNo, box);
           return;
-
+  
         }
-
 
 
 
