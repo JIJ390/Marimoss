@@ -1,7 +1,44 @@
 
 .board-insert-head {
-  margin-top: 10vh;
+  margin-top: 6vh;
+
+  font-size: 36px;
+
+  font-family: 'HancomMalangMalang-Regular' !important;
+
+  font-weight: bold;
+
+  padding: 0px 80px;
+
+  display: flex;
+  align-items: center;
+  
+  flex-direction: column;
+
 }
+
+.board-insert-head span {
+  width: 1000px;
+  text-align: start;
+}
+
+#boardHr {
+  text-align: center;
+
+  width: 1000px;
+
+  margin-top: 10px;
+
+  height: 2px;
+
+  border-radius: 2px;
+
+  background-color: var(--font-color);
+
+  margin-bottom: 10px;
+  border: none;
+}
+
 .board-insert-container {
   width: 100%;
 
@@ -70,7 +107,7 @@
 }
 
 .board-insert-box {
-  width: 600px;
+  width: 500px;
   height: 700px;
 
   display: flex;
@@ -160,3 +197,5 @@
   font-size: 18px;
 
 }
+
+

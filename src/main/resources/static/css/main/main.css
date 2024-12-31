@@ -271,8 +271,6 @@
   
   text-decoration-line: none;
 
-
-
   transition-property: background-color;
   transition-duration: 0.2s;
 }
@@ -328,6 +326,12 @@
   padding: 1vh;
 
   min-height: 10vh;
+
+  display: flex;
+  justify-content: start;
+
+  align-items: center;
+  
   
 }
 
@@ -335,7 +339,8 @@
   width: 4vh;
   height: 4vh;
   border-radius: 4vh;
-  transform: translateY(1vh);
+
+  margin-right: 1vh;
 
 }
 
@@ -609,4 +614,76 @@
 
   margin-bottom: 10px;
   border: none;
+}
+
+[name=profileBtn] {
+
+}
+
+[name=profileBtn]:hover {
+  cursor: pointer;
+}
+
+.modal-profile-div {
+  transform: translate(0vh, -2vh);
+
+  position: absolute;
+}
+
+
+.modal-member-menu {
+  margin: 0px !important;
+
+  padding: 1vh 0px;
+
+  width: 9vh;
+
+  font-size: 2vh;
+
+  border-radius: 1.5vh;
+  border-top-left-radius: 0px;
+
+  background-color: var(--back-color);
+
+  position: relative !important;
+
+  transform: translate(4vh, -3vh);
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+}
+
+.modal-member-menu > div {
+  margin: 0px !important;
+
+  width: 8vh;
+  height: 3vh;
+
+  line-height: 3vh;
+
+  border-radius: 3vh;
+
+  text-align: center;
+
+  transition-property: background-color;
+  transition-duration: 0.2s;
+}
+
+.modal-member-menu > div:hover {
+
+  cursor: pointer;
+
+  background-color: white;
+
+  text-decoration-line: none;
+}
+
+
+.modal-member-menu-close {
+  display: none;
 }

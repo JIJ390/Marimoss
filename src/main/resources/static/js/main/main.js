@@ -366,6 +366,27 @@ const updateModal = (boardNo, box) => {
 
     })
 
+    // 댓글 엔터 이벤트 부여
+    insertCommentInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+
+        if (loginMember === null) {
+          alert("로그인 후 이용해 주세요");
+          return;
+        }
+  
+        if (insertCommentInput.value.trim().length < 1) {
+          alert("댓글을 작성해 주세요");
+          insertCommentInput.focus();
+          return;
+        }
+  
+        // 댓글 등록
+        insertComment(boardNo, insertCommentInput.value.trim(), box);
+
+      }
+    });
+
 
     // 댓글 삭제
     const commentDelteBtn = boardModal.querySelectorAll(".comment-delete-btn");
@@ -383,6 +404,13 @@ const updateModal = (boardNo, box) => {
 
       })
     })
+
+    const profileBtn = boardModal.querySelector("[name=profileBtn]");
+    const modalMemberMenu = boardModal.querySelector(".modal-member-menu");
+
+    profileBtn.addEventListener("click", () => {
+      modalMemberMenu.classList.toggle("modal-member-menu-close");
+    });
 
 
   })
