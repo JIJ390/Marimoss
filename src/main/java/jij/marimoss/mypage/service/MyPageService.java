@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import jij.marimoss.common.util.FileUtil;
+import jij.marimoss.member.dto.Member;
 
 public interface MyPageService {
 
@@ -45,5 +46,13 @@ public interface MyPageService {
 	 * @return
 	 */
 	int nicknameChange(int memberNo, String memberNickname);
+
+
+	/**
+	 * 유저 정보
+	 * @param memberNo
+	 * @return
+	 */
+	Member selectMember(int memberNo);
 		
 }

@@ -687,3 +687,12 @@
 .modal-member-menu-close {
   display: none;
 }
+
+.follow {
+  background-color: var(--font-color);
+  color: white;
+}
+
+.follow:hover {
+  background-color: var(--font-color) !important;
+}

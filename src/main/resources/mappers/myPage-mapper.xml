@@ -66,5 +66,23 @@
   	</update>
   	
   	
+  	<!-- 회원 정보 가져오기-->
+  	<select id="selectMember">
+  		SELECT 
+  			MEMBER_NO,
+  			MEMBER_EMAIL,
+  			MEMBER_NICKNAME,
+  			MEMBER_PROFILE,
+  			MEMBER_THEME,
+  			MEMBER_EMAIL_FL,
+  			MEMBER_ACTIVE_FL,
+  			MEMBER_FOLLOW_FL
+  		FROM "MEMBER"
+  		WHERE 
+  			MEMBER_DEL_FL = 'N'
+		AND 
+			MEMBER_NO = #{memberNo}
+  	</select>
+  	
   	
 </mapper>

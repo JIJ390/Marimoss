@@ -4,7 +4,7 @@
 <!-- 메인 안에 들어갈 내용 -->
 <section class="main-section">
   <div class="myPage-container">
-    <div class="myPage-profile" th:object="${session.loginMember}" >
+    <div class="myPage-profile" th:object="${memberStatus}" >
       <div class="theme">
         <img th:src="*{memberTheme}" alt="" id="myPageTheme">
 
@@ -12,9 +12,8 @@
       <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" name="profileImg" alt="" id="profileImg">
       <div class="profile">
         <div class="temp-div1">
-          <div class="profile-change-btn">내 정보 수정</div>
         </div>
-        <span th:text="*{memberNickname}" id="myPageMemberNickname"></span>
+        <span th:text="*{memberNickname}" id="myPageMemberNickname" th:data-value="*{memberNo}"></span>
         <span th:text="*{memberEmail}"></span>
       </div>
     </div>
@@ -25,7 +24,7 @@
     
       <!-- 내가 쓴 게시글 -->
       <section class="myPage-section">
-        <div th:text="|내 작품들 (${boardCount})|" name="myPage-subTitle">aaaa</div>
+        <div th:text="|${memberStatus.memberNickname} 님의 작품들 (${boardCount})|" name="myPage-subTitle">aaaa</div>
         <hr>
         <div class="board-container">
           <th:block th:each="board:${boardList}" th:object="${board}">

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import jij.marimoss.main.dto.Board;
+import jij.marimoss.member.dto.Member;
 
 @Mapper
 public interface MyPageMapper {
@@ -55,5 +56,12 @@ public interface MyPageMapper {
 	int nicknameChange(
 			@Param("memberNo") int memberNo,
 			@Param("memberNickname") String memberNickname);
+
+	/**
+	 * 회원 정보 가져오기
+	 * @param memberNo
+	 * @return
+	 */
+	Member selectMember(int memberNo);
 
 }

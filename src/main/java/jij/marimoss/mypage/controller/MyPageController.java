@@ -81,6 +81,56 @@ public class MyPageController {
 	}
 	
 	
+	/**
+	 * 내가 쓴 게시글 조회
+	 * @param loginMember
+	 * @return
+	 */
+	@GetMapping("memberPageView")
+	public String memberPageView(
+			@RequestParam("memberNo") int memberNo,
+			Model model) {
+		
+		int cp = 1;
+		
+		Member memberStatus = service.selectMember(memberNo);
+		
+		// 최초 12 개 게시글 가져오기
+		Map<String, Object> firstBoard = service.selectMyBoardList(cp, memberNo);
+		
+		// 각각 꺼내기
+		model.addAttribute("memberStatus", memberStatus);
+		model.addAttribute("boardList", firstBoard.get("boardList"));
+		model.addAttribute("pagination", firstBoard.get("pagination"));
+		model.addAttribute("boardCount", firstBoard.get("boardCount"));
+		
+		return "myPage/memberPage";
+	}
+	
+	
+	// 후속 게시글 가져오기
+	@PostMapping("updateMemberBoardList")
+	public String updateMemberBoardList (
+			@RequestBody Map<String, String> obj,
+			Model model
+			) {
+		
+		int memberNo = Integer.parseInt(obj.get("memberNo"));
+		int cp = Integer.parseInt(obj.get("lastCp"));
+		
+		log.debug("memberNo", memberNo);
+		
+		// 후속 12 개 게시글 가져오기
+		Map<String, Object> plusBoard = service.selectMyBoardList(cp, memberNo);
+		
+		// 각각 꺼내기
+		model.addAttribute("boardList", plusBoard.get("boardList"));
+		model.addAttribute("pagination", plusBoard.get("pagination"));
+		
+		return "main/plusBoard";
+	}
+	
+	
 	
 	@PutMapping("themeUpdate")
 	@ResponseBody

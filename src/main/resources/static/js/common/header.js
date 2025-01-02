@@ -120,7 +120,7 @@ crownBox.addEventListener("click", () => {
 
 
 
-
+// 마이 페이지 이동
 myPageBtn?.addEventListener("click", () => {
   fetch("/myPage/myPageView")
   .then(resp => {

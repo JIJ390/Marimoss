@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import jij.marimoss.common.util.FileUtil;
 import jij.marimoss.main.dto.Board;
 import jij.marimoss.main.dto.Pagination;
+import jij.marimoss.member.dto.Member;
 import jij.marimoss.mypage.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
 
@@ -133,5 +134,11 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public int nicknameChange(int memberNo, String memberNickname) {
 		return mapper.nicknameChange(memberNo, memberNickname);
+	}
+	
+	
+	@Override
+	public Member selectMember(int memberNo) {
+		return mapper.selectMember(memberNo);
 	}
 }
