@@ -75,4 +75,27 @@ public class MemberServiceImpl implements MemberService{
 		
 		return null;
 	}
+	
+	
+	// 팔로우 확인 후 등록 / 삭제
+	@Override
+	public String followChange(int memberNo, int loginMemberNo) {
+		
+		int followCount = mapper.followCheck(memberNo, loginMemberNo);
+		String followResult = null;
+		
+		if (followCount > 0) {
+			// 팔로우 존재 시 삭제
+			int result = mapper.unfollow(memberNo, loginMemberNo);
+			followResult = "unfollow";
+					
+		} else {
+			// 팔로우 실행
+			int result = mapper.follow(memberNo, loginMemberNo);
+			followResult = "follow";
+		}
+		
+		
+		return followResult;
+	}
 }

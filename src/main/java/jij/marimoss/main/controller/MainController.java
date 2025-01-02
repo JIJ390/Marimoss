@@ -124,10 +124,16 @@ public class MainController {
 		
 		List<Comment> commentList = service.selectCommentList(boardNo);
 		
+		int boardMemberNo = board.getMemberNo();
+		
+		int followCheck = service.followCheck(boardMemberNo, memberNo);
+		// 0 이면 팔로우 안함, 1 이면 팔로우 함
+		
 		log.debug("commentList : {}", commentList);
 		
 		model.addAttribute("board", board);
 		model.addAttribute("commentList", commentList);
+		model.addAttribute("followCheck", followCheck);
 		
 		return "main/boardModal";
 		

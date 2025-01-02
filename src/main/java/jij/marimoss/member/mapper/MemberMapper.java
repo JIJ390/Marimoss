@@ -1,6 +1,7 @@
 package jij.marimoss.member.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import jij.marimoss.member.dto.Member;
 
@@ -27,5 +28,35 @@ public interface MemberMapper {
 	 * @return
 	 */
 	int signUp(Member signUpMember);
+
+	/**
+	 * 팔로우 되어있는지 확인
+	 * @param memberNo
+	 * @param loginMemberNo
+	 * @return
+	 */
+	int followCheck(
+			@Param("memberNo") int memberNo,
+			@Param("loginMemberNo") int loginMemberNo);
+
+	/**
+	 * 팔로우 삭제
+	 * @param memberNo
+	 * @param loginMemberNo
+	 * @return
+	 */
+	int unfollow(
+			@Param("memberNo") int memberNo,
+			@Param("loginMemberNo") int loginMemberNo);
+
+	/**
+	 * 팔로우 등록
+	 * @param memberNo
+	 * @param loginMemberNo
+	 * @return
+	 */
+	int follow(
+			@Param("memberNo") int memberNo,
+			@Param("loginMemberNo") int loginMemberNo);
 
 }

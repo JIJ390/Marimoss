@@ -49,4 +49,12 @@ public interface MainService {
 	 */
 	Map<String, Object> selectRankList(int cp, int memberNo, String rankTime);
 
+	/**
+	 * 팔로우 체크
+	 * @param boardMemberNo
+	 * @param memberNo
+	 * @return
+	 */
+	int followCheck(int boardMemberNo, int memberNo);
+
 }

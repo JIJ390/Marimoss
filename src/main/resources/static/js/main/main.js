@@ -405,18 +405,50 @@ const updateModal = (boardNo, box) => {
       })
     })
 
+    // 프로필 버튼
     const profileBtn = boardModal.querySelector("[name=profileBtn]");
     const modalMemberMenu = boardModal.querySelector(".modal-member-menu");
+
+    const modalmemberNo = profileBtn.getAttribute("data-value");
 
     profileBtn.addEventListener("click", () => {
       modalMemberMenu.classList.toggle("modal-member-menu-close");
     });
 
+    const followBtn = boardModal.querySelector("[name=followBtn]");
+
+    followBtn?.addEventListener("click", () => {
+
+      memberFollow(modalmemberNo);
+    })
 
   })
   .catch(err => console.error);
 }
 
+
+/**
+ * 모달 내부 팔로우 버튼
+ * 클릭시 팔로우하고 상태 변경 
+ * @param {*} memberNo 
+ */
+const memberFollow = (memberNo) => {
+
+  fetch("member/followChange", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: memberNo
+  })
+  .then(resp => {
+    if (resp.ok) return resp.text();
+    throw new Error("변경 실패")
+  })
+  .then(result => {
+    // 결과에 따라 변경
+    alert(result);
+  })
+
+}
 
 
 /**

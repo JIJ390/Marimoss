@@ -45,4 +45,32 @@
   	</insert>
   	
   	
+  	<!-- 팔로우 체크 -->
+  	<select id="followCheck">
+  		SELECT COUNT(*)
+		FROM "FOLLOW"
+		WHERE 
+			FOLLOWER_NO = #{memberNo}
+		AND	
+			FOLLOWEE_NO = #{loginMemberNo}
+  	</select>
+  	
+  	
+  	<insert id="follow">
+	  	INSERT INTO "FOLLOW"
+		VALUES (
+			#{memberNo},
+			#{loginMemberNo},
+			DEFAULT
+		)
+  	</insert>
+  	
+  	
+  	<delete id="unfollow">
+  	  	DELETE "FOLLOW"
+  		WHERE FOLLOWER_NO = #{memberNo}
+		AND FOLLOWEE_NO = #{loginMemberNo}
+  	</delete>
+  	
+  	
 </mapper>

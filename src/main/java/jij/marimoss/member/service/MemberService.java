@@ -34,4 +34,13 @@ public interface MemberService {
 	 */
 	Member signUp(Member signUpMember);
 
+	
+	/**
+	 * 상태 확인 후 팔로우 삭제, 등록
+	 * @param memberNo
+	 * @param loginMemberNo
+	 * @return
+	 */
+	String followChange(int memberNo, int loginMemberNo);
+
 }

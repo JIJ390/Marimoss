@@ -35,13 +35,17 @@
       <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}"  alt="profile">
       <span th:text="*{memberNickname}"></span>
 
-      <div>
+      <div >
         <div class="modal-profile-div">
-          <img src="/images/main/button.png" alt="" name="profileBtn">
+          <img src="/images/main/button.png" alt="" name="profileBtn" th:data-value="*{memberNo}">
           <div class="modal-member-menu modal-member-menu-close">
-            <div>팔로우</div>
+            <div name="followBtn"
+                 th:classappend="${followCheck == '1'} ? following : ''" 
+                 th:if="${session.loginMember != null and session.loginMember.memberNo != board.memberNo}">
+                   팔로우
+            </div>
             <div>페이지</div>
-            <div>메시지</div>
+            <div th:if="${session.loginMember != null and session.loginMember.memberNo != board.memberNo}">메시지</div>
           </div>
         </div>
       </div>

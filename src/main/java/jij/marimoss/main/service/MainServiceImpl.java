@@ -12,6 +12,7 @@ import jij.marimoss.main.dto.Board;
 import jij.marimoss.main.dto.Comment;
 import jij.marimoss.main.dto.Pagination;
 import jij.marimoss.main.mapper.MainMapper;
+import jij.marimoss.member.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 public class MainServiceImpl implements MainService{
 
 	private final MainMapper mapper;
+	private final MemberMapper memberMapper;
+	
 	
 	// 12 개 게시글 목록 + 페이지 네이션
 	@Override
@@ -62,6 +65,11 @@ public class MainServiceImpl implements MainService{
 		
 		return mapper.selectCommentList(boardNo);
 
+	}
+	
+	@Override
+	public int followCheck(int boardMemberNo, int memberNo) {
+		return memberMapper.followCheck(boardMemberNo, memberNo);
 	}
 	
 	

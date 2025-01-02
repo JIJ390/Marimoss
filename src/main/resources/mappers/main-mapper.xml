@@ -46,6 +46,7 @@
 		  	BOARD_IMG_RENAME,
 			MEMBER_NICKNAME,
 			MEMBER_PROFILE,
+			B.MEMBER_NO,
 			(SELECT COUNT(*)
 		     FROM "LIKE"
 		     WHERE BOARD_NO = #{boardNo}
@@ -61,7 +62,8 @@
 		  		 BOARD_IMG_ORIGIN,
 		  		 BOARD_IMG_RENAME, 
 		  		 MEMBER_NICKNAME,
-		  		 MEMBER_PROFILE
+		  		 MEMBER_PROFILE,
+		  		 B.MEMBER_NO
   	</select>
   	
   	
@@ -89,7 +91,7 @@
   	
   	
   	
-  		<!-- 전체 게시글 숫자 세기 -->
+  	<!-- 전체 게시글 숫자 세기 -->
 	<select id="selectSearchCount">
 		SELECT COUNT(*)
 		FROM "BOARD"
