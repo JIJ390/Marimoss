@@ -64,4 +64,18 @@ public interface MyPageMapper {
 	 */
 	Member selectMember(int memberNo);
 
+	/**
+	 * 해당 회원을 팔로우한 회원들 정보(팔로위)(추종자들)
+	 * @param memberNo
+	 * @return
+	 */
+	List<Member> selectFollowerList(int memberNo);
+
+	/**
+	 * 해당 회원'이' 팔로우한 회원들 정보
+	 * @param memberNo
+	 * @return
+	 */
+	List<Member> selectfolloweeList(int memberNo);
+
 }

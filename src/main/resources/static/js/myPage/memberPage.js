@@ -7,6 +7,205 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const memberNo = document.querySelector("#myPageMemberNickname").getAttribute("data-value");
 
+
+  const pofileFollowBtn = document.querySelector("[name=pofileFollowBtn]");
+
+  let followCheck = 0;
+
+  if (pofileFollowBtn != null) {
+    followCheck =   pofileFollowBtn.getAttribute("data-value");
+  }  
+  
+  pofileFollowBtn?.addEventListener("mouseover", () => {
+    if (followCheck == 1) {
+      pofileFollowBtn.innerText = "취소 X";
+    }
+
+  })
+
+  pofileFollowBtn?.addEventListener("mouseout", () => {
+    if (followCheck == 1) {
+      pofileFollowBtn.innerText = "팔로우";
+    }
+
+  })
+
+  pofileFollowBtn?.addEventListener("click", () => {
+
+    fetch("member/followChange", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: memberNo
+    })
+    .then(resp => {
+      if (resp.ok) return resp.text();
+      throw new Error("변경 실패")
+    })
+    .then(result => {
+  
+      // 결과에 따라 변경
+      if (result == 'unfollow') {
+  
+        followCheck = 0;
+        pofileFollowBtn.classList.remove("follow");
+        pofileFollowBtn.innerText = '팔로우';
+      }
+  
+      if (result == 'follow') {
+
+        followCheck = 1;
+        pofileFollowBtn.classList.add("follow");
+        pofileFollowBtn.innerText = '취소 X';
+  
+      }
+    })
+
+  })
+
+
+
+
+
+
+  const followerBtn = document.querySelector("#followerBtn");
+  const followeeBtn = document.querySelector("#followeeBtn");
+
+  const followerContainer = document.querySelector("[name=followerContainer]");
+  const followeeContainer = document.querySelector("[name=followeeContainer]");
+
+  followerBtn.addEventListener("click", () => {
+    followerContainer.classList.remove("follow-display");
+    followeeContainer.classList.add("follow-display");
+    followerBtn.classList.add("checked-div");
+    followeeBtn.classList.remove("checked-div");
+  })
+
+
+  followeeBtn.addEventListener("click", () => {
+    followerContainer.classList.add("follow-display");
+    followeeContainer.classList.remove("follow-display");
+    followeeBtn.classList.add("checked-div");
+    followerBtn.classList.remove("checked-div");
+  })
+
+  const followerEtcArea = followerContainer.querySelectorAll(".follower-box-etc-area");
+
+  // 팔로워
+  followerEtcArea.forEach(box => {
+    const etcBtn = box.querySelector("[name=etcBtn]");
+    const modalFollowerMenu = box.querySelector(".modal-follower-menu");
+
+    const followerNo = box.getAttribute("data-value");
+
+    etcBtn.addEventListener("click", () => {
+
+      // 만약 클릭 시 해당 모달이 활성화되지 않은 상태인 경우
+      if (modalFollowerMenu.classList.contains("modal-follower-menu-close")) {
+
+        const modalFollowerMenus = followerContainer.querySelectorAll(".modal-follower-menu");
+        // 모든 메뉴 종료
+        modalFollowerMenus.forEach(menu => {
+          menu.classList.add("modal-follower-menu-close");
+        })
+      }
+
+      modalFollowerMenu.classList.toggle("modal-follower-menu-close");
+    })
+
+
+
+    //// 회원 페이지 이동
+    const memberPage = modalFollowerMenu.querySelector("[name=memberPage]");
+
+    memberPage.addEventListener("click", () => {
+      fetch("/myPage/memberPageView?memberNo=" + followerNo)
+        .then(resp => {
+          if (resp.ok) return resp.text();
+          throw new Error("실패")
+        })
+        .then(html => {
+          pageStatus = 'memberPage';
+
+          document.querySelector("#blackDisplay").classList.remove("overlay");
+
+          main.innerHTML = html;
+          window.scrollTo({ top: 0 });
+
+          // 임의로 이벤트 발생
+          const domContentLoadedEvent = new Event('DOMContentLoaded');
+          document.dispatchEvent(domContentLoadedEvent);
+        })
+        .catch(err => console.error);
+
+    })
+  
+
+  })
+
+
+
+
+  const followeeEtcArea = followeeContainer.querySelectorAll(".follower-box-etc-area");
+
+  // 팔로잉
+  followeeEtcArea.forEach(box => {
+    const etcBtn = box.querySelector("[name=etcBtn]");
+    const modalFollowerMenu = box.querySelector(".modal-follower-menu");
+
+    const followeeNo = box.getAttribute("data-value");
+
+    etcBtn.addEventListener("click", () => {
+
+      // 만약 클릭 시 해당 모달이 활성화되지 않은 상태인 경우
+      if (modalFollowerMenu.classList.contains("modal-follower-menu-close")) {
+
+        const modalFollowerMenus = followerContainer.querySelectorAll(".modal-follower-menu");
+        // 모든 메뉴 종료
+        modalFollowerMenus.forEach(menu => {
+          menu.classList.add("modal-follower-menu-close");
+        })
+      }
+
+      modalFollowerMenu.classList.toggle("modal-follower-menu-close");
+    })
+
+
+
+    //// 회원 페이지 이동
+    const memberPage = modalFollowerMenu.querySelector("[name=memberPage]");
+
+    memberPage.addEventListener("click", () => {
+      fetch("/myPage/memberPageView?memberNo=" + followeeNo)
+        .then(resp => {
+          if (resp.ok) return resp.text();
+          throw new Error("실패")
+        })
+        .then(html => {
+          pageStatus = 'memberPage';
+
+          document.querySelector("#blackDisplay").classList.remove("overlay");
+
+          main.innerHTML = html;
+          window.scrollTo({ top: 0 });
+
+          // 임의로 이벤트 발생
+          const domContentLoadedEvent = new Event('DOMContentLoaded');
+          document.dispatchEvent(domContentLoadedEvent);
+        })
+        .catch(err => console.error);
+    })
+
+
+
+
+
+
+  })
+
+
+
+
+
   /* 임의로 함수 발생 시켜 초기화*/
   obserbFlag = document.querySelector(".obserb-flag");
 

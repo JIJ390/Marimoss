@@ -34,9 +34,8 @@
     <div class="modal-member">
       <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}"  alt="profile">
       <span th:text="*{memberNickname}"></span>
-
-      <div >
-        <div class="modal-profile-div" th:if="${session.loginMember.memberNo != board.memberNo}">
+      <div>
+        <div class="modal-profile-div" th:if="${session.loginMember == null or session.loginMember.memberNo != board.memberNo}">
           <img src="/images/main/button.png" alt="" name="profileBtn" th:data-value="*{memberNo}">
           <div class="modal-member-menu modal-member-menu-close">
             <div name="followBtn"

@@ -141,4 +141,15 @@ public class MyPageServiceImpl implements MyPageService{
 	public Member selectMember(int memberNo) {
 		return mapper.selectMember(memberNo);
 	}
+	
+	
+	@Override
+	public List<Member> selectFollowerList(int memberNo) {
+		return mapper.selectFollowerList(memberNo);
+	}
+	
+	@Override
+	public List<Member> selectfolloweeList(int memberNo) {
+		return mapper.selectfolloweeList(memberNo);
+	}
 }

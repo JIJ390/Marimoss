@@ -24,4 +24,7 @@ public class Member {
 	private String memberActiveFl;
 	private String memberFollowFl;
 	private String memberDelFl;
+	
+	// 맞팔 여부
+	private int followBack;
 }

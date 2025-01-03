@@ -84,5 +84,36 @@
 			MEMBER_NO = #{memberNo}
   	</select>
   	
+  	<select id="selectFollowerList">
+		SELECT 
+			M.MEMBER_NO,
+			M.MEMBER_NICKNAME,
+			M.MEMBER_PROFILE,
+			(SELECT COUNT(*)
+			 FROM "FOLLOW"
+			 WHERE FOLLOWER_NO = M.MEMBER_NO
+			 AND	FOLLOWEE_NO = #{memberNo}
+			) AS "FOLLOW_BACK"
+		FROM "FOLLOW" F
+		LEFT JOIN "MEMBER"M ON (M.MEMBER_NO = F.FOLLOWEE_NO)
+		WHERE FOLLOWER_NO = #{memberNo}
+  	</select>
+  	
+  	  	
+  	<select id="selectfolloweeList">
+		SELECT 
+			M.MEMBER_NO,
+			M.MEMBER_NICKNAME,
+			M.MEMBER_PROFILE,
+			(SELECT COUNT(*)
+			 FROM "FOLLOW"
+			 WHERE FOLLOWER_NO = #{memberNo}
+			 AND	FOLLOWEE_NO = M.MEMBER_NO
+			) AS "FOLLOW_BACK"
+		FROM "FOLLOW" F
+		LEFT JOIN "MEMBER"M ON (M.MEMBER_NO = F.FOLLOWER_NO)
+		WHERE FOLLOWEE_NO = #{memberNo}
+  	</select>
+  	
   	
 </mapper>

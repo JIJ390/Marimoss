@@ -11,21 +11,95 @@
       </div>
       <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" name="profileImg" alt="" id="profileImg">
       <div class="profile">
-        <div class="temp-div1">
+        <div class="pofile-follow-area" 
+             th:if="${session.loginMember != null and session.loginMember.memberNo != memberStatus.memberNo}">
+          <div name="pofileFollowBtn" 
+               th:classappend="${followCheck} == '1' ? 'follow'"
+               th:data-value="${followCheck}">팔로우</div>
+
         </div>
         <span th:text="*{memberNickname}" id="myPageMemberNickname" th:data-value="*{memberNo}"></span>
         <span th:text="*{memberEmail}"></span>
       </div>
     </div>
 
-    <!-- 빈공간 div -->
     <div class="myPage-temp"></div>
+
+
+
+    <div class="member-status-container">
+      <div class="follow-container">
+        <div class="follow-header">
+          <div id="followerBtn" class="checked-div">팔로워</div>
+          <div id="followeeBtn">팔로잉</div>
+        </div>
+
+        <div class="follower-container" name="followerContainer">
+
+          <th:block th:if= "${followerList}" th:each= "follower:${followerList}" th:object="${follower}">
+            <div class="follower-box">
+              <div class="follower-box-member-area">
+                <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" class="">
+                <div th:text="*{memberNickname}"></div>
+              </div>
+  
+              <div class="follower-box-etc-area" th:data-value="*{memberNo}"
+                   th:unless="${session.loginMember != null and session.loginMember.memberNo == follower.memberNo}">
+                <img src="/images/main/button.png" alt="" name="etcBtn">
+                <div class="modal-follower-menu modal-follower-menu-close">
+                  <div name="memberPage">페이지</div>
+                </div>
+              </div>
+  
+            </div>
+          </th:block>
+  
+        </div>
+
+        <div class="follower-container follow-display" name="followeeContainer">
+
+          <th:block th:if= "${followeeList}" th:each= "followee:${followeeList}" th:object="${followee}">
+            <div class="follower-box">
+              <div class="follower-box-member-area">
+                <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" class="">
+                <div th:text="*{memberNickname}"></div>
+              </div>
+  
+              <div class="follower-box-etc-area" th:data-value="*{memberNo}" 
+                   th:unless="${session.loginMember != null and session.loginMember.memberNo == followee.memberNo}">
+                <img src="/images/main/button.png" alt="" name="etcBtn">
+                <div class="modal-follower-menu modal-follower-menu-close">
+                  <div name="memberPage">페이지</div>
+                </div>
+              </div>
+
+  
+            </div>
+          </th:block>
+  
+        </div>
+
+      </div>
+
+
+
+      <div class="member-active-container">
+      </div>
+      
+    </div>
+
+
+
+    
     <div class="myPage-main-content">
     
       <!-- 내가 쓴 게시글 -->
       <section class="myPage-section">
-        <div th:text="|${memberStatus.memberNickname} 님의 작품들 (${boardCount})|" name="myPage-subTitle">aaaa</div>
-        <hr>
+        <div th:text="|${memberStatus.memberNickname} 님의 작품들 (${boardCount})|" name="myPage-subTitle"></div>
+        <hr id="mypage-hr">
+        <div th:if= "${#lists.size(boardList) == 0}" class="no-board">
+          <div>등록된 작품이 없습니다</div>
+        </div>
         <div class="board-container">
           <th:block th:each="board:${boardList}" th:object="${board}">
     
@@ -75,46 +149,5 @@
 
   </div>
 
-  <div class="myPage-modal" th:object="${session.loginMember}">
-    <div class="theme-img-div">
-      <img th:src="*{memberTheme}" alt="" class="preview-theme-img">
-    </div>
-
-    <div class="profile-img-div">
-      <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" class="preview-proflie-img">
-    </div>
-    <div class="profile-change-content">
-      <div class="profile-img-change-div">
-        <input type="file" id="profileImgInput" style="display: none;">
-        <label for="profileImgInput" class="profile-modal-btn">프로필 선택</label>
-        <button class="profile-modal-btn" id="profileImgUpdateBtn">프로필 수정</button>
-      </div>
-      <div class="profile-img-change-div">
-        <input type="file" id="themeImgInput" style="display: none;">
-        <label for="themeImgInput" class="profile-modal-btn">테마 선택</label>
-        <button class="profile-modal-btn" id="themeImgUpdateBtn">테마 수정</button>
-      </div>
-
-      <div class="name-change">
-        <span>닉네임</span>
-        <input type="text" th:value="*{memberNickname}" id="nameChangeInput">
-        <button class="profile-modal-btn" id="nameChangeBtn">수정하기</button>
-      </div>
-      <div class="modal-change-div">
-        <span>
-          활동내역 공개 여부
-        </span>
-      </div>
-      <div class="modal-change-div">
-        <span>
-          팔로워 공개 여부
-        </span>
-      </div>
-      <div name="myPageModalCancleDiv">
-        <button class="profile-modal-btn" id="myPageModalCancleBtn">취소</button>
-      </div>
-    </div>
-  
-    </div>
 
 </section>

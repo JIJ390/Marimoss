@@ -415,8 +415,35 @@ const updateModal = (boardNo, box) => {
       modalMemberMenu.classList.toggle("modal-member-menu-close");
     });
 
+    //// 회원 페이지 이동
+    const memberPage = boardModal.querySelector("[name=memberPage]");
+
+    memberPage.addEventListener("click", () => {
+
+      fetch("/myPage/memberPageView?memberNo=" + modalmemberNo)
+        .then(resp => {
+          if (resp.ok) return resp.text();
+          throw new Error("실패")
+        })
+        .then(html => {
+          pageStatus = 'memberPage';
+
+          document.querySelector("#blackDisplay").classList.remove("overlay");
+
+          main.innerHTML = html;
+          window.scrollTo({ top: 0 });
+
+          // 임의로 이벤트 발생
+          const domContentLoadedEvent = new Event('DOMContentLoaded');
+          document.dispatchEvent(domContentLoadedEvent);
+        })
+        .catch(err => console.error);
+
+    })
+
+
     const followBtn = boardModal.querySelector("[name=followBtn]");
-    let followCheck = followBtn.getAttribute("data-value");
+    let followCheck = followBtn?.getAttribute("data-value");
 
     followBtn?.addEventListener("mouseover", () => {
       if (followCheck == 1) {
@@ -435,7 +462,7 @@ const updateModal = (boardNo, box) => {
 
     followBtn?.addEventListener("click", () => {
 
-      fetch("member/followChange", {
+      fetch("/member/followChange", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: modalmemberNo
@@ -466,72 +493,12 @@ const updateModal = (boardNo, box) => {
     })
 
 
-    //// 회원 페이지 이동
-    const memberPage = boardModal.querySelector("[name=memberPage]");
-
-    memberPage.addEventListener("click", () => {
-      fetch("/myPage/memberPageView?memberNo=" + modalmemberNo)
-      .then(resp => {
-        if (resp.ok) return resp.text();
-        throw new Error("실패")
-      })
-      .then(html => {
-        pageStatus = 'memberPage';
-
-        document.querySelector("#blackDisplay").classList.remove("overlay");
-    
-        main.innerHTML = html;
-        window.scrollTo({top: 0});
-    
-        // 임의로 이벤트 발생
-        const domContentLoadedEvent = new Event('DOMContentLoaded');
-        document.dispatchEvent(domContentLoadedEvent);
-      })
-      .catch(err => console.error);
-
-    })
 
   })
   .catch(err => console.error);
 }
 
 
-/**
- * 모달 내부 팔로우 버튼
- * 클릭시 팔로우하고 상태 변경 
- * @param {*} memberNo 
- */
-const memberFollow = (memberNo, followBtn, followCheck) => {
-
-
-  fetch("member/followChange", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: memberNo
-  })
-  .then(resp => {
-    if (resp.ok) return resp.text();
-    throw new Error("변경 실패")
-  })
-  .then(result => {
-
-    // 결과에 따라 변경
-    if (result == 'unfollow') {
-
-      followCheck = 0;
-      console.log(followCheck);
-      followBtn.classList.remove("follow");
-    }
-
-    if (result == 'follow') {
-      followCheck = 1;
-      console.log(followCheck);
-      followBtn.classList.add("follow");
-
-    }
-  })
-
-}
 
 
 /**

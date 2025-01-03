@@ -1,5 +1,6 @@
 package jij.marimoss.mypage.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import jij.marimoss.main.service.MainService;
 import jij.marimoss.member.dto.Member;
 import jij.marimoss.mypage.service.MyPageService;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MyPageController {
 	
 	private final MyPageService service;
+	private final MainService mainService;
 
 	
 	/**
@@ -46,15 +49,47 @@ public class MyPageController {
 		// 최초 12 개 게시글 가져오기
 		Map<String, Object> firstBoard = service.selectMyBoardList(cp, memberNo);
 		
+		List<Member> followerList = service.selectFollowerList(memberNo);
+		List<Member> followeeList = service.selectfolloweeList(memberNo);
+		
 		// 각각 꺼내기
 		model.addAttribute("boardList", firstBoard.get("boardList"));
 		model.addAttribute("pagination", firstBoard.get("pagination"));
 		model.addAttribute("boardCount", firstBoard.get("boardCount"));
+		model.addAttribute("followerList", followerList);
+		model.addAttribute("followeeList", followeeList);
 		
-		log.debug("boardCount : {}", firstBoard.get("boardCount"));
 		
 		return "myPage/myPage";
 	}
+	
+	
+	@GetMapping("followerList")
+	public String followerList(
+			@SessionAttribute("loginMember") Member loginMember,
+			Model model) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		List<Member> followerList = service.selectFollowerList(memberNo);
+		model.addAttribute("followerList", followerList);
+		
+		return "myPage/followerContainer";
+	}
+	
+	@GetMapping("followeeList")
+	public String followeeList(
+			@SessionAttribute("loginMember") Member loginMember,
+			Model model) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		List<Member> followeeList = service.selectfolloweeList(memberNo);
+		model.addAttribute("followeeList", followeeList);
+		
+		return "myPage/followeeContainer";
+	}
+	
 	
 	
 	
@@ -82,27 +117,45 @@ public class MyPageController {
 	
 	
 	/**
-	 * 내가 쓴 게시글 조회
+	 * 유저 쓴 게시글 조회
 	 * @param loginMember
 	 * @return
 	 */
 	@GetMapping("memberPageView")
 	public String memberPageView(
 			@RequestParam("memberNo") int memberNo,
+			@SessionAttribute(value="loginMember", required=false) Member loginMember,
 			Model model) {
 		
 		int cp = 1;
+		
+		int loginMemberNo = -1;
+
+		if (loginMember != null) {
+			loginMemberNo = loginMember.getMemberNo();
+		}
+		
 		
 		Member memberStatus = service.selectMember(memberNo);
 		
 		// 최초 12 개 게시글 가져오기
 		Map<String, Object> firstBoard = service.selectMyBoardList(cp, memberNo);
 		
+		int followCheck = mainService.followCheck(memberNo, loginMemberNo);
+		// 0 이면 팔로우 안함, 1 이면 팔로우 함
+		
+		List<Member> followerList = service.selectFollowerList(memberNo);
+		List<Member> followeeList = service.selectfolloweeList(memberNo);
+
 		// 각각 꺼내기
 		model.addAttribute("memberStatus", memberStatus);
 		model.addAttribute("boardList", firstBoard.get("boardList"));
 		model.addAttribute("pagination", firstBoard.get("pagination"));
 		model.addAttribute("boardCount", firstBoard.get("boardCount"));
+		model.addAttribute("followCheck", followCheck);
+		
+		model.addAttribute("followerList", followerList);
+		model.addAttribute("followeeList", followeeList);
 		
 		return "myPage/memberPage";
 	}

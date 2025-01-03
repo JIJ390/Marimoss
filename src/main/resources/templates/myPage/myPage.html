@@ -20,13 +20,84 @@
     </div>
 
     <!-- 빈공간 div -->
-    <div class="myPage-temp"></div>
+    <div class="myPage-temp">
+    </div>
+
+    <div class="member-status-container">
+      <div class="follow-container">
+        <div class="follow-header">
+          <div id="followerBtn" class="checked-div">팔로워</div>
+          <div id="followeeBtn">팔로잉</div>
+        </div>
+
+        <div class="follower-container" name="followerContainer">
+
+          <th:block th:if= "${followerList}" th:each= "follower:${followerList}" th:object="${follower}">
+            <div class="follower-box">
+              <div class="follower-box-member-area">
+                <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" class="">
+                <div th:text="*{memberNickname}"></div>
+              </div>
+  
+              <div class="follower-box-etc-area" th:data-value="*{memberNo}">
+                <img src="/images/main/button.png" alt="" name="etcBtn">
+                <div class="modal-follower-menu modal-follower-menu-close">
+                  <div name="followBtn"
+                       th:data-value="*{followBack}"
+                       th:classappend="*{followBack} == '1' ? 'follow'"
+                  >팔로우</div>
+                  <div name="memberPage">페이지</div>
+                </div>
+              </div>
+  
+            </div>
+          </th:block>
+  
+        </div>
+
+        <div class="follower-container follow-display" name="followeeContainer">
+
+          <th:block th:if= "${followeeList}" th:each= "followee:${followeeList}" th:object="${followee}">
+            <div class="follower-box">
+              <div class="follower-box-member-area">
+                <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" class="">
+                <div th:text="*{memberNickname}"></div>
+              </div>
+  
+              <div class="follower-box-etc-area" th:data-value="*{memberNo}">
+                <img src="/images/main/button.png" alt="" name="etcBtn">
+                <div class="modal-follower-menu modal-follower-menu-close">
+                  <div name="memberPage">페이지</div>
+                  <div name="deleteFollow">삭제 X</div>
+                </div>
+              </div>
+
+  
+            </div>
+          </th:block>
+  
+        </div>
+
+      </div>
+
+
+
+      <div class="member-active-container">
+      </div>
+      
+    </div>
+
     <div class="myPage-main-content">
     
       <!-- 내가 쓴 게시글 -->
       <section class="myPage-section">
         <div th:text="|내 작품들 (${boardCount})|" name="myPage-subTitle">aaaa</div>
-        <hr>
+        <hr id="mypage-hr">
+
+        <div th:if= "${#lists.size(boardList) == 0}" class="no-board">
+          <div>등록된 작품이 없습니다</div>
+        </div>
+
         <div class="board-container">
           <th:block th:each="board:${boardList}" th:object="${board}">
     

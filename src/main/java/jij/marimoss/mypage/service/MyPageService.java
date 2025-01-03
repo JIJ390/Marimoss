@@ -1,5 +1,6 @@
 package jij.marimoss.mypage.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -54,5 +55,21 @@ public interface MyPageService {
 	 * @return
 	 */
 	Member selectMember(int memberNo);
+
+
+	/**
+	 * 해당 회원을 팔로우한 회원들 정보
+	 * @param memberNo
+	 * @return
+	 */
+	List<Member> selectFollowerList(int memberNo);
+
+
+	/**
+	 * 해당 회원이 팔로우한 회원 정보
+	 * @param memberNo
+	 * @return
+	 */
+	List<Member> selectfolloweeList(int memberNo);
 		
 }

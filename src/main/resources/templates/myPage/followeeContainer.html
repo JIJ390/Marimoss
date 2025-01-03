@@ -1,0 +1,18 @@
+
+  <th:block th:if="${followeeList}" th:each="followee:${followeeList}" th:object="${followee}">
+    <div class="follower-box">
+      <div class="follower-box-member-area">
+        <img th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" class="">
+        <div th:text="*{memberNickname}"></div>
+      </div>
+
+      <div class="follower-box-etc-area" th:data-value="*{memberNo}">
+        <img src="/images/main/button.png" alt="" name="etcBtn">
+        <div class="modal-follower-menu modal-follower-menu-close">
+          <div name="memberPage">페이지</div>
+          <div name="deleteFollow">삭제 X</div>
+        </div>
+      </div>
+
+    </div>
+  </th:block>
