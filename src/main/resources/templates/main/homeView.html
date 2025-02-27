@@ -4,7 +4,7 @@
 
       <div class="board-container">
         <div th:if= "${#lists.size(boardList) == 0}" class="no-board">
-          <div>검색된 게시글이 없습니다</div>
+          <div>검색된 작품이 없습니다</div>
         </div>
 
         <th:block th:each= "board:${boardList}" th:object="${board}">
