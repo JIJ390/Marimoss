@@ -19,7 +19,7 @@
 
         </div>
         <span th:text="*{memberNickname}" id="myPageMemberNickname" th:data-value="*{memberNo}"></span>
-        <span th:text="*{memberEmail}"></span>
+        <span th:text="*{memberEmail}" th:if="${memberStatus.memberEmailFl == 'Y'}"></span>
       </div>
     </div>
 
@@ -29,12 +29,17 @@
 
     <div class="member-status-container">
       <div class="follow-container">
-        <div class="follow-header">
+
+        <div th:if="${memberStatus.memberFollowFl == 'N'}" class="no-follow">
+          <div>팔로워 비공개 상태입니다</div>
+        </div>
+
+        <div class="follow-header" th:if="${memberStatus.memberFollowFl == 'Y'}">
           <div id="followerBtn" class="checked-div">팔로워</div>
           <div id="followeeBtn">팔로잉</div>
         </div>
 
-        <div class="follower-container" name="followerContainer">
+        <div class="follower-container" name="followerContainer" th:if="${memberStatus.memberFollowFl == 'Y'}">
 
           <th:block th:if= "${followerList}" th:each= "follower:${followerList}" th:object="${follower}">
             <div class="follower-box">
@@ -56,7 +61,7 @@
   
         </div>
 
-        <div class="follower-container follow-display" name="followeeContainer">
+        <div class="follower-container follow-display" name="followeeContainer" th:if="${memberStatus.memberFollowFl == 'Y'}">
 
           <th:block th:if= "${followeeList}" th:each= "followee:${followeeList}" th:object="${followee}">
             <div class="follower-box">
@@ -100,7 +105,12 @@
         <div th:if= "${#lists.size(boardList) == 0}" class="no-board">
           <div>등록된 작품이 없습니다</div>
         </div>
-        <div class="board-container">
+
+        <div th:if="${#lists.size(boardList) != 0 and memberStatus.memberActiveFl == 'N'}" class="no-board">
+          <div>비공개 상태입니다</div>
+        </div>
+
+        <div class="board-container" th:if="${#lists.size(boardList) != 0 and memberStatus.memberActiveFl == 'Y'}">
           <th:block th:each="board:${boardList}" th:object="${board}">
     
             <div class="board-box" th:data-value="*{boardNo}">

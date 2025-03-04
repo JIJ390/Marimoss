@@ -174,13 +174,45 @@
       </div>
       <div class="modal-change-div">
         <span>
+          이메일 공개 여부
+        </span>
+        <div class="update-reveal-btn" id="changeEmailBtn">
+          <span class="reveal-span" th:classappend="${session.loginMember.memberEmailFl} == 'N' ? 'noneSpan'"
+                style="position: absolute;"
+                id="emailSpanOn">ON</span>
+          <div class="update-reveal-btn1" id="changeEmailBtn1"></div>
+          <span class="reveal-span" th:classappend="${session.loginMember.memberEmailFl} == 'Y' ? 'noneSpan'"
+                style="padding-left: 10px;"
+                id="emailSpanOff">OFF</span>
+        </div>
+      </div>
+      <div class="modal-change-div">
+        <span>
           활동내역 공개 여부
         </span>
+        <div class="update-reveal-btn" id="changeActiveBtn">
+          <span class="reveal-span" th:classappend="${session.loginMember.memberActiveFl} == 'N' ? 'noneSpan'"
+                style="position: absolute;"
+                id="activeSpanOn">ON</span>
+          <div class="update-reveal-btn1" id="changeActiveBtn1"></div>
+          <span class="reveal-span" th:classappend="${session.loginMember.memberActiveFl} == 'Y' ? 'noneSpan'"
+                style="padding-left: 10px;"
+                id="activeSpanOff">OFF</span>
+        </div>
       </div>
       <div class="modal-change-div">
         <span>
           팔로워 공개 여부
         </span>
+        <div class="update-reveal-btn" id="changeFollowBtn">
+          <span class="reveal-span" th:classappend="${session.loginMember.memberFollowFl} == 'N' ? 'noneSpan'"
+                style="position: absolute;"
+                id="followSpanOn">ON</span>
+          <div class="update-reveal-btn1" id="changeFollowBtn1"></div>
+          <span class="reveal-span" th:classappend="${session.loginMember.memberFollowFl} == 'Y' ? 'noneSpan'"
+                style="padding-left: 10px;"
+                id="followSpanOff">OFF</span>
+        </div>
       </div>
       <div name="myPageModalCancleDiv">
         <button class="profile-modal-btn" id="myPageModalCancleBtn">취소</button>

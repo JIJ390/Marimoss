@@ -158,7 +158,7 @@ overflow: hidden;
 
 .myPage-modal {
   width: 350px;
-  height: 450px;
+  height: 520px;
 
   position: fixed;
   top: 50%; /* 세로 방향 가운데 */
@@ -221,7 +221,7 @@ overflow: hidden;
   font-size: 12px;
 
   width: 70px;
-  height: 20px;
+  height: 30px;
   
 
   background-color: white;
@@ -279,6 +279,39 @@ overflow: hidden;
   outline: none;
 }
 
+.update-reveal-btn {
+  width: 70px;
+  height: 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 1px solid var(--font-color);;
+  padding: 4px;
+
+  display: flex;
+}
+
+
+.update-reveal-btn1 {
+  width: 20px;
+  height: 20px;
+
+  border-radius: 20px;
+
+  background-color: var(--font-color);
+
+  transition: 0.2s;
+}
+
+
+
+.reveal-span {
+  color: var(--font-color);
+}
+
+.noneSpan {
+  display: none;
+}
+
 [name=myPageModalCancleDiv] {
   margin-top: 20px;
   width: 100%;
@@ -297,6 +330,10 @@ overflow: hidden;
   font-weight: bold;
 
   margin-top: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #myPageMemberNickname {
@@ -549,4 +586,22 @@ overflow: hidden;
 
 .follow:hover {
   background-color: var(--font-color) !important;
+}
+
+
+.no-follow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.no-follow div {
+
+  text-align: center;
+
+  font-size: 24px;
+  color: var(--font-gray-color) !important;
 }

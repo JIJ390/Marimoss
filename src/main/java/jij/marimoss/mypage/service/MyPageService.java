@@ -71,5 +71,30 @@ public interface MyPageService {
 	 * @return
 	 */
 	List<Member> selectfolloweeList(int memberNo);
+
+
+	/**
+	 * 이메일 공개 여부 변경
+	 * @param memberNo
+	 * @return
+	 */
+	String emailFlChange(int memberNo);
+	
+
+	/**
+	 * 활동내역 공개 여부 변경
+	 * @param memberNo
+	 * @return
+	 */
+	String activeFlChange(int memberNo);
 		
+
+	/**
+	 * 팔로우 공개 여부 변경
+	 * @param memberNo
+	 * @return
+	 */
+	String followFlChange(int memberNo);
+
+
 }

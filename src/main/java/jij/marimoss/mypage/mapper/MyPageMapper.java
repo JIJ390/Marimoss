@@ -78,4 +78,48 @@ public interface MyPageMapper {
 	 */
 	List<Member> selectfolloweeList(int memberNo);
 
+	/**
+	 * 이메일 공개 여부 변경
+	 * @param memberNo
+	 * @return
+	 */
+	int emailFlChange(int memberNo);
+
+	/**
+	 * 변경 후 문자 가져우기
+	 * @param memberNo
+	 * @return
+	 */
+	String selectEmailFl(int memberNo);
+	
+	/**
+	 * 활동 내역 공개 여부 변경
+	 * @param memberNo
+	 * @return
+	 */
+	int activeFlChange(int memberNo);
+	
+	/**
+	 * 변경 후 문자 가져오기
+	 * @param memberNo
+	 * @return
+	 */
+	String selectActiveFl(int memberNo);
+
+	/**
+	 * 팔로우 공개 여부 변경
+	 * @param memberNo
+	 * @return
+	 */
+	int followFlChange(int memberNo);
+
+	/**
+	 * 변경 후 문자 가져우기
+	 * @param memberNo
+	 * @return
+	 */
+	String selectFollowFl(int memberNo);
+
+
+
 }

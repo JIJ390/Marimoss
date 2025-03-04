@@ -136,6 +136,33 @@ public class MyPageServiceImpl implements MyPageService{
 		return mapper.nicknameChange(memberNo, memberNickname);
 	}
 	
+	// 이메일 공개 여부 변경
+	@Override
+	public String emailFlChange(int memberNo) {
+		int result1 = mapper.emailFlChange(memberNo);
+		String result2 = mapper.selectEmailFl(memberNo);
+		
+		return result2;
+	}
+	
+	// 활동 내역 공개 여부 변경
+	@Override
+	public String activeFlChange(int memberNo) {
+		int result1 = mapper.activeFlChange(memberNo);
+		String result2 = mapper.selectActiveFl(memberNo);
+		
+		return result2;
+	}
+	
+	// 팔로우 공개 여부 변경
+	@Override
+	public String followFlChange(int memberNo) {
+		int result1 = mapper.followFlChange(memberNo);
+		String result2 = mapper.selectFollowFl(memberNo);
+		
+		return result2;
+	}
+	
 	
 	@Override
 	public Member selectMember(int memberNo) {

@@ -116,4 +116,58 @@
   	</select>
   	
   	
+  	<!-- 이메일 공개 여부 변경 -->
+  	<update id="emailFlChange">
+  		UPDATE "MEMBER"
+  		SET 
+  			MEMBER_EMAIL_FL = DECODE(MEMBER_EMAIL_FL, 'Y', 'N', 'Y')
+  		WHERE
+  			MEMBER_NO = #{memberNo}
+  	</update>
+  	
+  	<select id="selectEmailFl">
+  		SELECT 
+  			MEMBER_EMAIL_FL
+  		FROM
+  			"MEMBER"
+  		WHERE
+  			MEMBER_NO = #{memberNo}
+  	</select>
+  	
+  	<!-- 활동 내역 공개 여부 변경 -->
+  	<update id="activeFlChange">
+  		UPDATE "MEMBER"
+  		SET 
+  			MEMBER_ACTIVE_FL = DECODE(MEMBER_ACTIVE_FL, 'Y', 'N', 'Y')
+  		WHERE
+  			MEMBER_NO = #{memberNo}
+  	</update>
+  	
+  	<select id="selectActiveFl">
+  		SELECT 
+  			MEMBER_ACTIVE_FL
+  		FROM
+  			"MEMBER"
+  		WHERE
+  			MEMBER_NO = #{memberNo}
+  	</select>
+  	
+  	 <!-- 팔로우 공개 여부 변경 -->
+  	<update id="followFlChange">
+  		UPDATE "MEMBER"
+  		SET 
+  			MEMBER_FOLLOW_FL = DECODE(MEMBER_FOLLOW_FL, 'Y', 'N', 'Y')
+  		WHERE
+  			MEMBER_NO = #{memberNo}
+  	</update>
+  	
+  	<select id="selectFollowFl">
+  		SELECT 
+  			MEMBER_FOLLOW_FL
+  		FROM
+  			"MEMBER"
+  		WHERE
+  			MEMBER_NO = #{memberNo}
+  	</select>
+  	
 </mapper>

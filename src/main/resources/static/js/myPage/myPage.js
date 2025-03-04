@@ -407,6 +407,176 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 
+
+  // 공개여부 변경
+  const changeEmailBtn = document.querySelector("#changeEmailBtn");
+  const changeEmailBtn1 = document.querySelector("#changeEmailBtn1");
+
+  const changeFollowBtn = document.querySelector("#changeFollowBtn");
+  const changeFollowBtn1 = document.querySelector("#changeFollowBtn1");
+
+  const changeActiveBtn = document.querySelector("#changeActiveBtn");
+  const changeActiveBtn1 = document.querySelector("#changeActiveBtn1");
+
+  const emailSpanOn = document.querySelector("#emailSpanOn");
+  const emailSpanOff = document.querySelector("#emailSpanOff");
+
+  const followSpanOn = document.querySelector("#followSpanOn");
+  const followSpanOff = document.querySelector("#followSpanOff");
+
+  const activeSpanOn = document.querySelector("#activeSpanOn");
+  const activeSpanOff = document.querySelector("#activeSpanOff");
+
+  // 초기값에 따라 변경 : emailFl 이 Y 인 경우 
+  if (!emailSpanOn.classList.contains("noneSpan")) {
+    changeEmailBtn1.style.transform = "translate(40px, 0)";
+    changeEmailBtn.style.backgroundColor = "rgb(239, 239, 245)";
+  }
+
+  // 초기값에 따라 변경 : followFl 이 Y 인 경우 
+  if (!followSpanOn.classList.contains("noneSpan")) {
+    changeFollowBtn1.style.transform = "translate(40px, 0)";
+    changeFollowBtn.style.backgroundColor = "rgb(239, 239, 245)";
+  }
+
+  // 초기값에 따라 변경 : activeFl 이 Y 인 경우 
+  if (!activeSpanOn.classList.contains("noneSpan")) {
+    changeActiveBtn1.style.transform = "translate(40px, 0)";
+    changeActiveBtn.style.backgroundColor = "rgb(239, 239, 245)";
+  }
+
+  // 이메일 공개여부 변경
+  changeEmailBtn.addEventListener("click", () => {
+
+    const dummy = 'dummy';
+
+    fetch("/myPage/emailFlChange", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: dummy
+    })
+    .then(resp => { 
+      if (resp.ok) return resp.text();
+      throw new Error("변경 실패")
+    })
+    .then(result => { // Y or N
+      // 변경 후 결과에 따라 상태 변경
+      // 변경 후 N 일 때
+      if (result == 'N') {
+        emailSpanOn.classList.add("noneSpan");
+        emailSpanOff.classList.remove("noneSpan");
+  
+        changeEmailBtn1.style.transform = "translate(0, 0)";
+        changeEmailBtn.style.backgroundColor = "rgb(255, 255, 255)";
+      } 
+      // 변경 후 Y 일때
+      else {
+        emailSpanOn.classList.remove("noneSpan");
+        emailSpanOff.classList.add("noneSpan");
+  
+        changeEmailBtn1.style.transform = "translate(40px, 0)";
+        changeEmailBtn.style.backgroundColor = "rgb(239, 239, 245)";
+      }
+  
+
+    })
+    .catch(err => console.error);
+
+  })
+
+
+  // 활동 내역 공개여부 변경
+  changeActiveBtn.addEventListener("click", () => {
+
+    const dummy = 'dummy';
+
+    fetch("/myPage/activeFlChange", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: dummy
+    })
+    .then(resp => {
+      if (resp.ok) return resp.text();
+      throw new Error("변경 실패")
+    })
+    .then(result => { // Y or N
+      // 변경 후 결과에 따라 상태 변경
+      // 변경 후 N 일 때
+      if (result == 'N') {
+
+        activeSpanOn.classList.add("noneSpan");
+        activeSpanOff.classList.remove("noneSpan");
+        
+        changeActiveBtn1.style.transform = "translate(0, 0)";
+        changeActiveBtn.style.backgroundColor = "rgb(255, 255, 255)";
+
+      }
+      // 변경 후 Y 일때
+      else {
+        activeSpanOn.classList.remove("noneSpan");
+        activeSpanOff.classList.add("noneSpan");
+
+        changeActiveBtn1.style.transform = "translate(40px, 0)";
+        changeActiveBtn.style.backgroundColor = "rgb(239, 239, 245)";
+
+      }
+
+    })
+    .catch(err => console.error);
+
+  })
+
+
+  // 팔로우 공개여부 변경
+  changeFollowBtn.addEventListener("click", () => {
+
+    const dummy = 'dummy';
+
+    fetch("/myPage/followFlChange", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: dummy
+    })
+    .then(resp => { 
+      if (resp.ok) return resp.text();
+      throw new Error("변경 실패")
+    })
+    .then(result => { // Y or N
+      // 변경 후 결과에 따라 상태 변경
+      // 변경 후 N 일 때
+      if (result == 'N') {
+        followSpanOn.classList.add("noneSpan");
+        followSpanOff.classList.remove("noneSpan");
+  
+        changeFollowBtn1.style.transform = "translate(0, 0)";
+        changeFollowBtn.style.backgroundColor = "rgb(255, 255, 255)";
+      } 
+      // 변경 후 Y 일때
+      else {
+        followSpanOn.classList.remove("noneSpan");
+        followSpanOff.classList.add("noneSpan");
+  
+        changeFollowBtn1.style.transform = "translate(40px, 0)";
+        changeFollowBtn.style.backgroundColor = "rgb(239, 239, 245)";
+      }
+
+    })
+    .catch(err => console.error);
+
+  })
+
+  
+
+
+
+
+
+
+
+
+
+
+
   const followerBtn = document.querySelector("#followerBtn");
   const followeeBtn = document.querySelector("#followeeBtn");
 
@@ -797,10 +967,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   })
+
+
+
+
+
 })
 
 
 
+
+
+// 팔로워 공개 버튼 관련 함수
+const changeFollowReveal = () => {
+
+  fetch 
+
+}
 
 
 

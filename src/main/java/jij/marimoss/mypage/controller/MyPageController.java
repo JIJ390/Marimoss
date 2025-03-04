@@ -253,6 +253,85 @@ public class MyPageController {
 	}
 	
 	
+	/**
+	 * 이메일 공개 여부 변경
+	 * @param loginMember
+	 * @param dummy
+	 * @return
+	 */
+	@PutMapping("emailFlChange")
+	@ResponseBody
+	public String emailFlChange (
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestBody String dummy
+			) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		String result = service.emailFlChange(memberNo);
+		
+		// 동기화
+		loginMember.setMemberEmailFl(result);
+		
+		return result;
+		
+	}
+	
+	
+	/**
+	 * 활동내역 공개 여부 변경
+	 * @param loginMember
+	 * @param dummy
+	 * @return
+	 */
+	@PutMapping("activeFlChange")
+	@ResponseBody
+	public String activeFlChange (
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestBody String dummy
+			) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		String result = service.activeFlChange(memberNo);
+		
+		// 동기화
+		loginMember.setMemberActiveFl(result);
+		
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 팔로우 공개 여부 변경
+	 * @param loginMember
+	 * @param dummy
+	 * @return
+	 */
+	@PutMapping("followFlChange")
+	@ResponseBody
+	public String followFlChange (
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestBody String dummy
+			) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		String result = service.followFlChange(memberNo);
+		
+		// 동기화
+		loginMember.setMemberFollowFl(result);
+		
+		return result;
+		
+	}
+	
+	
+	
 	
 	
 	
