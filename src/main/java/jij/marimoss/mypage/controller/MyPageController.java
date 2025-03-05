@@ -332,7 +332,40 @@ public class MyPageController {
 	
 	
 	
+	/**
+	 * 비밀번호 찾기 페이지 이동
+	 * @return
+	 */
+	@GetMapping("pwFindView")
+	public String pwFindView(
+		) {
+		
+		return "myPage/pwFind";
+	}
 	
+	
+	/**
+	 * 비밀번호 변경 페이지 이동
+	 * @return
+	 */
+	@GetMapping("pwChangeView")
+	public String pwChangeView(
+		) {
+		
+		return "myPage/pwChange";
+	}
+	
+	
+	/**
+	 * 회원 탈퇴페이지 이동
+	 * @return
+	 */
+	@GetMapping("memberDelView")
+	public String memberDelView(
+		) {
+		
+		return "myPage/memberDel";
+	}
 	
 	
 }

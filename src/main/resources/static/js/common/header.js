@@ -144,6 +144,55 @@ myPageBtn?.addEventListener("click", () => {
 });
 
 
+// 프로필 모달 내부 버튼
+const pwChangeBtn = document.querySelector("[name=pwChangeBtn]");
+const memberDelBtn = document.querySelector("[name=memberDelBtn]");
+
+// 비밀번호 변경 페이지 이동동
+pwChangeBtn?.addEventListener("click", () => {
+  fetch("/myPage/pwChangeView")
+  .then(resp => {
+    if (resp.ok) return resp.text();
+    throw new Error("실패")
+  })
+  .then(html => {
+    pageStatus = 'pwChange';
+
+    main.innerHTML = html;
+    window.scrollTo({top: 0});
+
+    // 임의로 이벤트 발생
+    const domContentLoadedEvent = new Event('DOMContentLoaded');
+    document.dispatchEvent(domContentLoadedEvent);
+
+    sideModal.classList.toggle("side-modal-none");
+  })
+  .catch(err => console.error);
+})
+
+// 회원 탈퇴 페이지 이동 버튼 클릭 동작
+memberDelBtn?.addEventListener("click", () => {
+  fetch("/myPage/memberDelView")
+  .then(resp => {
+    if (resp.ok) return resp.text();
+    throw new Error("실패")
+  })
+  .then(html => {
+    pageStatus = 'memberDel';
+
+    main.innerHTML = html;
+    window.scrollTo({top: 0});
+
+    // 임의로 이벤트 발생
+    const domContentLoadedEvent = new Event('DOMContentLoaded');
+    document.dispatchEvent(domContentLoadedEvent);
+
+    sideModal.classList.toggle("side-modal-none");
+  })
+  .catch(err => console.error);
+})
+
+
 
 const sideCloseBtn = document.querySelector("#sideCloseBtn");
 const sideModal = document.querySelector(".side-modal");
@@ -177,9 +226,54 @@ loginCloseBtn?.addEventListener("click", () => {
   clearSignUp();
 
   clearLogin();
+  
 
 })
 
+
+
+// 비밀번호 찾기 페이지 이동
+const pwFindBtn = document.querySelector("#pwFindBtn");
+
+pwFindBtn?.addEventListener("click", () => {
+
+  // 모달 닫기
+  document.querySelector("#blackDisplay").classList.remove("overlay");
+  loginModal.classList.add("side-modal-none");
+
+  // 내부 내용 초기화
+  loginFrm.classList.remove("none-display");
+  signUpFrm.classList.add("none-display");
+
+  loginBottomSpan.innerText = "아직 회원이 아니신가요?";
+  signUpBtn.innerText = "회원 가입";
+
+  signFlag = 0;
+
+  clearSignUp();
+  clearLogin();
+
+
+  // 페이지 이동
+  fetch("/myPage/pwFindView")
+  .then(resp => {
+    if (resp.ok) return resp.text();
+    throw new Error("실패")
+  })
+  .then(html => {
+    pageStatus = 'pwFind';
+
+    main.innerHTML = html;
+    window.scrollTo({top: 0});
+
+    // 임의로 이벤트 발생
+    const domContentLoadedEvent = new Event('DOMContentLoaded');
+    document.dispatchEvent(domContentLoadedEvent);
+
+  })
+  .catch(err => console.error);
+
+})
 
 
 

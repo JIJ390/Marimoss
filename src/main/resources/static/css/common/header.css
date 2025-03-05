@@ -514,3 +514,32 @@ main {
 [name=myPageBtn]:hover {
   cursor: pointer;
 }
+
+[name=pwChangeBtn]:hover {
+  cursor: pointer;
+}
+
+[name=memberDelBtn]:hover {
+  cursor: pointer;
+}
+
+
+.pw-find-div {
+  margin-top: 2vh;
+  font-size: 1.5vh;
+}
+
+.pw-find-div:hover {
+  cursor: pointer;
+}
+
+.head-title2 {
+  font-family: 'HancomMalangMalang-Regular' !important;
+  font-size: 80px;
+
+  margin-top: 60px;
+
+  text-align: center;
+
+  font-weight: bold;
+}
