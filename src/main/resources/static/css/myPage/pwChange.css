@@ -1,0 +1,41 @@
+.pw-change-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+}
+
+
+.pw-change-container > input {
+  margin-top: 12px;
+
+  height: 32px;
+
+  width: 280px;
+
+  border: 0.1px solid var(--font-gray-color);
+  border-radius: 16px;
+
+  outline: none;
+  padding-left: 1.5vh;
+
+  font-size: 20px;
+}
+
+.pw-change-hr {
+  height: 2px;
+
+  border-radius: 2px;
+
+  background-color: var(--font-color);
+
+  margin-bottom: 10px;
+  border: none;
+}
+
+.pw-change-inter {
+  margin-top: 20px;
+
+  font-size: 10px;
+}

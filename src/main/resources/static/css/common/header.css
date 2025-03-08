@@ -543,3 +543,15 @@ main {
 
   font-weight: bold;
 }
+
+
+.sub-title {
+
+  margin: 20px 0;
+
+  font-size: 30px;
+
+  text-align: center;
+
+  font-weight: bold;
+}
