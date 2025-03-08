@@ -4,11 +4,14 @@
   align-items: center;
 
   flex-direction: column;
+
+
+  margin-top: 12px;
 }
 
 
 .pw-change-container > input {
-  margin-top: 12px;
+  margin-bottom: 12px;
 
   height: 32px;
 
@@ -20,7 +23,7 @@
   outline: none;
   padding-left: 1.5vh;
 
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .pw-change-hr {
@@ -35,7 +38,51 @@
 }
 
 .pw-change-inter {
-  margin-top: 20px;
+  margin-top: 10px;
 
   font-size: 10px;
+}
+
+.pw-change-btn {
+
+  margin-top: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+
+  width: 280px;
+  height: 32px;
+
+  background-color: white;
+
+  border: 0.3vh solid var(--font-color);
+
+  border-radius: 20px;
+
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+.pw-change-btn:hover {
+  background-color: var(--font-color);
+  color: white;
+
+  cursor: pointer;
+}
+
+#check-span {
+  font-size: 12px;
+
+  margin-top: 10px;
+}
+
+.confirm {
+  color: rgb(54, 213, 125);
+}
+
+.fail {
+  color: rgb(255, 98, 106);
 }
