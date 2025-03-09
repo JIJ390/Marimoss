@@ -1,5 +1,7 @@
 package jij.marimoss.member.service;
 
+import java.util.Map;
+
 import jij.marimoss.member.dto.Member;
 
 public interface MemberService {
@@ -51,5 +53,21 @@ public interface MemberService {
 	 * @return
 	 */
 	int pwChange(String memberEmail, String prePassward, String newPassward);
+
+	/**
+	 * 회원 탈퇴
+	 * @param memberEmail
+	 * @param memberPw
+	 * @return
+	 */
+	int memberDel(String memberEmail, String memberPw);
+
+	/**
+	 * 임시 비밀번호 생성 후 발급
+	 * @param memberEmail
+	 * @return
+	 */
+	String sendTempPw(String memberEmail);
+
 
 }

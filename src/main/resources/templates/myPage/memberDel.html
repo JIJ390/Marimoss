@@ -11,15 +11,22 @@
     그동안 marimoss 를 이용해 주셔서 감사합니다 
   </div>
   <div class="pw-change-container">
-    <input type="password" name="prePw" id="prePw" placeholder="비밀번호를 입력해 주세요">
+    <input type="password" name="prePw" id="memberDelPw" placeholder="비밀번호를 입력해 주세요">
 
-    <pre>aaaa</pre>
+    <pre class="member-del-pre">
+      *탈퇴 약관*
+
+      1. 해당 이메일로 재가입 불가
+
+      2. 계정 복구 불가
+    </pre>
+
     <div>
-      <input type="checkbox">
-      <span>탈퇴 약관에 동의합니다</span>
+      <input type="checkbox" name="agreeCheck" id="agreeCheckInput">
+      <span name="delSpan">탈퇴 약관에 동의합니다</span>
     </div>
 
-    <div class="pw-change-btn">
+    <div class="pw-change-btn" id="memberDelBtn">
       탈퇴하기
     </div>
 

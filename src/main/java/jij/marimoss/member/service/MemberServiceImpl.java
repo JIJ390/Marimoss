@@ -125,4 +125,77 @@ public class MemberServiceImpl implements MemberService{
 		
 		return result;
 	}
+	
+	@Override
+	public int memberDel(String memberEmail, String memberPw) {
+		
+		
+		Member loginMember = mapper.login(memberEmail);
+		
+		// 일치하는 이메일 없을 때
+		if (loginMember == null) {
+			return 3;
+		}
+		
+		// 비밀 번호 불일치 시
+		if (!encoder.matches(memberPw, loginMember.getMemberPassward())) {
+			return 4;
+		}
+		
+		int result = mapper.memberDel(memberEmail);
+		
+		return result;
+	}
+	
+	
+	
+	@Override
+	public String sendTempPw(String memberEmail) {
+		
+		String tempPw = "";
+  	String specialStr = "!#$%&";
+  	
+    for(int i=0 ; i< 8 ; i++) { // 8자리
+        
+      int sel1 = (int)(Math.random() * 4); // 0:숫자 / 1,2:영어 / 3: 특문
+      
+      if(sel1 == 0) {
+        
+        int num = (int)(Math.random() * 10); // 0~9
+        tempPw += num;
+          
+      }else if (sel1 == 3) { // 특문
+
+      	char randomChar = specialStr.charAt((int)(Math.random() * 5));
+      	
+      	tempPw += randomChar;
+      	
+      }else {
+        
+        char ch = (char)(Math.random() * 26 + 65); // A~Z
+        
+        int sel2 = (int)(Math.random() * 2); // 0:소문자 / 1:대문자
+        
+        if(sel2 == 0) {
+            ch = (char)(ch + ('a' - 'A')); // 대문자로 변경
+        }
+        
+        tempPw += ch;
+      }
+    }
+		
+		
+		
+		// 임시 비밀번호
+		String encPw = encoder.encode(tempPw);
+		
+		log.debug("tempPw : {}", tempPw);
+		
+		int result = mapper.pwChange(memberEmail, encPw);
+		
+		return tempPw;
+	}
+	
+	
+	
 }

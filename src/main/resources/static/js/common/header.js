@@ -423,7 +423,9 @@ checkBtn.addEventListener("click", () => {
       }
 
       else {
-        sendAuthKey(inputEmail);
+
+
+        sendAuthKey(inputEmail, "signUp");
         
         /* 메일이 비동기로 발송되는 동안 아래 JS 코드 수행 */
         // 2) 이메일 발송 메시지 출력 + 5 분 타이머 출력
@@ -673,12 +675,17 @@ const clearLogin = () => {
  * 이메일 보내는 함수
  * @param {} inputEmail 
  */
-const sendAuthKey = (inputEmail) => {
+const sendAuthKey = (inputEmail, authStatus) => {
+
+  const emailObj = {
+    "inputEmail" : inputEmail, // 이메일
+    "authStatus" : authStatus  // 인증번호 유형
+  }
 
   fetch("/email/sendAuthKey", {
     method : "POST",
     headers : {"Content-Type" : "application/json"},
-    body : inputEmail
+    body : JSON.stringify(emailObj)
 
   })
   .then(resp => {

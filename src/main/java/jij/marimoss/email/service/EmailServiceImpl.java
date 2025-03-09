@@ -25,7 +25,7 @@ public class EmailServiceImpl implements EmailService{
 	
 	
 	@Override
-	public int sendAuthKey(String string, String email) {
+	public int sendAuthKey(String authStatus, String email) {
 		
 		try {
 			
@@ -43,9 +43,14 @@ public class EmailServiceImpl implements EmailService{
 			
 			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 			
-			String htmlName = "signUp";
+			String htmlName = authStatus;
 			
 			emailTitle = "marimoss 이메일 인증 번호가 발급되었습니다";
+			
+			// 유형이 비밀번호 찾기일 때
+			if (authStatus.equals("pwFind")) {
+				emailTitle = "marimoss 비밀번호 찾기 인증 번호가 발급되었습니다";
+			}
 			
 			helper.setTo(email); // 받는 사람 이메일 세팅
 			helper.setSubject(emailTitle); // 이메일 제목 세팅
@@ -141,4 +146,36 @@ public class EmailServiceImpl implements EmailService{
 		return redisUtil.getValue(email).equals(authKey);
 	}
   
+	
+	@Override
+	public int sendTempPw(String memberEmail, String tempPw) {
+		/*----- 메일 발송 ------*/
+		
+		try {
+		
+			// MimeMessage : 메일 발송 객체
+			MimeMessage mimeMessage = mailSender.createMimeMessage();
+			
+			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+			
+			String htmlName = "sendTempPw";
+			
+			String emailTitle = "marimoss 임시 비밀번호가 발급되었습니다";
+			
+			helper.setTo(memberEmail); // 받는 사람 이메일 세팅
+			helper.setSubject(emailTitle); // 이메일 제목 세팅
+			helper.setText(loadHtml(tempPw, htmlName), true); // 이메일 내용 세팅(본래 내부에 html 형식으로 작성)
+			
+			// 메일 발송하기
+			mailSender.send(mimeMessage);
+			
+		
+		} catch(Exception e) {
+			e.printStackTrace();
+			return 0;	// 예외 발생 == 실패 => 0 반환
+		}
+		
+		return 1;	// 예외 발생 X == 성공 => 1 반환
+	}
+	
 }

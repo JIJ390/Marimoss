@@ -26,6 +26,10 @@
   font-size: 18px;
 }
 
+.pw-change-container > input:focus {
+  outline: 0.1px solid var(--font-color);
+} 
+
 .pw-change-hr {
   height: 2px;
 
@@ -86,3 +90,42 @@
 .fail {
   color: rgb(255, 98, 106);
 }
+
+
+
+[name=agreeCheck] {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+
+  accent-color: var(--font-color);
+}
+
+[name=delSpan] {
+  position: relative;
+
+  margin-left: 24px;
+}
+
+
+.member-del-pre {
+  margin-bottom: 12px;
+
+  height: 150px;
+
+  width: 280px;
+
+  border: 0.1px solid var(--font-gray-color);
+  border-radius: 16px;
+
+
+  text-align: left;
+
+  padding: 4px;
+
+  background-color: white;
+
+  font-size: 18px;
+}
+
+

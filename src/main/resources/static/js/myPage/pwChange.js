@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
     fetch("member/pwChange", {
-      method: "POST",
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(pwObj)
     })

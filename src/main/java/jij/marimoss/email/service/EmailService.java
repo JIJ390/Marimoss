@@ -6,11 +6,11 @@ public interface EmailService {
 
 	/**
 	 * 이메일 보내기
-	 * @param string
+	 * @param authStatus
 	 * @param email
 	 * @return
 	 */
-	int sendAuthKey(String string, String email);
+	int sendAuthKey(String authStatus, String email);
 
 	
 	/**
@@ -19,5 +19,15 @@ public interface EmailService {
 	 * @return
 	 */
 	boolean checkAuthKey(Map<String, String> map);
+
+
+	/**
+	 * 임시 비밀번호 보내기
+	 * @param memberEmail
+	 * @param tempPw
+	 * @return
+	 */
+	int sendTempPw(String memberEmail, String tempPw);
+
 
 }

@@ -70,4 +70,11 @@ public interface MemberMapper {
 			@Param("memberEmail") String memberEmail, 
 			@Param("encPw") String encPw);
 
+	/**
+	 * 회원탈퇴
+	 * @param memberEmail
+	 * @return
+	 */
+	int memberDel(String memberEmail);
+
 }

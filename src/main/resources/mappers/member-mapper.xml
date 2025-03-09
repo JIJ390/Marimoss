@@ -20,8 +20,6 @@
   			COUNT(*)
   		FROM "MEMBER"
   		WHERE 
-  			MEMBER_DEL_FL = 'N'
-		AND 
 			MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
@@ -73,10 +71,20 @@
   	</delete>
   	
   	
+  	<!-- 비밀번호 변경 -->
   	<update id="pwChange">
   	  	UPDATE "MEMBER"
   		SET
   			MEMBER_PASSWARD = #{encPw}
+  		WHERE
+  			MEMBER_EMAIL = #{memberEmail}
+  	</update>
+  	
+  	
+  	<update id="memberDel">
+  	  	UPDATE "MEMBER"
+  		SET
+  			MEMBER_DEL_FL = 'Y'
   		WHERE
   			MEMBER_EMAIL = #{memberEmail}
   	</update>

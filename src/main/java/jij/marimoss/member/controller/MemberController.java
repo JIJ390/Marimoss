@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -201,8 +202,13 @@ public class MemberController {
 	
 	
 	
-	
-	@PostMapping("pwChange")
+	/**
+	 * 비밀번호 변경
+	 * @param loginMember
+	 * @param pwObj
+	 * @return
+	 */
+	@PutMapping("pwChange")
 	@ResponseBody
 	public String pwChange(
 			@SessionAttribute("loginMember") Member loginMember,
@@ -226,11 +232,43 @@ public class MemberController {
 			case 4 : str = "비밀번호가 일치하지 않습니다"; break;
 		}
 		
-		
 		return str;
 		
 	}
 	
+	
+	
+	
+
+	/**
+	 * 회원 탈퇴
+	 * @param loginMember
+	 * @param memberPw
+	 * @return
+	 */
+	@PutMapping("memberDel")
+	@ResponseBody
+	public String memberDel(
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestBody String memberPw) {
+		
+		String memberEmail = loginMember.getMemberEmail();
+		
+		int result = service.memberDel(memberEmail, memberPw);
+		
+		
+		String str = null;
+		
+		switch(result) {
+			case 0 : str = "탈퇴 실패"; break;
+			case 1 : str = "탈퇴처리 되었습니다. 그동안 marimoss를 이용해 주셔서 감사합니다"; break;
+			case 3 : str = "오류"; break;
+			case 4 : str = "비밀번호가 일치하지 않습니다"; break;
+		}
+		
+		return str;
+		
+	}
 	
 	
 }

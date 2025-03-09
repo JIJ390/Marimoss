@@ -1,0 +1,125 @@
+.pw-find-hr {
+  height: 2px;
+
+  border-radius: 2px;
+
+  background-color: var(--font-color);
+
+  margin-bottom: 10px;
+  border: none;
+}
+
+
+.pw-find-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+}
+
+.pw-find-div2 {
+  width: 320px;
+
+  height: 32px;
+
+  border-radius: 24px;
+
+  display: flex;
+
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+}
+
+.pw-find-div2 input {
+  
+  width: 220px;
+  border-radius: 32px;
+
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  
+  border: 0.1px solid var(--font-gray-color);
+
+  border-right: none;
+
+  outline: none;
+  padding-left: 1.5vh;
+
+  font-size: 16px;
+
+  height: 32px;
+
+}
+
+.pw-find-div input:focus {
+  outline: 0.1px solid var(--font-color);
+}
+
+[name=checkBtn] {
+  border-radius: 32px;
+
+  width: 100px;
+
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  
+  border: 0.1px solid var(--font-gray-color);
+
+  font-size: 18px;
+
+  height: 32px;
+
+  background-color: white;
+
+  transition-property: background-color;
+  transition-duration: 0.2s;
+}
+
+[name=checkBtn]:hover {
+  background-color: var(--font-color);
+  color: white;
+
+  cursor: pointer;
+}
+
+#pwFindTimeSpan {
+  font-size: 24px;
+}
+
+#authKeyInput {
+  width: 320px;
+
+  border: 0.1px solid var(--font-gray-color);
+  border-radius: 32px;
+}
+
+.pw-find-btn {
+  margin-top: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+
+  width: 320px;
+  height: 32px;
+
+  background-color: white;
+
+  border: 0.1px solid var(--font-color);
+
+  border-radius: 20px;
+
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+.pw-find-btn:hover {
+  background-color: var(--font-color);
+  color: white;
+
+  cursor: pointer;
+}

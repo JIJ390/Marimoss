@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jij.marimoss.common.util.RedisUtil;
 import jij.marimoss.email.service.EmailService;
+import jij.marimoss.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -22,6 +23,8 @@ public class EmailController {
 	public final RedisUtil redisUtil;
 	
 	public final EmailService service;
+	
+	public final MemberService memberService;
 	
 	// 레디스 확인하기
 	@ResponseBody
@@ -46,9 +49,12 @@ public class EmailController {
 	@ResponseBody
 	@PostMapping("sendAuthKey")
 	public int sendAuthKey (
-			@RequestBody String email) {
+			@RequestBody Map<String, String> emailObj) {
 		
-		return service.sendAuthKey("signUp", email);
+		String email = emailObj.get("inputEmail");
+		String authStatus = emailObj.get("authStatus");
+		
+		return service.sendAuthKey(authStatus, email);
 	}
 	
 	
@@ -61,4 +67,34 @@ public class EmailController {
 		return service.checkAuthKey(map);
 		
 	}
+	
+	
+	/**
+	 * 일치하는지 확인 후 일치하면 비밀번호 변경
+	 * @param map
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("checkAuthKeyPwFind")
+	public boolean checkAuthKeyPwFind(
+			@RequestBody Map<String, String> map
+			) {
+		
+		boolean result = service.checkAuthKey(map);
+		
+		String memberEmail = map.get("email");
+		
+		// result 값 성공 유무에 따라 다른 수행
+		if (result) {
+			// 일치할 때 임시 비밀번호 발급 
+			String tempPw = memberService.sendTempPw(memberEmail);
+			
+			int result2 = service.sendTempPw(memberEmail, tempPw);
+			
+		}
+		
+		
+		return result;
+	}
+	
 }
