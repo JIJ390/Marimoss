@@ -59,4 +59,15 @@ public interface MemberMapper {
 			@Param("memberNo") int memberNo,
 			@Param("loginMemberNo") int loginMemberNo);
 
+	
+	/**
+	 * 비밀 번호 변경
+	 * @param memberEmail
+	 * @param encPw
+	 * @return
+	 */
+	int pwChange(
+			@Param("memberEmail") String memberEmail, 
+			@Param("encPw") String encPw);
+
 }

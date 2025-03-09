@@ -98,4 +98,31 @@ public class MemberServiceImpl implements MemberService{
 		
 		return followResult;
 	}
+	
+	
+	
+	@Override
+	public int pwChange(String memberEmail, String prePassward, String newPassward) {
+		
+		Member loginMember = mapper.login(memberEmail);
+		
+		// 일치하는 이메일 없을 때
+		if (loginMember == null) {
+			return 3;
+		}
+		
+		// 비밀 번호 불일치 시
+		if (!encoder.matches(prePassward, loginMember.getMemberPassward())) {
+			return 4;
+		}
+		
+		// 로그인 성공 / 비밀 번호 변경
+		
+		// 비밀번호 암호화
+		String encPw = encoder.encode(newPassward);
+		
+		int result = mapper.pwChange(memberEmail, encPw);
+		
+		return result;
+	}
 }

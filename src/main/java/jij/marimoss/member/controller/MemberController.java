@@ -114,6 +114,12 @@ public class MemberController {
 	}
 	
 	
+	/**
+	 * 로그 아웃
+	 * @param resp
+	 * @param status
+	 * @return
+	 */
 	@GetMapping("logout")
 	public String logout(
 			HttpServletResponse resp,
@@ -192,5 +198,39 @@ public class MemberController {
 		return result;
 		
 	}
+	
+	
+	
+	
+	@PostMapping("pwChange")
+	@ResponseBody
+	public String pwChange(
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestBody Map<String, String> pwObj
+			) {
+		
+		String memberEmail = loginMember.getMemberEmail();
+		
+		String prePassward = pwObj.get("prePassward");
+		String newPassward = pwObj.get("newPassward");
+		
+		// 비밀번호가 일치하는 지 확인 후 변경
+		int result = service.pwChange(memberEmail, prePassward, newPassward);
+		
+		String str = null;
+		
+		switch(result) {
+			case 0 : str = "비밀번호 변경에 실패하였습니다"; break;
+			case 1 : str = "비밀번호가 변경되었습니다. 다시 로그인 해주세요"; break;
+			case 3 : str = "오류"; break;
+			case 4 : str = "비밀번호가 일치하지 않습니다"; break;
+		}
+		
+		
+		return str;
+		
+	}
+	
+	
 	
 }

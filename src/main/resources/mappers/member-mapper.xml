@@ -73,4 +73,12 @@
   	</delete>
   	
   	
+  	<update id="pwChange">
+  	  	UPDATE "MEMBER"
+  		SET
+  			MEMBER_PASSWARD = #{encPw}
+  		WHERE
+  			MEMBER_EMAIL = #{memberEmail}
+  	</update>
+  	
 </mapper>

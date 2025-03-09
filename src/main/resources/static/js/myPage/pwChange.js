@@ -108,8 +108,35 @@ document.addEventListener('DOMContentLoaded', () => {
       prePw.focus();
       return;
     }
-  })
 
+    // 문제 없을 시 pw 보내기
+
+    const pwObj = {
+      newPassward : newPw.value.trim(),
+      prePassward : prePw.value.trim()
+    };
+  
+
+    fetch("member/pwChange", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(pwObj)
+    })
+    .then(resp => {
+      if (resp.ok) return resp.text();
+      throw new Error("변경 실패")
+    })
+    .then(result => {
+      
+      alert(result);
+
+      if(result == "비밀번호가 변경되었습니다. 다시 로그인 해주세요") {
+        location.href = "/member/logout";
+      }
+
+    })
+    .catch(err => console.error)
+  })
 
 })
 

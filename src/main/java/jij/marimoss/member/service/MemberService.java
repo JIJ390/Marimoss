@@ -43,4 +43,13 @@ public interface MemberService {
 	 */
 	String followChange(int memberNo, int loginMemberNo);
 
+	/**
+	 * 비밀번호 변경
+	 * @param memeberEmail
+	 * @param prePassward
+	 * @param newPassward
+	 * @return
+	 */
+	int pwChange(String memberEmail, String prePassward, String newPassward);
+
 }
