@@ -197,6 +197,7 @@ memberDelBtn?.addEventListener("click", () => {
 const sideCloseBtn = document.querySelector("#sideCloseBtn");
 const sideModal = document.querySelector(".side-modal");
 const profileBox = document.querySelector("[name=profileBox]");
+const bellBox = document.querySelector("[name=bellBox]");
 
 const loginModal = document.querySelector(".login-modal");
 const loginCloseBtn = document.querySelector("#loginCloseBtn");
@@ -292,6 +293,18 @@ profileBox?.addEventListener("click", () => {
   }
 
   sideModal.classList.toggle("side-modal-none");
+  alarmModal.classList.add("side-modal-none");
+})
+
+
+// 알람 모달!!!
+
+const alarmModal = document.querySelector(".alarm-modal");
+
+
+bellBox?.addEventListener("click", () => {
+  alarmModal.classList.toggle("side-modal-none");
+  sideModal.classList.add("side-modal-none");
 })
 
 

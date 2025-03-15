@@ -171,10 +171,26 @@ main {
 
 
 
+/* 알람 박스 */
 
+.alarm-modal {
+  width: 25vh;
+  height: 40vh;
 
+  background-color: white;
+  position: fixed;
 
+  right: 5vh;
+  top: 9vh;
 
+  z-index: 30;
+
+  border-radius: 2vh;
+}
+
+.alarm-modal-none {
+  display: none !important;
+}
 
 
 

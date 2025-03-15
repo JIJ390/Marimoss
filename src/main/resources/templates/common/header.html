@@ -28,6 +28,9 @@
       <div class="icon-box" name="crownBox">
         <img src="/images/common/crown.png" alt="">
       </div>
+      <div th:if= "${session.loginMember}"  class="icon-box" name="bellBox">
+        <img src="/images/alarm/bellFull.png" alt="">
+      </div>
       <div class="icon-box" name="profileBox" th:object="${session.loginMember}">
         <img th:unless="${session.loginMember}" src="/images/defaultProfile.png" alt="" id="headerProfileImg">
         <img th:if= "${session.loginMember}" th:src="*{memberProfile != null ? memberProfile : '/images/defaultProfile.png'}" alt="" id="headerProfileImg">
@@ -60,10 +63,13 @@
       </button>
     </div>
 
-    <div class="side-modal-menu">
 
-    </div>
 
+  </div>
+
+  
+  <div class="alarm-modal side-modal-none" th:if="${session.loginMember}" th:object="${session.loginMember}">
+    알람 목록
   </div>
 
 
